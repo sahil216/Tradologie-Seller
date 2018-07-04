@@ -304,7 +304,7 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
            }
            else
            {
-               
+               [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
            }
        });
     }
