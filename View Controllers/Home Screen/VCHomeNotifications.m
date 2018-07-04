@@ -7,20 +7,27 @@
 //
 
 #import "VCHomeNotifications.h"
-//#import "VcEnquiryRequestScreen.h"
-#import "AppConstant.h"
 #import "MBAPIManager.h"
 #import "SharedManager.h"
 #import "CommonUtility.h"
 #import "MBDataBaseHandler.h"
-//#import "VCAddNegotiation.h"
 
 
 @interface VCHomeNotifications ()
 {
-    NSMutableArray *arrNotificationList;
-  //  NSMutableDictionary *dicData;
+    NSMutableArray *arrUpCommingNotify;
+    NSMutableArray *arrLiveNotify;
+    NSMutableArray *arrPendingNotify;
+
+    NSString *strTimer;
+    NSTimer *timer;
+
     UILabel *lblMessage;
+    int hours, minutes, seconds;
+    int secondsLeft;
+    
+    UIRefreshControl *refreshController;
+
 }
 @end
 
@@ -40,14 +47,25 @@
 
     [btnContactUs addTarget:self action:@selector(btnContactUsCalled:) forControlEvents:UIControlEventTouchUpInside];
 
-    arrNotificationList = [[NSMutableArray alloc]init];
+    refreshController = [[UIRefreshControl alloc] init];
+    [refreshController addTarget:self action:@selector(handlePulltoRefresh:)
+                forControlEvents:UIControlEventValueChanged];
+    [self.tbtNotify addSubview:refreshController];
+    
     [self getDashboardNotificationAPI];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+}
+/**************************************************************************/
+#pragma mark ---- UIREFRESH CONTROL CALLED ----
+/**************************************************************************/
+-(void)handlePulltoRefresh:(UIRefreshControl *)Control
+{
+    [refreshController endRefreshing];
+    [self getDashboardNotificationAPI];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -60,23 +78,49 @@
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (arrNotificationList.count > 0)?arrNotificationList.count:0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return (arrUpCommingNotify.count > 0)?arrUpCommingNotify.count:0;
+    }
+    else if (section == 1)
+    {
+        return (arrLiveNotify.count > 0)?arrLiveNotify.count:0;
+    }
+    else if (section == 2)
+    {
+        return (arrPendingNotify.count > 0)?arrPendingNotify.count:0;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NotificationList *cell =(NotificationList *) [tableView dequeueReusableCellWithIdentifier:COMMON_CELL_ID];
-    if (!cell) {
+    if (!cell)
+    {
         cell = [[NotificationList alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:COMMON_CELL_ID];
     }
-    //[cell ConfigureNotificationListbyCellwithData:[arrNotificationList objectAtIndex:indexPath.row]];
-    
+    if (indexPath.section == 0)
+    {
+        [cell ConfigureNotificationListbyCellwithData:[arrUpCommingNotify objectAtIndex:indexPath.row] withSectionIndex:0];
+    }
+    else  if (indexPath.section == 1)
+    {
+        [cell ConfigureNotificationListbyCellwithData:[arrLiveNotify objectAtIndex:indexPath.row] withSectionIndex:1];
+    }
+    else if (indexPath.section == 2)
+    {
+        [cell ConfigureNotificationListbyCellwithData:[arrPendingNotify objectAtIndex:indexPath.row] withSectionIndex:2];
+    }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    
  //   NSNumber *selectedvalue = [NSNumber numberWithInteger:[[arrNotificationList objectAtIndex:indexPath.row] intValue]];
 //    if ([[dicData valueForKey:@"AuctionDraftCount"] isEqual:selectedvalue])
 //    {
@@ -98,9 +142,16 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSMutableArray *arrTittle= [[NSMutableArray alloc]initWithObjects:@"Upcomming Negotiation",@"Live Negotiation",@"Pending Orders", nil];
-    viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    [viewHeader setBackgroundColor:DefaultThemeColor];
-    lblHeaaderTittle = [[UILabel alloc]initWithFrame:CGRectMake(40, 0, SCREEN_WIDTH-50, viewHeader.frame.size.height)];
+    UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
+    [viewHeader setBackgroundColor:[UIColor clearColor]];
+
+    UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    [viewBG setBackgroundColor:DefaultThemeColor];
+    
+    UIView *viewBG2 = [[UIView alloc]initWithFrame:CGRectMake(0, viewBG.frame.size.height, SCREEN_WIDTH, 40)];
+    [viewBG2 setBackgroundColor:[UIColor whiteColor]];
+    
+    lblHeaaderTittle = [[UILabel alloc]initWithFrame:CGRectMake(40, 0, SCREEN_WIDTH-50, 40)];
     [lblHeaaderTittle setText:[arrTittle objectAtIndex:section]];
     [lblHeaaderTittle setTextColor:[UIColor whiteColor]];
     [lblHeaaderTittle setFont:UI_DEFAULT_FONT_MEDIUM(18)];
@@ -108,14 +159,45 @@
     UIImageView * imgView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 7.5, 25, 25)];
     [imgView setBackgroundColor:[UIColor clearColor]];
     [imgView setImage:IMAGE(@"IconStar")];
-    [viewHeader addSubview:imgView];
+    
+    [self getLableAccordingtoView:viewBG2 withTittle:@"Order No" withFrame:CGRectMake(30, 0, 120, 40) withImageFrame:CGRectMake(5, 10, 20, 20)];
+    [self getLableAccordingtoView:viewBG2 withTittle:@"Status" withFrame:CGRectMake(180, 0, 80, 40) withImageFrame:CGRectMake(155, 10, 20, 20)];
+     [self getLableAccordingtoView:viewBG2 withTittle:@"Time Left" withFrame:CGRectMake(290, 0, 80, 40) withImageFrame:CGRectMake(265, 10, 20, 20)];
+    
+    [viewBG addSubview:imgView];
+    [viewHeader addSubview:viewBG];
+    [viewHeader addSubview:viewBG2];
     [viewHeader addSubview:lblHeaaderTittle];
+
     return viewHeader;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    return 80;
 }
+
+/******************************************************************************************************************/
+#pragma mark ❉===❉=== GET LABLE FOR HEADER HERE ===❉===❉
+/*****************************************************************************************************************/
+
+-(void)getLableAccordingtoView:(UIView *)viewBG withTittle:(NSString *)strTittle withFrame:(CGRect)frame withImageFrame:(CGRect)Imgframe
+{
+    UIImageView * imgView = [[UIImageView alloc]initWithFrame:Imgframe];
+    [imgView setBackgroundColor:[UIColor clearColor]];
+    [imgView setImage:IMAGE(@"IconPlayRight")];
+    [viewBG addSubview:imgView];
+    
+    UILabel *lblTittle= [[UILabel alloc]initWithFrame:frame];
+    [lblTittle setText:strTittle];
+    [lblTittle setFont:UI_DEFAULT_FONT_MEDIUM(15)];
+    [lblTittle setTextColor:DefaultThemeColor];
+    [lblTittle setTextAlignment:NSTextAlignmentLeft];
+    [lblTittle setBackgroundColor:[UIColor clearColor]];
+    [lblTittle setNumberOfLines:0];
+    [lblTittle setLineBreakMode:NSLineBreakByWordWrapping];
+    [viewBG addSubview:lblTittle];
+}
+
 /******************************************************************************************************************/
 #pragma mark ❉===❉===  BUTTON ACTION EVENT CALLED HERE ===❉===❉
 /******************************************************************************************************************/
@@ -125,10 +207,10 @@
     [self getContactDialNumber];
 }
 
-
 /******************************************************************************************************************/
 #pragma mark ❉===❉===  GET DASHBOARD NOTIFICATION API CALLED HERE ===❉===❉
 /******************************************************************************************************************/
+
 -(void)getDashboardNotificationAPI
 {
     if (SharedObject.isNetAvailable)
@@ -149,15 +231,38 @@
                     NSError* Error;
                     DashBoardNotification *objData = [[DashBoardNotification alloc]initWithDictionary:response error:&Error];
                     [MBDataBaseHandler saveDashBoradAuctionDataDetail:objData];
+                    
+                    self->arrUpCommingNotify = [[NSMutableArray alloc]init];
+                    self->arrLiveNotify = [[NSMutableArray alloc]init];
+                    self->arrPendingNotify = [[NSMutableArray alloc]init];
+
                     for (DashBoardNotificationDetail *objdetail in objData.detail)
                     {
                         [self->lblRequestPending setText:[NSString stringWithFormat:@"You have %@ Enquiry Participation request Pending.",objdetail.NotParticipationCount]];
-
+                        
+                        for (SellerAuctionDetailData *data in objdetail.SellerAuctionDetail)
+                        {
+                            if ([data.OrderStatus isEqualToString:@""] && [data.CounterStatus isEqualToString:@""] && [data.PONo isEqualToString:@""] && data.IsStarted == NO)
+                            {
+                                 [self->arrUpCommingNotify addObject:data];
+                            }
+                            else  if (data.IsStarted == YES)
+                            {
+                                [self->arrLiveNotify addObject:data];
+                            }
+                            else  if (data.IsGoingStart == YES)
+                            {
+                                [self->arrPendingNotify addObject:data];
+                            }
+                        }
                     }
+                    
+                    NSLog(@"%@====>%@",self->arrUpCommingNotify,self->arrLiveNotify);
+                    
                     [CommonUtility HideProgress];
                     [self->lblMessage setHidden:YES];
                     [self.tbtNotify setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-                    //[self.tbtNotify reloadData];
+                    [self.tbtNotify reloadData];
 
                 }
             }
@@ -177,54 +282,6 @@
         [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
     }
 }
-/******************************************************************************************************************/
-#pragma mark ❉===❉===  GET AUCTION NEGOTIATION LIST API CALLED HERE ===❉===❉
-/******************************************************************************************************************/
-//-(void)GetNegotiationListUsingAuction:(NSString *)strValue
-//{
-//    BuyerUserDetail *objBuyerdetail = [MBDataBaseHandler getBuyerUserDetail];
-//
-//    NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
-//    [dicParams setObject:objBuyerdetail.detail.APIVerificationCode forKey:@"Token"];
-//    [dicParams setObject:objBuyerdetail.detail.CustomerID forKey:@"CustomerID"];
-//    [dicParams setObject:strValue forKey:@"FilterAuction"];
-//
-//    if (SharedObject.isNetAvailable)
-//    {
-//        [CommonUtility showProgressWithMessage:@"Please Wait.."];
-//        MBCall_GetAuctionListUsingDashboardApi(dicParams, ^(id response, NSString *error, BOOL status)
-//        {
-//            [CommonUtility HideProgress];
-//            if (status && [[response valueForKey:@"success"]isEqual:@1])
-//            {
-//                if (response != (NSDictionary *)[NSNull null])
-//                {
-//                    NSError* Error;
-//                    AuctionDetail *detail = [[AuctionDetail alloc]initWithDictionary:response error:&Error];
-//                    [MBDataBaseHandler saveAuctionDetailData:detail];
-//
-//                    VcEnquiryRequestScreen *requestSc=[self.storyboard instantiateViewControllerWithIdentifier:@"VcEnquiryRequestScreen"];
-//                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-//                    [self.navigationController pushViewController:requestSc animated:YES];
-//                }
-//                else{
-//                    [CommonUtility HideProgress];
-//                }
-//            }
-//            else
-//            {
-//                [CommonUtility HideProgress];
-//
-//            }
-//        });
-//    }
-//    else
-//    {
-//        [lblMessage setHidden:NO];
-//        [self.tbtNotify setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
-//    }
-//}
 
 @end
 /******************************************************************************************************************/
@@ -233,24 +290,31 @@
 
 @implementation NotificationList
 
-- (void)ConfigureNotificationListbyCellwithData:(NSString *)strValue
+- (void)ConfigureNotificationListbyCellwithData:(SellerAuctionDetailData *)objSellerAuction withSectionIndex:(NSInteger)section
 {
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [self SetAttributedStringWithUnderlineTittle:strValue];
+    
+    if (section == 0)
+    {
+        [_lblOrderCode setText:objSellerAuction.AuctionCode];
+        [_lblOrderStatus setText:@"Activated"];
+        [_lblOrderStatus setTextColor:GET_COLOR_WITH_RGB(64, 130, 137, 1)];
+    }
+    else if (section == 1)
+    {
+        [_lblOrderCode setText:objSellerAuction.AuctionCode];
+        [_lblOrderStatus setText:@"New"];
+        [_lblOrderStatus setTextColor:[UIColor redColor]];
+
+    }
+    else if (section == 2)
+    {
+        if (objSellerAuction == nil)
+        {
+            [_lblOrderCode setText:@"No Negotiation Order"];
+        }
+        
+    }
 }
--(void)SetAttributedStringWithUnderlineTittle:(NSString *)strValue
-{
-    [_lblNotifyName setFont:([SDVersion deviceSize] > Screen4Dot7inch)?UI_DEFAULT_FONT(17):([SDVersion deviceSize] < Screen4Dot7inch)?UI_DEFAULT_FONT(14):UI_DEFAULT_FONT(16)];
-    NSMutableAttributedString* tncString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"You have %@ Enquiry Request in Creation",strValue]];
-    
-    NSRange range = (strValue.length == 2)?NSMakeRange(9, 2):NSMakeRange(9, 1);
-    
-    [tncString addAttribute:NSUnderlineStyleAttributeName
-                      value:@(NSUnderlineStyleDouble)
-                      range:range];
-    [tncString addAttribute:NSUnderlineColorAttributeName value:[UIColor orangeColor] range:range];
-    [tncString addAttribute:NSFontAttributeName value:UI_DEFAULT_FONT_MEDIUM(16) range:range];
-    
-    [_lblNotifyName setAttributedText:tncString];
-}
+
 @end

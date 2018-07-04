@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "EveryPage.h"
+#import "AppConstant.h"
 
 @interface VCHomeNotifications : EveryPage<UITableViewDelegate,UITableViewDataSource>
 {
     UILabel *lblHeaaderTittle;
-    UIView *viewHeader;
     __weak IBOutlet UIButton *btnContactUs;
     __weak IBOutlet UILabel *lblRequestPending;
 
@@ -23,7 +23,9 @@
 
 @interface NotificationList : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *lblNotifyName;
+@property (strong, nonatomic) IBOutlet UILabel *lblOrderCode;
+@property (strong, nonatomic) IBOutlet UILabel *lblOrderStatus;
+@property (strong, nonatomic) IBOutlet UILabel *lblOrderTimeLeft;
 
-- (void)ConfigureNotificationListbyCellwithData:(NSString *)strValue;
+- (void)ConfigureNotificationListbyCellwithData:(SellerAuctionDetailData *)objSellerAuction withSectionIndex:(NSInteger)section;
 @end
