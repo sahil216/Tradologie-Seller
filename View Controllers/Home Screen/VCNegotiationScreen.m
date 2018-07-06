@@ -10,6 +10,10 @@
 #import "Constant.h"
 #import "AppConstant.h"
 #import "MBDataBaseHandler.h"
+#import "CommonUtility.h"
+#import "SharedManager.h"
+#import "MBAPIManager.h"
+
 #define K_CUSTOM_WIDTH 170
 
 @interface VCNegotiationScreen ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,TvCellEnquiryDelegate,INSSearchBarDelegate>
@@ -20,6 +24,7 @@
     NSInteger count;
     CGFloat height , lblHeight;
     UITextField *txtNegotiation;
+    UILabel *headLabel;
 }
 
 @property (nonatomic, strong) UIView * contentView;
@@ -39,12 +44,10 @@
     [self.navigationController.navigationItem setHidesBackButton:YES animated:YES];
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationItem SetBackButtonWithID:self withSelectorAction:@selector(btnBackItemTaped:)];
-    [self.navigationItem SetRightButtonWithID:self withSelectorAction:@selector(btnRightItemTaped:)withImage:@"IconAddNegotiation"];
     
     lblHeight = 110;
-
     
-    arrTittle = [[NSMutableArray alloc]initWithObjects:@"Negotiation No.",@"Negotiation Name",@"Order Status",@"Start Date",@"End Date",@"Prefered Date",@"Enquiry Status",@"Total Quantity",@"Min Quantity",@"Participate Quantity",@"Last Date of Delivery",nil];
+    arrTittle = [[NSMutableArray alloc]initWithObjects:@"Negotiation No",@"Negotiation Name",@"Order Status",@"Start Date",@"End Date",@"Prefered Date",@"Enquiry Status",@"Total Quantity",@"Min Quantity",@"Participate Quantity",@"Last Date of Delivery",nil];
     
     [self SetInitialSetup];
 
@@ -96,8 +99,6 @@
     myScrollView.contentSize = CGSizeMake(headerTotalWidth, 0);
     [_contentView addSubview:myScrollView];
     
-    
-    
     [self getAuctionDataListfromDataBase];
 }
 /******************************************************************************************************************/
@@ -141,19 +142,28 @@
         int xx = 0;
         for(int i = 0 ; i < [arrTittle count] ; i++)
         {
-            UILabel *headLabel=[[UILabel alloc]initWithFrame:CGRectMake(xx, 0, K_CUSTOM_WIDTH + 30, 45)];
-            
+            if(i == 0)
+            {
+                headLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, K_CUSTOM_WIDTH + 10, 45)];
+                [headLabel setTextAlignment:NSTextAlignmentLeft];
+            }
+            else
+            {
+                headLabel=[[UILabel alloc]initWithFrame:CGRectMake(xx, 0, K_CUSTOM_WIDTH + 30, 45)];
+                [headLabel setTextAlignment:NSTextAlignmentCenter];
+            }
             [headLabel setText:[arrTittle objectAtIndex:i]];
-            [headLabel setTextAlignment:NSTextAlignmentCenter];
             [headLabel setNumberOfLines:0];
+            [headLabel setBackgroundColor:[UIColor clearColor]];
+            
             [headLabel setTextColor:[UIColor whiteColor]];
             [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
             [headLabel setFont:UI_DEFAULT_FONT_MEDIUM(18)];
             [tableViewHeadView addSubview:headLabel];
             
-            xx = xx + K_CUSTOM_WIDTH +30;
+            xx = xx + K_CUSTOM_WIDTH + 40;
+            
         }
-        
     }
     else
     {
@@ -237,7 +247,12 @@
     {
         
     }
-    
+    else
+    {
+        SellerAuctionList *objAuctionList = [MBDataBaseHandler getSellerAuctionList];
+        SellerAuctionListData *data = [objAuctionList.detail objectAtIndex:selectedIndex.row];
+        [self GetSupplierAuctionDetailAPI:data.AuctionCode];
+    }
 }
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== TEXTFIELD DELEGATE CALLED HERE ===❉===❉
@@ -282,12 +297,7 @@
         [delegateClass setRootViewController:rootVC];
     });
 }
--(IBAction)btnRightItemTaped:(UIButton *)sender
-{
-    [[UIDevice currentDevice] setValue:
-     [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
 
-}
 -(IBAction)btnDropDownTapped:(UIButton *)sender
 {
     NSMutableArray *arrNegotiation=[[NSMutableArray alloc]initWithObjects:@"Min Quantity",@"Total Quantity", nil];
@@ -306,6 +316,7 @@
          
      }];
 }
+
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== GET DATA FROM DATABASE HERE ===❉===❉
 /******************************************************************************************************************/
@@ -329,14 +340,21 @@
         {
             [dataDict setObject:data.PONo forKey:[arrTittle objectAtIndex:2]];
         }
-        NSString *startDate = [NSString stringWithFormat:@"%@",[self dateFromString:[NSString stringWithFormat:@"%@",data.StartDate]]];
-        NSString *EndDate = [NSString stringWithFormat:@" %@",[self dateFromString:[NSString stringWithFormat:@"%@",data.EndDate]]];
+        NSString *startDate = [CommonUtility getDateFromSting:data.StartDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+        NSString *EndDate = [CommonUtility getDateFromSting:data.EndDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+        
         [dataDict setObject:startDate forKey:[arrTittle objectAtIndex:3]];
         [dataDict setObject:EndDate forKey:[arrTittle objectAtIndex:4]];
-        [dataDict setObject:data.PreferredDate forKey:[arrTittle objectAtIndex:5]];
+           NSString *strPreferredDate = [CommonUtility getDateFromSting:data.PreferredDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+        [dataDict setObject:strPreferredDate forKey:[arrTittle objectAtIndex:5]];
+        
         if (data.IsStarted == true)
         {
             [dataDict setObject:@"Started" forKey:[arrTittle objectAtIndex:6]];
+        }
+        else if (data.IsStarted == 0 && data.Isclosed == 0)
+        {
+            [dataDict setObject:@"Not Started" forKey:[arrTittle objectAtIndex:6]];
         }
         else
         {
@@ -346,9 +364,12 @@
         [dataDict setObject:data.TotalQuantity forKey:[arrTittle objectAtIndex:7]];
         [dataDict setObject:data.MinQuantity forKey:[arrTittle objectAtIndex:8]];
         [dataDict setObject:data.ParticipateQuantity forKey:[arrTittle objectAtIndex:9]];
-        [dataDict setObject:data.DeliveryLastDate forKey:[arrTittle objectAtIndex:10]];
         
-        if([data.AcceptanceStatus isEqualToString:@"Pending"])
+        NSString *strDeliveryLastDate = [CommonUtility getDateFromSting:data.DeliveryLastDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+        
+        [dataDict setObject:strDeliveryLastDate forKey:[arrTittle objectAtIndex:10]];
+        
+        if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
         {
             [dataDict setObject:[NSString stringWithFormat:@"Charges of Enquiry: %@ Participate",data.AuctionCharge] forKey:@"btnTittle"];
         }
@@ -364,24 +385,14 @@
         {
             [dataDict setObject:data.OrderStatus forKey:@"btnTittle"];
         }
-        
+        else if ([data.OrderStatus isEqualToString:@""] && [data.CounterStatus isEqualToString:@""] && [data.PONo isEqualToString:@""] && data.IsStarted == NO)
+        {
+             [dataDict setObject:[NSString stringWithFormat:@"Update Rate"] forKey:@"btnTittle"];
+        }
         [arrData addObject:dataDict];
-        
     }
     [self.myTableView reloadData];
 }
--(NSString *)dateFromString:(NSString *)dateString
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/mm/yyyy hh:mm:ss a"];
-    NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:locale];
-    
-    NSDate *date = [dateFormatter dateFromString:dateString];
-    [dateFormatter setDateFormat:@"dd-MMM-yyyy hh:mm"];
-    NSString *newDate = [dateFormatter stringFromDate:date];
-    
-    return newDate;
-}
+
 
 @end

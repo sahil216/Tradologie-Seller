@@ -12,6 +12,7 @@
 #import "MBAPIManager.h"
 #import "MBDataBaseHandler.h"
 #import "CommonUtility.h"
+#import "VCEnquirySellerAccept.h"
 
 @interface EveryPage ()
 {
@@ -46,4 +47,53 @@
     }
 }
 
+/******************************************************************************************************************/
+#pragma mark ❉===❉===  GET AUCTION NEGOTIATION LIST API CALLED HERE ===❉===❉
+/******************************************************************************************************************/
+-(void)GetSupplierAuctionDetailAPI:(NSString *)strValue
+{
+    SellerUserDetail *objSellerUser = [MBDataBaseHandler getSellerUserDetailData];
+    
+    NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
+    [dicParams setObject:objSellerUser.detail.APIVerificationCode forKey:@"Token"];
+    [dicParams setObject:objSellerUser.detail.VendorID forKey:@"VendorID"];
+    [dicParams setObject:strValue forKey:@"AuctionCode"];
+    
+    if (SharedObject.isNetAvailable)
+    {
+        [CommonUtility showProgressWithMessage:@"Please Wait.."];
+        
+        MBCall_SupplierAuctionDetailAPI(dicParams, ^(id response, NSString *error, BOOL status)
+        {
+            [CommonUtility HideProgress];
+            
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                if (response != (NSDictionary *)[NSNull null])
+                {
+                    NSError *Error;
+                    SellerAuctionDetail *objAuctionDetail = [[SellerAuctionDetail alloc]initWithDictionary:[response valueForKey:@"detail"] error:&Error];
+                    [MBDataBaseHandler saveSellerAuctionDetailData:objAuctionDetail];
+                    
+                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+                    VCEnquirySellerAccept *objSellerAccept = [self.storyboard instantiateViewControllerWithIdentifier:@"VCEnquirySellerAccept"];
+                    [self.navigationController pushViewController:objSellerAccept animated:YES];
+                    
+                }
+                else{
+                    [CommonUtility HideProgress];
+                }
+            }
+            else
+            {
+                [CommonUtility HideProgress];
+                
+            }
+        });
+    }
+    else
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+    }
+}
 @end

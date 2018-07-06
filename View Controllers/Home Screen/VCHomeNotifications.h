@@ -10,7 +10,7 @@
 #import "EveryPage.h"
 #import "AppConstant.h"
 
-@interface VCHomeNotifications : EveryPage<UITableViewDelegate,UITableViewDataSource>
+@interface VCHomeNotifications : EveryPage <UITableViewDelegate,UITableViewDataSource>
 {
     UILabel *lblHeaaderTittle;
     __weak IBOutlet UIButton *btnContactUs;

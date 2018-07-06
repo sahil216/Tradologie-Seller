@@ -116,6 +116,8 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
     dispatch_async(dispatch_get_main_queue(), ^{
         [self->tblView reloadData];
     });
+    
+    
 }
 //************************************************************************************************
 #pragma mark ❉===❉=== USER LOGOUT ===❉===❉
@@ -186,7 +188,15 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
             break;
         case 1:
         {
-            [self GetNegotiationListUsingAuction];
+            // [self GetNegotiationListUsingAuction];
+            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//            });
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+            VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
+            
+            [self pushViewController:objNegotiationScreen];
         }
             break;
         case 2:
@@ -279,7 +289,7 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
 /******************************************************************************************************************/
 -(void)GetNegotiationListUsingAuction
 {
-     SellerUserDetail * objSellerdetail = [MBDataBaseHandler getSellerUserDetailData];
+    SellerUserDetail * objSellerdetail = [MBDataBaseHandler getSellerUserDetailData];
     NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
     [dicParams setObject:objSellerdetail.detail.APIVerificationCode forKey:@"Token"];
     [dicParams setObject:objSellerdetail.detail.VendorID forKey:@"VendorID"];
@@ -297,9 +307,14 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
                    SellerAuctionList *objAuctionList = [[SellerAuctionList alloc]initWithDictionary:response error:&Error];
                    [MBDataBaseHandler saveSellerAuctionListData:objAuctionList];
                    
-                   VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
-                   [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-                   [self pushViewController:objNegotiationScreen];
+                   dispatch_async(dispatch_get_main_queue(), ^{
+                      [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+                       VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
+                       
+                       [self pushViewController:objNegotiationScreen];
+                   });
+                   
+                   
                }
            }
            else

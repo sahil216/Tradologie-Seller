@@ -13,21 +13,21 @@
 #import "MBDataBaseHandler.h"
 
 
-@interface VCHomeNotifications ()
+@interface VCHomeNotifications ()<SFSafariViewControllerDelegate>
 {
     NSMutableArray *arrUpCommingNotify;
     NSMutableArray *arrLiveNotify;
     NSMutableArray *arrPendingNotify;
-
+    
     NSString *strTimer;
     NSTimer *timer;
-
+    
     UILabel *lblMessage;
     int hours, minutes, seconds;
     int secondsLeft;
     
     UIRefreshControl *refreshController;
-
+    
 }
 @end
 
@@ -44,9 +44,9 @@
     [lblMessage setTextAlignment:NSTextAlignmentCenter];
     [lblMessage setHidden:YES];
     [self.tbtNotify setBackgroundView:lblMessage];
-
+    
     [btnContactUs addTarget:self action:@selector(btnContactUsCalled:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     refreshController = [[UIRefreshControl alloc] init];
     [refreshController addTarget:self action:@selector(handlePulltoRefresh:)
                 forControlEvents:UIControlEventValueChanged];
@@ -59,6 +59,7 @@
 {
     [super viewWillAppear:animated];
 }
+
 /**************************************************************************/
 #pragma mark ---- UIREFRESH CONTROL CALLED ----
 /**************************************************************************/
@@ -67,6 +68,7 @@
     [refreshController endRefreshing];
     [self getDashboardNotificationAPI];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -74,6 +76,7 @@
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== TABLEVIEW DELEGATE & DATA SOURCE CALLED HERE ===❉===❉
 /*****************************************************************************************************************/
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
@@ -119,21 +122,37 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
- //   NSNumber *selectedvalue = [NSNumber numberWithInteger:[[arrNotificationList objectAtIndex:indexPath.row] intValue]];
-//    if ([[dicData valueForKey:@"AuctionDraftCount"] isEqual:selectedvalue])
-//    {
-//        //[self GetNegotiationListUsingAuction:@"Draft"];
-//    }
-//    else if ([[dicData valueForKey:@"AuctionNotStartCount"] isEqual:selectedvalue])
-//    {
-//       // [self GetNegotiationListUsingAuction:@"NotStart"];
-//    }
-//    else
-//    {
-//       // [self GetNegotiationListUsingAuction:@""];
-//    }
+    if (indexPath.section == 0)
+    {
+        SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
+        SellerAuctionDetailData *data  = [arrUpCommingNotify objectAtIndex:indexPath.row];
+        
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+        [CommonUtility showProgressWithMessage:@"Please Wait"];
+        
+        NSString *loadURL= [NSString stringWithFormat:@"http://supplier.tradologie.com/Supplier/LiveAuctionSupplierForAPI.aspx?/%@/%@/%@",objseller.detail.APIVerificationCode,data.CustomerID,data.AuctionID];
+        
+        NSURL *url = [[NSURL alloc] initWithString:loadURL];
+        SFSafariViewController *sfcontroller = [[SFSafariViewController alloc] initWithURL:url];
+        [sfcontroller setDelegate:self];
+        
+        if (@available(iOS 10.0, *))
+        {
+            [sfcontroller setPreferredBarTintColor:DefaultThemeColor];
+        } else {
+            [sfcontroller setAutomaticallyAdjustsScrollViewInsets:YES];
+        }
+        [self.navigationController presentViewController:sfcontroller animated:YES completion:^{
+            
+        }];
+        
+    }
+    else if (indexPath.section == 1)
+    {
+        SellerAuctionDetailData *data  = [arrLiveNotify objectAtIndex:indexPath.row];
+        [self GetSupplierAuctionDetailAPI:data.AuctionCode];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
@@ -144,7 +163,7 @@
     NSMutableArray *arrTittle= [[NSMutableArray alloc]initWithObjects:@"Upcomming Negotiation",@"Live Negotiation",@"Pending Orders", nil];
     UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
     [viewHeader setBackgroundColor:[UIColor clearColor]];
-
+    
     UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     [viewBG setBackgroundColor:DefaultThemeColor];
     
@@ -162,13 +181,13 @@
     
     [self getLableAccordingtoView:viewBG2 withTittle:@"Order No" withFrame:CGRectMake(30, 0, 120, 40) withImageFrame:CGRectMake(5, 10, 20, 20)];
     [self getLableAccordingtoView:viewBG2 withTittle:@"Status" withFrame:CGRectMake(180, 0, 80, 40) withImageFrame:CGRectMake(155, 10, 20, 20)];
-     [self getLableAccordingtoView:viewBG2 withTittle:@"Time Left" withFrame:CGRectMake(290, 0, 80, 40) withImageFrame:CGRectMake(265, 10, 20, 20)];
+    [self getLableAccordingtoView:viewBG2 withTittle:@"Time Left" withFrame:CGRectMake(290, 0, 80, 40) withImageFrame:CGRectMake(265, 10, 20, 20)];
     
     [viewBG addSubview:imgView];
     [viewHeader addSubview:viewBG];
     [viewHeader addSubview:viewBG2];
     [viewHeader addSubview:lblHeaaderTittle];
-
+    
     return viewHeader;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -208,6 +227,19 @@
 }
 
 /******************************************************************************************************************/
+#pragma mark ❉===❉===  SAFARI BROWSER DELEGATE CALLED HERE ===❉===❉
+/******************************************************************************************************************/
+- (void)safariViewController:(SFSafariViewController *)controller didCompleteInitialLoad:(BOOL)didLoadSuccessfully
+{
+    [CommonUtility HideProgress];
+}
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller
+{
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+}
+
+
+/******************************************************************************************************************/
 #pragma mark ❉===❉===  GET DASHBOARD NOTIFICATION API CALLED HERE ===❉===❉
 /******************************************************************************************************************/
 
@@ -217,11 +249,11 @@
     {
         [CommonUtility showProgressWithMessage:@"Please Wait.."];
         SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
-
+        
         NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
         [dicParams setObject:objseller.detail.APIVerificationCode forKey:@"Token"];
         [dicParams setObject:objseller.detail.VendorID forKey:@"VendorID"];
-
+        
         MBCall_GetDashBoardNotificationDetails(dicParams, ^(id response, NSString *error, BOOL status)
         {
             if (status && [[response valueForKey:@"success"]isEqual:@1])
@@ -235,16 +267,16 @@
                     self->arrUpCommingNotify = [[NSMutableArray alloc]init];
                     self->arrLiveNotify = [[NSMutableArray alloc]init];
                     self->arrPendingNotify = [[NSMutableArray alloc]init];
-
+                    
                     for (DashBoardNotificationDetail *objdetail in objData.detail)
                     {
                         [self->lblRequestPending setText:[NSString stringWithFormat:@"You have %@ Enquiry Participation request Pending.",objdetail.NotParticipationCount]];
                         
                         for (SellerAuctionDetailData *data in objdetail.SellerAuctionDetail)
                         {
-                            if ([data.OrderStatus isEqualToString:@""] && [data.CounterStatus isEqualToString:@""] && [data.PONo isEqualToString:@""] && data.IsStarted == NO)
+                            if ([data.OrderStatus isEqualToString:@""] && [data.CounterStatus isEqualToString:@""] && [data.PONo isEqualToString:@""] && data.IsStarted == NO && data.IsGoingStart == YES)
                             {
-                                 [self->arrUpCommingNotify addObject:data];
+                                [self->arrUpCommingNotify addObject:data];
                             }
                             else  if (data.IsStarted == YES)
                             {
@@ -252,18 +284,16 @@
                             }
                             else  if (data.IsGoingStart == YES)
                             {
-                                [self->arrPendingNotify addObject:data];
+                               // [self->arrPendingNotify addObject:data];
                             }
                         }
                     }
-                    
-                    NSLog(@"%@====>%@",self->arrUpCommingNotify,self->arrLiveNotify);
-                    
+                                
                     [CommonUtility HideProgress];
                     [self->lblMessage setHidden:YES];
                     [self.tbtNotify setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
                     [self.tbtNotify reloadData];
-
+                    
                 }
             }
             else
@@ -271,7 +301,7 @@
                 [self->lblMessage setHidden:NO];
                 [CommonUtility HideProgress];
                 [self.tbtNotify setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
+                
             }
         });
     }
@@ -297,7 +327,15 @@
     if (section == 0)
     {
         [_lblOrderCode setText:objSellerAuction.AuctionCode];
-        [_lblOrderStatus setText:@"Activated"];
+        if (![objSellerAuction.SupplierStatus isEqualToString:@"Pending"])
+        {
+            [_lblOrderStatus setText:@"Activated"];
+        }
+        else
+        {
+            [_lblOrderStatus setText:@""];
+
+        }
         [_lblOrderStatus setTextColor:GET_COLOR_WITH_RGB(64, 130, 137, 1)];
     }
     else if (section == 1)
@@ -305,7 +343,7 @@
         [_lblOrderCode setText:objSellerAuction.AuctionCode];
         [_lblOrderStatus setText:@"New"];
         [_lblOrderStatus setTextColor:[UIColor redColor]];
-
+        
     }
     else if (section == 2)
     {

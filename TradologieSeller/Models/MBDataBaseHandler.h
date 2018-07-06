@@ -17,6 +17,7 @@ typedef enum
     sellerUserDetail,
     dashBoardNotification,
     sellerAuctionlist,
+    SAdetail,
    
 } OFFLINEMODE;
 
@@ -31,7 +32,7 @@ typedef enum
 +(SellerUserDetail *)getSellerUserDetailData;
 +(DashBoardNotification *)getDashBoardNotificationData;
 +(SellerAuctionList *)getSellerAuctionList;
-
++(SellerAuctionDetail *)getSellerAuctionDetailData;
 
 
 #pragma Mark - SETTERS
@@ -39,6 +40,7 @@ typedef enum
 +(void)saveDashBoradAuctionDataDetail:(DashBoardNotification *)dashBoardData;
 +(void)saveSellerUserDetailData:(SellerUserDetail *)sellerData;
 +(void)saveSellerAuctionListData:(SellerAuctionList *)AuctionListData;
++(void)saveSellerAuctionDetailData:(SellerAuctionDetail *)objSellerAuctionDetail;
 
 
 

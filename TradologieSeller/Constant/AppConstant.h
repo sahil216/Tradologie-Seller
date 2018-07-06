@@ -12,6 +12,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <MagicalRecord/MagicalRecord.h>
+#import <SafariServices/SFSafariViewController.h>
+
 #import "INSSearchBar.h"
 
 #define SAVE_USER_DEFAULTS(VALUE,KEY) [[NSUserDefaults standardUserDefaults] setObject:VALUE forKey:KEY]; [[NSUserDefaults standardUserDefaults] synchronize]
@@ -25,14 +27,15 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "SellerUserDetail.h"
 #import "DashBoardNotification.h"
 #import "SellerAuctionList.h"
-
+#import "SellerAuctionDetail.h"
 
 
 /*********************************************************************************************************/
 #pragma Mark- CUSTOM CELL IMPORT
 /*********************************************************************************************************/
 #import "TvCellEnquiry.h"
-
+#import "ViewEnquiryState.h"
+#import "SAuctionDetailCell.h"
 /*********************************************************************************************************/
 #pragma Mark- BASE URL IMPORT
 /*********************************************************************************************************/
@@ -60,7 +63,7 @@ static NSString *COMMON_CELL_ID = @"Cell_Identifier";
 static NSString *SELLER_LOGIN_API = @"Login";
 static NSString *DASHBOARD_NOTIFICATION_API =@"DashboardNotification";
 static NSString *AUCTION_LIST_API = @"AuctionList";
-
+static NSString *SUPPLIER_AUCTION_DETAIL_API = @"AuctionDetail";
 
 
 /*********************************************************************************************************/

@@ -101,7 +101,7 @@ NSString *filterErrorMessageUsingResponseRequestOperation(NSURLSessionDataTask *
     return [MBErrorUtility handlePredefinedErrorCode:errorCode andMessage:@"Issue with server response. Please contact admin."];
 }
 
-void MBCall_LoginUserUsing(NSDictionary* params,RMApiManagerCompletion completion)
+void MBCall_LoginUserUsing(NSDictionary* params,TSApiManagerCompletion completion)
 {
     [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_LOGIN_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
     {
@@ -241,7 +241,7 @@ void MBCall_LoginUserUsing(NSDictionary* params,RMApiManagerCompletion completio
 //     }];
 //    //
 //}
-void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,RMApiManagerCompletion completion)
+void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,TSApiManagerCompletion completion)
 {
     [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(DASHBOARD_NOTIFICATION_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
      {
@@ -256,7 +256,7 @@ void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,RMApiManagerCom
          }
      }];
 }
-void MBCall_GetAuctionListUsingDashboardApi(NSDictionary* params,RMApiManagerCompletion completion)
+void MBCall_GetAuctionListUsingDashboardApi(NSDictionary* params,TSApiManagerCompletion completion)
 {
     [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(AUCTION_LIST_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
      {
@@ -269,6 +269,22 @@ void MBCall_GetAuctionListUsingDashboardApi(NSDictionary* params,RMApiManagerCom
          {
              completion(response,checkIfResponseHasErrorMessage(response),YES);
 
+         }
+     }];
+}
+void MBCall_SupplierAuctionDetailAPI(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SUPPLIER_AUCTION_DETAIL_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+             
          }
      }];
 }

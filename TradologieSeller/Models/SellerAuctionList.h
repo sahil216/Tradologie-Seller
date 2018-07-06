@@ -15,9 +15,11 @@
 @end
 
 @interface SellerAuctionList : JSONModel
+
 @property (nonatomic,strong)NSString *message;
 @property (nonatomic,strong)NSMutableArray <SellerAuctionListData> *detail;
 @property (assign) BOOL success;
+
 @end
 
 

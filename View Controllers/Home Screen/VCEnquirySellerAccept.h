@@ -10,4 +10,6 @@
 
 @interface VCEnquirySellerAccept : UIViewController
 
+@property (strong, nonatomic) NSMutableArray *arrProductListData;
+
 @end

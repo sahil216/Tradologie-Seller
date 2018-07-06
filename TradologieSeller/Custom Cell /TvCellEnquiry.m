@@ -28,25 +28,25 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier itemSize:(CGSize)size headerArray:(NSArray*)headerArray
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier itemSize:(CGSize)size
+        headerArray:(NSArray*)headerArray
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+    {
         itemSize = size;
         keyArray = headerArray;
         labelArray = [NSMutableArray new];
         bgArray = [NSMutableArray new];
         
-        
         [self setupLabel];
-      
     }
     return self;
 }
@@ -64,7 +64,7 @@
             bgView = [[UIView alloc] initWithFrame:CGRectMake(xx, 0, width, itemSize.height)];
             headLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, width - 20, 50)];
             [headLabel setBackgroundColor:[UIColor clearColor]];
-            
+
             btnViewRate = [[UIButton alloc]initWithFrame:CGRectMake(10, headLabel.frame.size.height, width - 20 , 60)];
             [btnViewRate setBackgroundColor:DefaultThemeColor];
             [btnViewRate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -77,7 +77,8 @@
             [bgView addSubview:headLabel];
             [labelArray addObject:headLabel];
         }
-        else{
+        else
+        {
             bgView = [[UIView alloc] initWithFrame:CGRectMake(xx, 0, width, itemSize.height)];
             headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, bgView.frame.size.width, bgView.frame.size.height)];
             [headLabel setBackgroundColor:[UIColor clearColor]];
@@ -86,27 +87,24 @@
             [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
             [bgView addSubview:headLabel];
             [labelArray addObject:headLabel];
-
         }
         [bgView setBackgroundColor:[UIColor whiteColor]];
 
         UILabel *lblline = [[UILabel alloc]init];
-        [lblline setFrame:CGRectMake(0, bgView.frame.size.height + 5, width, 1)];
+        [lblline setFrame:CGRectMake(0, bgView.frame.size.height + 5, width + 10, 1)];
         [lblline setBackgroundColor:[UIColor lightGrayColor]];
         [bgView addSubview:lblline];
         [self addSubview:bgView];
         [bgArray addObject:bgView];
         
-        xx = xx + width;
+        xx = xx + width + 10;
     }
 }
 
 -(void)setDataDict:(NSMutableDictionary *)dataDict
 {
     _dataDict = dataDict;
-    
-   
-    
+
     if (([dataDict valueForKey:@"btnTittle"] != nil) && ![[dataDict valueForKey:@"btnTittle"] isEqualToString:@""])
     {
         [labelArray insertObject:btnViewRate atIndex:labelArray.count];
@@ -116,6 +114,8 @@
     else
     {
         [btnViewRate setBackgroundColor:[UIColor whiteColor]];
+        [btnViewRate addTarget:self action:@selector(btnViewRateTapped:) forControlEvents:UIControlEventTouchUpInside];
+
     }
     for (int i = 0; i < [labelArray count]; i++)
     {

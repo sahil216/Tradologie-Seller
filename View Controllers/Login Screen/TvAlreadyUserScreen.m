@@ -7,8 +7,6 @@
 //
 
 #import "TvAlreadyUserScreen.h"
-//#import "TVForgotPassword.h"
-//#import "TVCompanyRegister.h"
 #import "RootViewController.h"
 #import "CommonUtility.h"
 #import "AppDelegate.h"

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EveryPage.h"
 
-@interface VCNegotiationScreen : UIViewController
+@interface VCNegotiationScreen : EveryPage
 
 @end
