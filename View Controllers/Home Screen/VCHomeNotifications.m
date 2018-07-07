@@ -12,6 +12,7 @@
 #import "CommonUtility.h"
 #import "MBDataBaseHandler.h"
 #import "VCLoadLiveAuction.h"
+#import "TVPaymentScreen.h"
 
 
 @interface VCHomeNotifications()
@@ -211,7 +212,13 @@
         }
         else if([data.SupplierStatus isEqualToString:@"PaymentPending"] && data.IsComplete == NO)
         {
+            [[UIDevice currentDevice] setValue:
+             [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
             
+            TVPaymentScreen *objScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVPaymentScreen"];
+            objScreen.strAuctionID = [data.AuctionID stringValue];
+            [self.navigationController pushViewController:objScreen animated:YES];
+
         }
     }
 }
@@ -397,8 +404,14 @@
             [_lblOrderStatus setFont:UI_DEFAULT_FONT_MEDIUM(16)];
             [_lblOrderStatus setTextColor:GET_COLOR_WITH_RGB(0, 144, 80, 1)];
         }
-        else
+        else if ([objSellerAuction.SupplierStatus isEqualToString:@"PaymentPending"])
         {
+            [_lblOrderStatus setText:@"Pending"];
+            [_lblOrderStatus setNumberOfLines:2];
+            [_lblOrderStatus setLineBreakMode:NSLineBreakByWordWrapping];
+            [_lblOrderStatus setTextColor:[UIColor redColor]];
+        }
+        else {
             [_lblOrderStatus setText:@"New"];
             [_lblOrderStatus setTextColor:[UIColor redColor]];
         }

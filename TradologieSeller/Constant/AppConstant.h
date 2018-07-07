@@ -73,7 +73,8 @@ static NSString *SELLER_LOGIN_API = @"Login";
 static NSString *DASHBOARD_NOTIFICATION_API =@"DashboardNotification";
 static NSString *AUCTION_LIST_API = @"AuctionList";
 static NSString *SUPPLIER_AUCTION_DETAIL_API = @"AuctionDetail";
-static NSString *SUPPLIER_AUCTION_ACCEPTANCE_API = @"SupplierAuctionAcceptance";
+static NSString *SUPPLIER_AUCTION_ACCEPTANCE_API  = @"SupplierAuctionAcceptance";
+static NSString *SUPPLIER_AUCTION_CHARGE_DETAIL_API        =@"AuctionChargesDetail";
 
 
 /*********************************************************************************************************/

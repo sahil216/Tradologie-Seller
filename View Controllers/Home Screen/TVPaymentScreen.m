@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    [self.navigationItem setNavigationTittleWithLogo:@"Negotiation Charge Payment"];
+    [self.navigationItem setNavigationTittleWithLogo:@"Payment"];
     [self.navigationController.navigationBar setNaviagtionStyleWithStatusbar:[UIColor whiteColor]];
     [self.navigationItem SetBackButtonWithID:self withSelectorAction:@selector(btnBackPayment:)];
     
@@ -39,7 +39,7 @@
     
     dicValueData = [[NSMutableDictionary alloc]init];
     
-   /// [self AddAuctionSupplierWithNegotiationCustomerIdAPI:_strAuctionID];
+    [self AddAuctionSupplierWithNegotiationCustomerIdAPI:_strAuctionID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivePaymentType:)
@@ -117,7 +117,7 @@
             }
             if  (dicDetailCharges != nil)
             {
-                NSString *strTotalValue = [NSString stringWithFormat:@"%@.0  %@",[dicDetailCharges valueForKey:@"BuyerAuctionCharge"],[dicDetailCharges valueForKey:@"CurrencyCode"]];
+                NSString *strTotalValue = [NSString stringWithFormat:@"%@.0  %@",[dicDetailCharges valueForKey:@"SellerAuctionCharge"],[dicDetailCharges valueForKey:@"CurrencyCode"]];
                 [cell ConfigurePaymentBankDetailCellwithData:strTotalValue];
             }
             
@@ -206,7 +206,7 @@
         [self getLableAccordingtoView:ViewHeader withTittle:@"OFFLINE (Cheque/ DD/ Wire Transfer)" withFrame:CGRectMake(5, 0,ViewHeader.frame.size.width - 10, 50) withSize:18 withTextColor:[UIColor whiteColor] withAlignment:NSTextAlignmentLeft];
         if  (dicDetailCharges != nil)
         {
-            NSString *strTotalValue = [NSString stringWithFormat:@"%@.0  %@",[dicDetailCharges valueForKey:@"BuyerAuctionCharge"],[dicDetailCharges valueForKey:@"CurrencyCode"]];
+            NSString *strTotalValue = [NSString stringWithFormat:@"%@.0  %@",[dicDetailCharges valueForKey:@"SellerAuctionCharge"],[dicDetailCharges valueForKey:@"CurrencyCode"]];
             
             [self getLableAccordingtoView:ViewHeader withTittle:(strTotalValue )?strTotalValue:@"" withFrame:CGRectMake(ViewHeader.frame.size.width - 210, 55,200, 30) withSize:18 withTextColor:[UIColor whiteColor] withAlignment:NSTextAlignmentRight];
         }
@@ -289,35 +289,36 @@
     NSMutableDictionary *dicParams = [[NSMutableDictionary alloc]init];
     [dicParams setValue:objseller.detail.APIVerificationCode forKey:@"Token"];
     [dicParams setValue:strAuctionID forKey:@"AuctionID"];
-    
+    [dicParams setValue:objseller.detail.VendorID forKey:@"VendorID"];
+
     if (SharedObject.isNetAvailable)
     {
         [CommonUtility showProgressWithMessage:@"Please Wait.."];
         
-//        MBCall_AuctionChargesDetailAPI(dicParams, ^(id response, NSString *error, BOOL status)
-//        {
-//            [CommonUtility HideProgress];
-//
-//            self->dicDetailCharges  = [[NSMutableDictionary alloc]init];
-//
-//            if (status && [[response valueForKey:@"success"]isEqual:@1])
-//            {
-//                if (response != (NSDictionary *)[NSNull null])
-//                {
-//                    for (NSMutableDictionary *dicValue in [response objectForKey:@"detail"])
-//                    {
-//                        self->dicDetailCharges = dicValue;
-//                        NSLog(@"%@",self->dicDetailCharges);
-//                    }
-//                    [self.tableView reloadData];
-//                }
-//            }
-//            else
-//            {
-//                [CommonUtility HideProgress];
-//                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
-//            }
-//        });
+        MBCall_AuctionChargesDetailAPI(dicParams, ^(id response, NSString *error, BOOL status)
+        {
+            [CommonUtility HideProgress];
+
+            self->dicDetailCharges  = [[NSMutableDictionary alloc]init];
+
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                if (response != (NSDictionary *)[NSNull null])
+                {
+                    for (NSMutableDictionary *dicValue in [response objectForKey:@"detail"])
+                    {
+                        self->dicDetailCharges = dicValue;
+                        NSLog(@"%@",self->dicDetailCharges);
+                    }
+                    [self.tableView reloadData];
+                }
+            }
+            else
+            {
+                [CommonUtility HideProgress];
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
+            }
+        });
     }
     else
     {
@@ -367,7 +368,15 @@
 }
 -(IBAction)btnBackPayment:(UIButton *)sender
 {
+    [[UIDevice currentDevice] setValue:
+     [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+    [self.navigationItem setNavigationTittleWithLogo:@"tradologie.com"];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+        AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [delegateClass setRootViewController:rootVC];
+    });
 }
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== RELOAD DATA HERE ===❉===❉
@@ -438,7 +447,7 @@
     [dicValueData setValue:objseller.detail.APIVerificationCode forKey:@"Token"];
     [dicValueData setValue:objseller.detail.VendorID forKey:@"VendorID"];
     [dicValueData setValue:_strAuctionID forKey:@"AuctionID"];
-    NSNumber * AuctionCharge  = [NSNumber numberWithInteger:[[dicDetailCharges valueForKey:@"BuyerAuctionCharge"]intValue]];
+    NSNumber * AuctionCharge  = [NSNumber numberWithInteger:[[dicDetailCharges valueForKey:@"SellerAuctionCharge"]intValue]];
     [dicValueData setValue:AuctionCharge forKey:@"AuctionCharge"];
     
     if (SharedObject.isNetAvailable)
@@ -491,7 +500,7 @@
     [_btnPayment addTarget:self action:@selector(btnPaymentMethodTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_btnAccept addTarget:self action:@selector(btnAcceptCalled:) forControlEvents:UIControlEventTouchUpInside];
     
-    NSString *strRefundValue = [NSString stringWithFormat:@":-  %@.0  %@",[dicValue valueForKey:@"BuyerAuctionCharge"],[dicValue valueForKey:@"CurrencyCode"]];
+    NSString *strRefundValue = [NSString stringWithFormat:@":-  %@.0  %@",[dicValue valueForKey:@"SellerAuctionCharge"],[dicValue valueForKey:@"CurrencyCode"]];
     [self.lblRefundPayment setText:strRefundValue];
     
     NSString *strConvienceValue = [NSString stringWithFormat:@":-  %@.0  %@",[dicValue valueForKey:@"ConvenienceCharge"],[dicValue valueForKey:@"CurrencyCode"]];

@@ -14,6 +14,7 @@
 #import "SharedManager.h"
 #import "MBAPIManager.h"
 #import "VCLoadLiveAuction.h"
+#import "TVPaymentScreen.h"
 
 #define K_CUSTOM_WIDTH 170
 
@@ -284,6 +285,15 @@
     else if ([btnState isEqualToString:@"POAccepted"])
     {
         
+    }
+    else if ([btnState isEqualToString:@"Payment Pending"])
+    {
+        [[UIDevice currentDevice] setValue:
+         [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+        
+        TVPaymentScreen *objScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVPaymentScreen"];
+        objScreen.strAuctionID = [data.AuctionID stringValue];
+        [self.navigationController pushViewController:objScreen animated:YES];
     }
     else if ([btnState isEqualToString:strBtnTittile])
     {

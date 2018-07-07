@@ -20,4 +20,6 @@ void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,TSApiManagerCom
 void MBCall_GetAuctionListUsingDashboardApi(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_SupplierAuctionDetailAPI(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_SupplierAuctionAcceptanceAPI(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_AuctionChargesDetailAPI(NSDictionary* params,TSApiManagerCompletion completion);
+
 @end

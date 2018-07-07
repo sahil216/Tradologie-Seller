@@ -305,8 +305,22 @@ void MBCall_SupplierAuctionAcceptanceAPI(NSDictionary* params,TSApiManagerComple
          }
      }];
 }
-
-
+void MBCall_AuctionChargesDetailAPI(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SUPPLIER_AUCTION_CHARGE_DETAIL_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+             
+         }
+     }];
+}
 
 //void MBCall_GetCategoryListForNegotiation(RMApiManagerCompletion completion)
 //{

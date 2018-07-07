@@ -13,6 +13,7 @@
 #import "CommonUtility.h"
 #import "MBAPIManager.h"
 #import "SharedManager.h"
+#import "TVPaymentScreen.h"
 
 #define K_CUSTOM_WIDTH 150
 
@@ -363,14 +364,18 @@
             {
                 if (response != (NSDictionary *)[NSNull null])
                 {
+                    [[UIDevice currentDevice] setValue:
+                     [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
                     
+                    TVPaymentScreen *objScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVPaymentScreen"];
+                    objScreen.strAuctionID = [objData.AuctionID stringValue];
+                    [self.navigationController pushViewController:objScreen animated:YES];
                     
                 }
             }
             else
             {
-                
-                
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
             }
         });
     }
