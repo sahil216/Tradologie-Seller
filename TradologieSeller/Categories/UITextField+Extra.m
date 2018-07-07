@@ -99,7 +99,7 @@
     
     UIView *rightView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     
-    UIButton *btnRight =[[UIButton alloc]initWithFrame:CGRectMake(10, 10, 20, 20)];
+    UIButton *btnRight =[[UIButton alloc]initWithFrame:CGRectMake(10, 7.5, 25, 25)];
     [btnRight setImage:image forState:UIControlStateNormal];
     [btnRight setBackgroundColor:[UIColor clearColor]];
     [btnRight setSelected:NO];

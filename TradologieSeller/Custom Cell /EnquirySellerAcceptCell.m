@@ -25,7 +25,7 @@
 }
 -(void)ConfigureNotificationListbyCellwithSectionIndex:(NSInteger)section withAmtParticipate:(NSString *)strAmtValue
 {
-    [_txtQtyParticipate setDefaultTextfieldStyleWithPlaceHolder:@"Enter Total Quantity" withTag:1002];
+    [_txtQtyParticipate setDefaultTextfieldStyleWithPlaceHolder:@"Enter Total Qty" withTag:1002];
     [_txtQtyParticipate setFont:UI_DEFAULT_FONT_MEDIUM(18)];
     [CommonUtility setTooBarOnTextfield:_txtQtyParticipate withTargetId:self withActionEvent:@selector(btnToolbarTapped:)];
     

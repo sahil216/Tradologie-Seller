@@ -39,7 +39,7 @@
     
     dicValueData = [[NSMutableDictionary alloc]init];
     
-    [self AddAuctionSupplierWithNegotiationCustomerIdAPI:_strAuctionID];
+   /// [self AddAuctionSupplierWithNegotiationCustomerIdAPI:_strAuctionID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivePaymentType:)

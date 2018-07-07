@@ -358,6 +358,7 @@
     
         MBCall_SupplierAuctionAcceptanceAPI(dicParams, ^(id response, NSString *error, BOOL status)
         {
+            [CommonUtility HideProgress];
             if (status && [[response valueForKey:@"success"]isEqual:@1])
             {
                 if (response != (NSDictionary *)[NSNull null])
@@ -375,7 +376,7 @@
     }
     else
     {
-        
+        [CommonUtility HideProgress];
         [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
     }
 }
@@ -402,15 +403,22 @@
 
 -(IBAction)btnBackItem:(UIButton *)sender
 {
-    [[UIDevice currentDevice] setValue:
-     [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
-    [self.navigationItem setNavigationTittleWithLogo:@"tradologie.com"];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
-        AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        [delegateClass setRootViewController:rootVC];
-    });
+    if (_isScreenFrom == 1)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        [[UIDevice currentDevice] setValue:
+         [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+        [self.navigationItem setNavigationTittleWithLogo:@"tradologie.com"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+            AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+            [delegateClass setRootViewController:rootVC];
+        });
+    }
 }
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== GET DATA FROM DATABASE HERE ===❉===❉

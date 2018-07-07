@@ -105,7 +105,7 @@
 {
     _dataDict = dataDict;
 
-    if (([dataDict valueForKey:@"btnTittle"] != nil) && ![[dataDict valueForKey:@"btnTittle"] isEqualToString:@""])
+    if (([dataDict valueForKey:@"btnTittle"] != nil) && ![[dataDict valueForKey:@"btnTittle"] isEqualToString:@" "])
     {
         [labelArray insertObject:btnViewRate atIndex:labelArray.count];
         [btnViewRate setBackgroundColor:DefaultThemeColor];

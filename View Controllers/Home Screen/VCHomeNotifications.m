@@ -87,39 +87,73 @@
 {
     if (section == 0)
     {
-        return (arrUpCommingNotify.count > 0)?arrUpCommingNotify.count:0;
+        return (arrUpCommingNotify.count > 0)?arrUpCommingNotify.count:1;
     }
     else if (section == 1)
     {
-        return (arrLiveNotify.count > 0)?arrLiveNotify.count:0;
+        return (arrLiveNotify.count > 0)?arrLiveNotify.count:1;
     }
     else if (section == 2)
     {
-        return (arrPendingNotify.count > 0)?arrPendingNotify.count:0;
+        return (arrPendingNotify.count > 0)?arrPendingNotify.count:1;
     }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NotificationList *cell =(NotificationList *) [tableView dequeueReusableCellWithIdentifier:COMMON_CELL_ID];
-    if (!cell)
+    if (arrUpCommingNotify.count > 0 && indexPath.section == 0)
     {
+        NotificationList *cell = (NotificationList *) [tableView dequeueReusableCellWithIdentifier:COMMON_CELL_ID];
+        if (!cell)
+        {
+            cell = [[NotificationList alloc] initWithStyle:UITableViewCellStyleDefault
+                                           reuseIdentifier:COMMON_CELL_ID];
+        }
+        [cell ConfigureNotificationListbyCellwithData:[arrUpCommingNotify objectAtIndex:indexPath.row] withSectionIndex:0];
+        return cell;
+    }
+    else if (arrLiveNotify.count > 0 && indexPath.section == 1)
+    {
+        NotificationList *cell = (NotificationList *) [tableView dequeueReusableCellWithIdentifier:COMMON_CELL_ID];
+        if (!cell)
+        {
+            cell = [[NotificationList alloc] initWithStyle:UITableViewCellStyleDefault
+                                           reuseIdentifier:COMMON_CELL_ID];
+        }
+        [cell ConfigureNotificationListbyCellwithData:[arrLiveNotify objectAtIndex:indexPath.row] withSectionIndex:1];
+        return cell;
+    }
+    else if (arrPendingNotify.count > 0 && indexPath.section == 2)
+    {
+        NotificationList *cell = (NotificationList *) [tableView dequeueReusableCellWithIdentifier:COMMON_CELL_ID];
+        if (!cell)
+        {
+            cell = [[NotificationList alloc] initWithStyle:UITableViewCellStyleDefault
+                                           reuseIdentifier:COMMON_CELL_ID];
+        }
+        [cell ConfigureNotificationListbyCellwithData:[arrPendingNotify objectAtIndex:indexPath.row] withSectionIndex:2];
+        return cell;
+    }
+      NotificationList *cell =(NotificationList *) [tableView dequeueReusableCellWithIdentifier:@"Cell_ID"];
+      if (!cell)
+      {
         cell = [[NotificationList alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:COMMON_CELL_ID];
-    }
+      }
     if (indexPath.section == 0)
     {
-        [cell ConfigureNotificationListbyCellwithData:[arrUpCommingNotify objectAtIndex:indexPath.row] withSectionIndex:0];
+        [cell.lblMessage setText:@"No Negotiation Complete Or Going to Start..!"];
     }
-    else  if (indexPath.section == 1)
+    else if (indexPath.section == 1)
     {
-        [cell ConfigureNotificationListbyCellwithData:[arrLiveNotify objectAtIndex:indexPath.row] withSectionIndex:1];
+        [cell.lblMessage setText:@"No Negotiation Complete Or Going to Start"];
     }
-    else if (indexPath.section == 2)
+    else
     {
-        [cell ConfigureNotificationListbyCellwithData:[arrPendingNotify objectAtIndex:indexPath.row] withSectionIndex:2];
+        [cell.lblMessage setText:@"No Negotiation Order is Pending..!"];
     }
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,7 +186,7 @@
         }
         else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
         {
-            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
+            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:0];
         }
     }
     else if (indexPath.section == 1)
@@ -173,7 +207,7 @@
         }
         else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
         {
-            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
+            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:0];
         }
         else if([data.SupplierStatus isEqualToString:@"PaymentPending"] && data.IsComplete == NO)
         {

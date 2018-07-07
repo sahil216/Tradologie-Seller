@@ -28,7 +28,7 @@
     UILabel *headLabel;
     
     UIRefreshControl *refreshController;
-
+    
 }
 
 @property (nonatomic, strong) UIView * contentView;
@@ -54,7 +54,7 @@
     arrTittle = [[NSMutableArray alloc]initWithObjects:@"Negotiation No",@"Negotiation Name",@"Order Status",@"Start Date",@"End Date",@"Prefered Date",@"Enquiry Status",@"Total Quantity",@"Min Quantity",@"Participate Quantity",@"Last Date of Delivery",nil];
     
     [self SetInitialSetup];
-
+    
     // Do any additional setup after loading the view.
 }
 
@@ -63,14 +63,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/**************************************************************************/
-#pragma mark ---- UIREFRESH CONTROL CALLED ----
-/**************************************************************************/
--(void)handlePulltoRefresh:(UIRefreshControl *)Control
-{
-    [refreshController endRefreshing];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -107,15 +99,26 @@
     
     
     refreshController = [[UIRefreshControl alloc] init];
-    [refreshController addTarget:self action:@selector(handlePulltoRefresh:)
+    [refreshController addTarget:self action:@selector(handlePullRefresh:)
                 forControlEvents:UIControlEventValueChanged];
     [self.myTableView addSubview:refreshController];
     
-    [self getAuctionDataListfromDataBase];
+    [self GetNegotiationListUsingAuction];
 }
+/**************************************************************************/
+#pragma mark ---- UIREFRESH CONTROL CALLED ----
+/**************************************************************************/
+
+-(void)handlePullRefresh:(UIRefreshControl *)Control
+{
+    [refreshController endRefreshing];
+    [self GetNegotiationListUsingAuction];
+}
+
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== TABLEVIEW DELEGATE & DATA SOURCE CALLED HERE ===❉===❉
 /*****************************************************************************************************************/
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -139,6 +142,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     cell.dataDict = [arrData objectAtIndex:indexPath.row];
+    NSLog(@"VALUE FOR BUTTON :- %@",[[arrData valueForKey:@"btnTittle"] objectAtIndex:indexPath.row]);
     
     cell.delegate = self;
     return cell;
@@ -186,7 +190,7 @@
         self.searchBar.delegate = self;
         
         [tableViewHeadView addSubview:self.searchBar];
-      
+        
     }
     return tableViewHeadView;
 }
@@ -205,11 +209,11 @@
 {
     SellerAuctionList *objAuctionList = [MBDataBaseHandler getSellerAuctionList];
     SellerAuctionListData *data = [objAuctionList.detail objectAtIndex:indexPath.row];
-    
-    if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
-    {
-        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
-    }
+    //    if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
+    //    {
+    //        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
+    //    }
+    [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:0 withIsScreenFrom:1];
 }
 
 /******************************************************************************************************************/
@@ -283,11 +287,11 @@
     }
     else if ([btnState isEqualToString:strBtnTittile])
     {
-        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
+        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:1];
     }
     else
     {
-        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:0];
+        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:0 withIsScreenFrom:1];
     }
 }
 /******************************************************************************************************************/
@@ -346,101 +350,139 @@
                    withMenuArray:arrNegotiation
                       imageArray:nil
                        doneBlock:^(NSInteger selectedIndex)
-     {
-         [self->txtNegotiation setText:[arrNegotiation objectAtIndex:selectedIndex]];         
-     } dismissBlock:^{
-         
-     }];
+    {
+        [self->txtNegotiation setText:[arrNegotiation objectAtIndex:selectedIndex]];
+    } dismissBlock:^{
+        
+    }];
 }
 
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== GET DATA FROM DATABASE HERE ===❉===❉
 /******************************************************************************************************************/
--(void)getAuctionDataListfromDataBase
+-(void)GetNegotiationListUsingAuction
 {
-    SellerAuctionList *objAuctionList = [MBDataBaseHandler getSellerAuctionList];
-    arrData = [[NSMutableArray alloc]init];
+    SellerUserDetail * objSellerdetail = [MBDataBaseHandler getSellerUserDetailData];
+    NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
+    [dicParams setObject:objSellerdetail.detail.APIVerificationCode forKey:@"Token"];
+    [dicParams setObject:objSellerdetail.detail.VendorID forKey:@"VendorID"];
+    [dicParams setObject:@"" forKey:@"FilterAuction"];
     
-    for (SellerAuctionListData *data in objAuctionList.detail)
+    if (SharedObject.isNetAvailable)
     {
-        NSMutableDictionary *dataDict = [NSMutableDictionary new];
-        
-        [dataDict setObject:data.AuctionCode forKey:[arrTittle objectAtIndex:0]];
-        [dataDict setObject:data.AuctionName forKey:[arrTittle objectAtIndex:1]];
-        
-        if ([data.OrderStatus isEqualToString:@""])
-        {
-            [dataDict setObject:data.OrderStatus forKey:[arrTittle objectAtIndex:2]];
-        }
-        else
-        {
-            [dataDict setObject:data.PONo forKey:[arrTittle objectAtIndex:2]];
-        }
-        NSString *startDate = [CommonUtility getDateFromSting:data.StartDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
-        NSString *EndDate = [CommonUtility getDateFromSting:data.EndDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
-        
-        [dataDict setObject:startDate forKey:[arrTittle objectAtIndex:3]];
-        [dataDict setObject:EndDate forKey:[arrTittle objectAtIndex:4]];
-           NSString *strPreferredDate = [CommonUtility getDateFromSting:data.PreferredDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
-        [dataDict setObject:strPreferredDate forKey:[arrTittle objectAtIndex:5]];
-        
-        if (data.IsStarted == true)
-        {
-            [dataDict setObject:@"Started" forKey:[arrTittle objectAtIndex:6]];
-        }
-        else if (data.IsStarted == 0 && data.Isclosed == 0)
-        {
-            [dataDict setObject:@"Not Started" forKey:[arrTittle objectAtIndex:6]];
-        }
-        else
-        {
-            [dataDict setObject:@"Closed" forKey:[arrTittle objectAtIndex:6]];
-        }
+        [CommonUtility showProgressWithMessage:@"Please Wait.."];
 
-        [dataDict setObject:data.TotalQuantity forKey:[arrTittle objectAtIndex:7]];
-        [dataDict setObject:data.MinQuantity forKey:[arrTittle objectAtIndex:8]];
-        [dataDict setObject:data.ParticipateQuantity forKey:[arrTittle objectAtIndex:9]];
-        
-        NSString *strDeliveryLastDate = [CommonUtility getDateFromSting:data.DeliveryLastDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
-        
-        [dataDict setObject:strDeliveryLastDate forKey:[arrTittle objectAtIndex:10]];
-        
-        if (data.IsStarted == 1 && data.Isclosed == 0 && data.IsStarted == 0)
+        MBCall_GetAuctionListUsingDashboardApi(dicParams, ^(id response, NSString *error, BOOL status)
         {
-            [dataDict setObject:[NSString stringWithFormat:@"Update Rate"] forKey:@"btnTittle"];
-        }
-        else if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
-        {
-            [dataDict setObject:[NSString stringWithFormat:@"Charges of Enquiry: %@ Participate",data.AuctionCharge] forKey:@"btnTittle"];
-        }
-        else if ([data.AcceptanceStatus isEqualToString:@"PaymentPending"] && data.Isclosed == NO)
-        {
-             [dataDict setObject:[NSString stringWithFormat:@"Payment Pending"] forKey:@"btnTittle"];
-        }
-        else if([data.AcceptanceStatus isEqualToString:@"PaymentProcess"] && data.Isclosed == YES)
-        {
-            [dataDict setObject:[NSString stringWithFormat:@"Payment Process"] forKey:@"btnTittle"];
-        }
-        else if([data.AcceptanceStatus isEqualToString:@"Accepted"]  && [data.OrderStatus isEqualToString:@"Accept"])
-        {
-            [dataDict setObject:[NSString stringWithFormat:@"View Order"] forKey:@"btnTittle"];
-        }
-        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && [data.OrderStatus isEqualToString:@"POAccepted"])
-        {
-            [dataDict setObject:data.OrderStatus forKey:@"btnTittle"];
-        }
-        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && [data.CounterStatus isEqualToString:@"TimeOut"])
-        {
-            [dataDict setObject:@"" forKey:@"btnTittle"];
-        }
-        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && data.Isclosed == YES)
-        {
-            [dataDict setObject:@"" forKey:@"btnTittle"];
-        }
-        [arrData addObject:dataDict];
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                if (response != (NSDictionary *)[NSNull null])
+                {
+                    NSError* Error;
+                    SellerAuctionList *objAuctionList = [[SellerAuctionList alloc]initWithDictionary:response error:&Error];
+                    [MBDataBaseHandler saveSellerAuctionListData:objAuctionList];
+                    
+                    self->arrData = [[NSMutableArray alloc]init];
+                    
+                    for (SellerAuctionListData *data in objAuctionList.detail)
+                    {
+                        NSMutableDictionary *dataDict = [NSMutableDictionary new];
+                        
+                        [dataDict setObject:data.AuctionCode forKey:[self->arrTittle objectAtIndex:0]];
+                        [dataDict setObject:data.AuctionName forKey:[self->arrTittle objectAtIndex:1]];
+                        
+                        if ([data.OrderStatus isEqualToString:@""])
+                        {
+                            [dataDict setObject:data.OrderStatus forKey:[self->arrTittle objectAtIndex:2]];
+                        }
+                        else
+                        {
+                            [dataDict setObject:data.PONo forKey:[self->arrTittle objectAtIndex:2]];
+                        }
+                        NSString *startDate = [CommonUtility getDateFromSting:data.StartDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+                        NSString *EndDate = [CommonUtility getDateFromSting:data.EndDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+                        
+                        [dataDict setObject:startDate forKey:[self->arrTittle objectAtIndex:3]];
+                        [dataDict setObject:EndDate forKey:[self->arrTittle objectAtIndex:4]];
+                        NSString *strPreferredDate = [CommonUtility getDateFromSting:data.PreferredDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+                        [dataDict setObject:strPreferredDate forKey:[self->arrTittle objectAtIndex:5]];
+                        
+                        if (data.IsStarted == true)
+                        {
+                            [dataDict setObject:@"Started" forKey:[self->arrTittle objectAtIndex:6]];
+                        }
+                        else if (data.IsStarted == 0 && data.Isclosed == 0)
+                        {
+                            [dataDict setObject:@"Not Started" forKey:[self->arrTittle objectAtIndex:6]];
+                        }
+                        else
+                        {
+                            [dataDict setObject:@"Closed" forKey:[self->arrTittle objectAtIndex:6]];
+                        }
+                        
+                        [dataDict setObject:data.TotalQuantity forKey:[self->arrTittle objectAtIndex:7]];
+                        [dataDict setObject:data.MinQuantity forKey:[self->arrTittle objectAtIndex:8]];
+                        [dataDict setObject:data.ParticipateQuantity forKey:[self->arrTittle objectAtIndex:9]];
+                        
+                        NSString *strDeliveryLastDate = [CommonUtility getDateFromSting:data.DeliveryLastDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+                        
+                        [dataDict setObject:strDeliveryLastDate forKey:[self->arrTittle objectAtIndex:10]];
+                        
+                        if ((data.IsStarted == 1 && data.Isclosed == 0 && [data.AcceptanceStatus isEqualToString:@"Accepted"]))
+                        {
+                            [dataDict setObject:[NSString stringWithFormat:@"Update Rate"] forKey:@"btnTittle"];
+                        }
+                        else if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
+                        {
+                            [dataDict setObject:[NSString stringWithFormat:@"Charges of Enquiry: %@ Participate",data.AuctionCharge] forKey:@"btnTittle"];
+                        }
+                        else if ([data.AcceptanceStatus isEqualToString:@"PaymentPending"] && data.Isclosed == NO)
+                        {
+                            [dataDict setObject:[NSString stringWithFormat:@"Payment Pending"] forKey:@"btnTittle"];
+                        }
+                        else if([data.AcceptanceStatus isEqualToString:@"PaymentProcess"] && data.Isclosed == YES)
+                        {
+                            [dataDict setObject:[NSString stringWithFormat:@"Payment Process"] forKey:@"btnTittle"];
+                        }
+                        else if([data.AcceptanceStatus isEqualToString:@"Accepted"]  && [data.OrderStatus isEqualToString:@"Accept"])
+                        {
+                            [dataDict setObject:[NSString stringWithFormat:@"View Order"] forKey:@"btnTittle"];
+                        }
+                        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && [data.OrderStatus isEqualToString:@"POAccepted"])
+                        {
+                            [dataDict setObject:data.OrderStatus forKey:@"btnTittle"];
+                        }
+                        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && [data.CounterStatus isEqualToString:@"TimeOut"])
+                        {
+                            [dataDict setObject:@" " forKey:@"btnTittle"];
+                        }
+                        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && data.Isclosed == YES)
+                        {
+                            [dataDict setObject:@" " forKey:@"btnTittle"];
+                        }
+                        else
+                        {
+                            [dataDict setObject:@" " forKey:@"btnTittle"];
+                        }
+                        [self->arrData addObject:dataDict];
+                    }
+                    [self.myTableView reloadData];
+                    [CommonUtility HideProgress];
+
+                }
+            }
+            else
+            {
+                [CommonUtility HideProgress];
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
+            }
+        });
     }
-    [self.myTableView reloadData];
+    else
+    {
+        [CommonUtility HideProgress];
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+    }
 }
-
 
 @end

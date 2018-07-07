@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblOrderCode;
 @property (strong, nonatomic) IBOutlet UILabel *lblOrderStatus;
 @property (strong, nonatomic) IBOutlet UILabel *lblOrderTimeLeft;
+@property (strong, nonatomic) IBOutlet UILabel *lblMessage;
 
 - (void)ConfigureNotificationListbyCellwithData:(SellerAuctionDetailData *)objSellerAuction withSectionIndex:(NSInteger)section;
 @end

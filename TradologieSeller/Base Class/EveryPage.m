@@ -51,6 +51,7 @@
 #pragma mark ❉===❉===  GET AUCTION NEGOTIATION LIST API CALLED HERE ===❉===❉
 /******************************************************************************************************************/
 -(void)GetSupplierAuctionDetailAPI:(NSString *)strValue WithBoolValue:(NSInteger)isfromCharge
+                  withIsScreenFrom:(NSInteger)isScreenFrom
 {
     SellerUserDetail *objSellerUser = [MBDataBaseHandler getSellerUserDetailData];
     
@@ -78,6 +79,7 @@
                     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
                     VCEnquirySellerAccept *objSellerAccept = [self.storyboard instantiateViewControllerWithIdentifier:@"VCEnquirySellerAccept"];
                     objSellerAccept.isfromChargeAccount = isfromCharge;
+                    objSellerAccept.isScreenFrom = isScreenFrom;
                     [self.navigationController pushViewController:objSellerAccept animated:YES];
                     
                 }

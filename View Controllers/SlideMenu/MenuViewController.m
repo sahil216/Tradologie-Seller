@@ -188,7 +188,11 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
             break;
         case 1:
         {
-            [self GetNegotiationListUsingAuction];
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+            
+            VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
+            [self pushViewController:objNegotiationScreen];
+            //[self GetNegotiationListUsingAuction];
         }
             break;
         case 2:
@@ -276,48 +280,45 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
     }
 }
 
-/******************************************************************************************************************/
-#pragma mark ❉===❉===  GET AUCTION NEGOTIATION LIST API CALLED HERE ===❉===❉
-/******************************************************************************************************************/
--(void)GetNegotiationListUsingAuction
-{
-    SellerUserDetail * objSellerdetail = [MBDataBaseHandler getSellerUserDetailData];
-    NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
-    [dicParams setObject:objSellerdetail.detail.APIVerificationCode forKey:@"Token"];
-    [dicParams setObject:objSellerdetail.detail.VendorID forKey:@"VendorID"];
-    [dicParams setObject:@"" forKey:@"FilterAuction"];
-    
-    if (SharedObject.isNetAvailable)
-    {
-        MBCall_GetAuctionListUsingDashboardApi(dicParams, ^(id response, NSString *error, BOOL status)
-       {
-           if (status && [[response valueForKey:@"success"]isEqual:@1])
-           {
-               if (response != (NSDictionary *)[NSNull null])
-               {
-                   NSError* Error;
-                   SellerAuctionList *objAuctionList = [[SellerAuctionList alloc]initWithDictionary:response error:&Error];
-                   [MBDataBaseHandler saveSellerAuctionListData:objAuctionList];
-
-                   dispatch_async(dispatch_get_main_queue (), ^{
-                       [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-                       
-                       VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
-                       [self pushViewController:objNegotiationScreen];
-                   });
-               }
-           }
-           else
-           {
-               [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
-           }
-       });
-    }
-    else
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
-    }
-}
+///******************************************************************************************************************/
+//#pragma mark ❉===❉===  GET AUCTION NEGOTIATION LIST API CALLED HERE ===❉===❉
+///******************************************************************************************************************/
+//-(void)GetNegotiationListUsingAuction
+//{
+//    SellerUserDetail * objSellerdetail = [MBDataBaseHandler getSellerUserDetailData];
+//    NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
+//    [dicParams setObject:objSellerdetail.detail.APIVerificationCode forKey:@"Token"];
+//    [dicParams setObject:objSellerdetail.detail.VendorID forKey:@"VendorID"];
+//    [dicParams setObject:@"" forKey:@"FilterAuction"];
+//
+//    if (SharedObject.isNetAvailable)
+//    {
+//        MBCall_GetAuctionListUsingDashboardApi(dicParams, ^(id response, NSString *error, BOOL status)
+//       {
+//           if (status && [[response valueForKey:@"success"]isEqual:@1])
+//           {
+//               if (response != (NSDictionary *)[NSNull null])
+//               {
+//                   NSError* Error;
+//                   SellerAuctionList *objAuctionList = [[SellerAuctionList alloc]initWithDictionary:response error:&Error];
+//                   [MBDataBaseHandler saveSellerAuctionListData:objAuctionList];
+//
+//                   dispatch_async(dispatch_get_main_queue (), ^{
+//
+//                   });
+//               }
+//           }
+//           else
+//           {
+//               [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
+//           }
+//       });
+//    }
+//    else
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+//    }
+//}
 //************************************************************************************************
 #pragma mark ❉===❉=== PUSHVIEW CONTROLLER ===❉===❉
 //************************************************************************************************

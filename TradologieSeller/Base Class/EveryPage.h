@@ -11,6 +11,7 @@
 @interface EveryPage : UIViewController
 
 -(void)getContactDialNumber;
--(void)GetSupplierAuctionDetailAPI:(NSString *)strValue WithBoolValue:(NSInteger)isfromCharge;
+-(void)GetSupplierAuctionDetailAPI:(NSString *)strValue WithBoolValue:(NSInteger)isfromCharge
+                  withIsScreenFrom:(NSInteger)isScreenFrom;
 
 @end

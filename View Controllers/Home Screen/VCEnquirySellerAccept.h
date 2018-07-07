@@ -12,5 +12,5 @@
 
 @property (strong, nonatomic) NSMutableArray *arrProductListData;
 @property (assign, nonatomic) NSInteger isfromChargeAccount;
-
+@property (assign, nonatomic) NSInteger isScreenFrom;
 @end
