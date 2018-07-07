@@ -1,6 +1,6 @@
 //
 //  VCHomeNotifications.m
-//  Tradologie
+//  TradologieSeller
 //
 //  Created by Chandresh Maurya on 09/05/18.
 //  Copyright © 2018 Chandresh Maurya. All rights reserved.
@@ -11,9 +11,10 @@
 #import "SharedManager.h"
 #import "CommonUtility.h"
 #import "MBDataBaseHandler.h"
+#import "VCLoadLiveAuction.h"
 
 
-@interface VCHomeNotifications ()<SFSafariViewControllerDelegate>
+@interface VCHomeNotifications()
 {
     NSMutableArray *arrUpCommingNotify;
     NSMutableArray *arrLiveNotify;
@@ -58,6 +59,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 }
 
 /**************************************************************************/
@@ -122,36 +124,61 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
+    
     if (indexPath.section == 0)
     {
-        SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
         SellerAuctionDetailData *data  = [arrUpCommingNotify objectAtIndex:indexPath.row];
-        
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
-        [CommonUtility showProgressWithMessage:@"Please Wait"];
-        
-        NSString *loadURL= [NSString stringWithFormat:@"http://supplier.tradologie.com/Supplier/LiveAuctionSupplierForAPI.aspx?/%@/%@/%@",objseller.detail.APIVerificationCode,data.CustomerID,data.AuctionID];
-        
-        NSURL *url = [[NSURL alloc] initWithString:loadURL];
-        SFSafariViewController *sfcontroller = [[SFSafariViewController alloc] initWithURL:url];
-        [sfcontroller setDelegate:self];
-        
-        if (@available(iOS 10.0, *))
+        if([data.SupplierStatus isEqualToString:@"Accepted"] && data.IsGoingStart == YES)
         {
-            [sfcontroller setPreferredBarTintColor:DefaultThemeColor];
-        } else {
-            [sfcontroller setAutomaticallyAdjustsScrollViewInsets:YES];
-        }
-        [self.navigationController presentViewController:sfcontroller animated:YES completion:^{
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
             
-        }];
-        
+            NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
+            NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
+            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.detail.APIVerificationCode];
+            NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
+            
+            VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
+            objVCLoadLive.strUrlForLiveAuction = loadURL;
+            [self.navigationController pushViewController:objVCLoadLive animated:YES];
+        }
+        else if ([data.SupplierStatus isEqualToString:@"PaymentProcess"])
+        {
+            
+        }
+        else if ([data.SupplierStatus isEqualToString:@"PaymentPending"])
+        {
+            
+        }
+        else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
+        {
+            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
+        }
     }
     else if (indexPath.section == 1)
     {
         SellerAuctionDetailData *data  = [arrLiveNotify objectAtIndex:indexPath.row];
-        [self GetSupplierAuctionDetailAPI:data.AuctionCode];
+        if (data.IsStarted == 1 && [data.SupplierStatus isEqualToString:@"Accepted"])
+        {
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+            
+            NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
+            NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
+            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.detail.APIVerificationCode];
+            NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
+            
+            VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
+            objVCLoadLive.strUrlForLiveAuction = loadURL;
+            [self.navigationController pushViewController:objVCLoadLive animated:YES];
+        }
+        else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
+        {
+            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
+        }
+        else if([data.SupplierStatus isEqualToString:@"PaymentPending"] && data.IsComplete == NO)
+        {
+            
+        }
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -227,19 +254,6 @@
 }
 
 /******************************************************************************************************************/
-#pragma mark ❉===❉===  SAFARI BROWSER DELEGATE CALLED HERE ===❉===❉
-/******************************************************************************************************************/
-- (void)safariViewController:(SFSafariViewController *)controller didCompleteInitialLoad:(BOOL)didLoadSuccessfully
-{
-    [CommonUtility HideProgress];
-}
-- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller
-{
-    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
-}
-
-
-/******************************************************************************************************************/
 #pragma mark ❉===❉===  GET DASHBOARD NOTIFICATION API CALLED HERE ===❉===❉
 /******************************************************************************************************************/
 
@@ -278,7 +292,7 @@
                             {
                                 [self->arrUpCommingNotify addObject:data];
                             }
-                            else  if (data.IsStarted == YES)
+                            else  if (data.IsStarted == 1)
                             {
                                 [self->arrLiveNotify addObject:data];
                             }
@@ -327,7 +341,7 @@
     if (section == 0)
     {
         [_lblOrderCode setText:objSellerAuction.AuctionCode];
-        if (![objSellerAuction.SupplierStatus isEqualToString:@"Pending"])
+        if ([objSellerAuction.SupplierStatus isEqualToString:@"Accepted"])
         {
             [_lblOrderStatus setText:@"Activated"];
         }
@@ -341,9 +355,19 @@
     else if (section == 1)
     {
         [_lblOrderCode setText:objSellerAuction.AuctionCode];
-        [_lblOrderStatus setText:@"New"];
-        [_lblOrderStatus setTextColor:[UIColor redColor]];
-        
+       
+        if (objSellerAuction.IsStarted == 1 && ![objSellerAuction.SupplierStatus isEqualToString:@"Pending"]
+            && ![objSellerAuction.SupplierStatus isEqualToString:@"PaymentPending"] )
+        {
+            [_lblOrderStatus setText:@"Activated"];
+            [_lblOrderStatus setFont:UI_DEFAULT_FONT_MEDIUM(16)];
+            [_lblOrderStatus setTextColor:GET_COLOR_WITH_RGB(0, 144, 80, 1)];
+        }
+        else
+        {
+            [_lblOrderStatus setText:@"New"];
+            [_lblOrderStatus setTextColor:[UIColor redColor]];
+        }
     }
     else if (section == 2)
     {

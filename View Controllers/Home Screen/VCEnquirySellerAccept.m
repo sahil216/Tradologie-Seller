@@ -10,16 +10,24 @@
 #import "Constant.h"
 #import "AppConstant.h"
 #import "MBDataBaseHandler.h"
+#import "CommonUtility.h"
+#import "MBAPIManager.h"
+#import "SharedManager.h"
 
 #define K_CUSTOM_WIDTH 150
 
-@interface VCEnquirySellerAccept ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface VCEnquirySellerAccept ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,EnquirySellerAcceptCellDelegate>
 {
     NSMutableArray *arrSellerAucList;
     NSMutableArray *arrSellerAucListData;
     float headerTotalWidth;
     NSInteger count,SupplierCount;
     CGFloat height , lblHeight;
+    NSString *strTotalAmt;
+    NSString *strTextValue;
+    
+    CGFloat viewHeight;
+    UITextField *txtRemarks;
 }
 @property (nonatomic, strong) UIView * contentView;
 @property (nonatomic, strong) UITableView *myTableView;
@@ -37,13 +45,13 @@
     [self.navigationController.navigationItem setHidesBackButton:YES animated:YES];
     [self.navigationItem setHidesBackButton:YES];
     
-//    arrTittle = [[NSMutableArray alloc]initWithObjects:@"Sr.No",@"Grade",@"Quantity",@"Packing Type",@"Packing Size",@"Packing Image",nil];
-//
     arrSellerAucList = [[NSMutableArray alloc]initWithObjects:@"Sr.No",@"Grade",@"Quantity",@"Packing Type",@"Packing Size",@"Packing Image",nil];
     
     lblHeight = 120;
+    strTotalAmt = @"0.0";
     [self SetInitialSetup];
     [self.navigationItem SetBackButtonWithID:self withSelectorAction:@selector(btnBackItem:)];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,11 +79,12 @@
     
     height = ([SDVersion deviceSize] > Screen4Dot7inch)?_contentView.frame.size.height - 75:([SDVersion deviceSize] < Screen4Dot7inch)?_contentView.frame.size.height - 65:_contentView.frame.size.height - 70;
     
-    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, headerTotalWidth, height) style:UITableViewStylePlain];
+    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, headerTotalWidth, height) style:UITableViewStyleGrouped];
     tableView.delegate=self;
     tableView.dataSource=self;
     tableView.bounces=NO;
     self.myTableView = tableView;
+    [self.myTableView setBackgroundColor:[UIColor whiteColor]];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIScrollView *myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height)];
@@ -85,20 +94,25 @@
     myScrollView.contentSize = CGSizeMake(headerTotalWidth, 0);
     [_contentView addSubview:myScrollView];
     
+    [self.myTableView registerNib:[UINib nibWithNibName:@"EnquirySellerAcceptCell" bundle:nil] forCellReuseIdentifier:@"Cell_ID"];
+    
     NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"ViewEnquiryState" owner:self options:nil];
     _viewLandscape = [subviewArray objectAtIndex:0];
+    viewHeight = _viewLandscape.frame.size.height - 250;
     
     [self getSellerAuctionDetailDataBase];
-    
-//    [self getAuctionSellerDataListfromDataBase];
-    
 }
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== TABLEVIEW DELEGATE & DATA SOURCE CALLED HERE ===❉===❉
 /*****************************************************************************************************************/
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    if(_isfromChargeAccount == 1)
+    {
+        return 3;
+    }
+    return 2;
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -109,6 +123,10 @@
     else if (section == 1)
     {
         return  (arrSellerAucListData.count > 0) ?arrSellerAucListData.count:0;
+    }
+    else if (section == 2)
+    {
+        return 1;
     }
     return 0;
 }
@@ -130,17 +148,19 @@
         
         return cell;
     }
-//    if(indexPath.section == 2)
-//    {
-//        cellIdentifier = @"Cell_ID";
-//        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//        if(cell == nil)
-//        {
-//            cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//            cell.selectionStyle=UITableViewCellSelectionStyleNone;
-//        }
-//        return cell;
-//    }
+    if(indexPath.section == 2)
+    {
+        cellIdentifier = @"Cell_ID";
+        EnquirySellerAcceptCell *cell = (EnquirySellerAcceptCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(cell == nil)
+        {
+            cell= [[EnquirySellerAcceptCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        }
+        [cell ConfigureNotificationListbyCellwithSectionIndex:2 withAmtParticipate:strTotalAmt];
+        [cell setDelegate:self];
+        return cell;
+    }
     return nil;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -187,38 +207,23 @@
             }
             else
             {
-                 width = K_CUSTOM_WIDTH + 50;
+                width = K_CUSTOM_WIDTH + 50;
                 [headLabel setTextAlignment:NSTextAlignmentCenter];
             }
-//            CGFloat hue = ( arc4random() % 256 / 256.0 );
-//            CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
-//            CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
-//            UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-//            [headLabel setBackgroundColor:color];
         }
         return Viewsection2;
     }
     
-    UIView *tableViewHeadView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [arrSellerAucList count] * K_CUSTOM_WIDTH, 200)];
+    UIView *tableViewHeadView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [arrSellerAucList count] * K_CUSTOM_WIDTH, 150)];
     [tableViewHeadView setBackgroundColor:[UIColor whiteColor]];
     
     [self getLableAccordingtoView:tableViewHeadView withTittle:@"Remarks :- " withfame:CGRectMake(20, 0, tableViewHeadView.frame.size.width, 45) WithColor:DefaultThemeColor];
-
-    UITextField *txtRemarks=[[UITextField alloc]initWithFrame:CGRectMake(20, 45, SCREEN_HEIGHT * 2, 100)];
+    
+    txtRemarks = [[UITextField alloc]initWithFrame:CGRectMake(20, 45, SCREEN_HEIGHT * 2, 100)];
     [txtRemarks setDefaultTextfieldStyleWithPlaceHolder:@"Enter Your Remarks" withTag:1001];
     [txtRemarks setFont:UI_DEFAULT_FONT_MEDIUM(18)];
     [txtRemarks setDelegate:self];
     [tableViewHeadView addSubview:txtRemarks];
-    
-    [self getLableAccordingtoView:tableViewHeadView withTittle:@"Total Quantity Participating :- " withfame:CGRectMake(20, txtRemarks.frame.size.height + 55, 260, 45) WithColor:DefaultThemeColor];
-    
-    UITextField *txtQtyParticipate = [[UITextField alloc]initWithFrame:CGRectMake(260 + 10, txtRemarks.frame.size.height + 55, SCREEN_HEIGHT, 45)];
-    [txtQtyParticipate setDefaultTextfieldStyleWithPlaceHolder:@"Enter Total Quantity" withTag:1002];
-    [txtQtyParticipate setFont:UI_DEFAULT_FONT_MEDIUM(18)];
-    [txtQtyParticipate setDelegate:self];
-    [tableViewHeadView addSubview:txtQtyParticipate];
-    
-    [self getLableAccordingtoView:tableViewHeadView withTittle:@"Auction Charges Participating :-  0" withfame:CGRectMake(20,(txtRemarks.frame.size.height *2)+ 10 , txtQtyParticipate.frame.size.width * 1.50, 45) WithColor:DefaultThemeColor];
     
     return tableViewHeadView;
 }
@@ -228,19 +233,23 @@
     {
         return lblHeight + 10;
     }
-    return 60;
+    if (indexPath.section == 2)
+    {
+        return 110;
+    }
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
     {
-        return _viewLandscape.frame.size.height - 250;
+        return viewHeight;
     }
     else if (section == 1)
     {
         return 100;
     }
-    return 260;
+    return 150;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -266,6 +275,7 @@
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== TEXTFIELD DELEGATE CALLED HERE ===❉===❉
 /*****************************************************************************************************************/
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -273,15 +283,33 @@
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.myTableView.contentOffset = CGPointMake(0, SCREEN_HEIGHT * 10);
+    self.myTableView.contentOffset = CGPointMake(0, SCREEN_HEIGHT + 400);
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.myTableView.contentOffset = CGPointMake(0, SCREEN_HEIGHT * 2);
+    self.myTableView.contentOffset = CGPointMake(0, SCREEN_HEIGHT + 200);
+}
+/******************************************************************************************************************/
+#pragma mark ❉===❉=== CELL DELEGATE CALLED HERE ===❉===❉
+/*****************************************************************************************************************/
+
+- (void)textFieldValueChange:(NSString *)txtAmtValue
+{
+    SellerAuctionDetail *objData = [MBDataBaseHandler getSellerAuctionDetailData];
+    CGFloat price = [objData.AuctionRefAmt floatValue] * [txtAmtValue floatValue];
+    CGFloat totalPrice = ( price * [objData.AuctionSellerMarginPer floatValue]) /100;
+    strTotalAmt = [NSString stringWithFormat:@"%.1f",totalPrice];
+    strTextValue = [NSString stringWithFormat:@"%@",txtAmtValue];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    EnquirySellerAcceptCell *cell = (EnquirySellerAcceptCell *)[self.myTableView cellForRowAtIndexPath:indexPath];
+    [cell.lblAmtPaticipating setText:@""];
+    [cell.lblAmtPaticipating setText:strTotalAmt];
 }
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== ADD BUTTON ON FOOTER  ===❉===❉
 /*****************************************************************************************************************/
+
 -(void)addButtonWithFrame:(CGRect)frame WithSubView:(UIView *)viewBG withbtnTittle:(NSString *)strBtnTittle
                withAction:(SEL)selector
 {
@@ -294,12 +322,67 @@
 }
 -(IBAction)btnNotParticiPatingTapped:(UIButton *)sender
 {
-    
+    [self SupplierAuctionAcceptanceWithID:@"NotAccepted"];
+
 }
 -(IBAction)btnParticiPatingTapped:(UIButton *)sender
 {
-    
+    [self SupplierAuctionAcceptanceWithID:@"PaymentPending"];
 }
+
+/******************************************************************************************************************/
+#pragma mark ❉===❉===  GET DASHBOARD NOTIFICATION API CALLED HERE ===❉===❉
+/******************************************************************************************************************/
+
+-(void)SupplierAuctionAcceptanceWithID:(NSString *)strParticipate
+{
+    if ([strTextValue isEqualToString:@""] || strTextValue == nil)
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter Total Quantity for Participating..!"];
+        return;
+    }
+    if (SharedObject.isNetAvailable)
+    {
+        [CommonUtility showProgressWithMessage:@"Please Wait.."];
+        SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
+        SellerAuctionDetail *objData = [MBDataBaseHandler getSellerAuctionDetailData];
+
+        NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
+        [dicParams setObject:objseller.detail.APIVerificationCode forKey:@"Token"];
+        [dicParams setObject:objData.AuctionID forKey:@"AuctionID"];
+        [dicParams setObject:objseller.detail.VendorID forKey:@"VendorID"];
+        [dicParams setObject:strParticipate forKey:@"ParticipateStatus"];
+        [dicParams setObject:strTextValue forKey:@"ParticipateQty"];
+        [dicParams setObject:strTotalAmt forKey:@"AuctionCharges"];
+        [dicParams setObject:txtRemarks.text forKey:@"Remarks"];
+    
+        MBCall_SupplierAuctionAcceptanceAPI(dicParams, ^(id response, NSString *error, BOOL status)
+        {
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                if (response != (NSDictionary *)[NSNull null])
+                {
+                    
+                    
+                }
+            }
+            else
+            {
+                
+                
+            }
+        });
+    }
+    else
+    {
+        
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+    }
+}
+
+
+
+
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== ADD LEVEL ON HEADER ===❉===❉
 /*****************************************************************************************************************/
@@ -313,10 +396,10 @@
     [lblbHeaderTittle setBackgroundColor:[UIColor clearColor]];
     [viewBG addSubview:lblbHeaderTittle];
 }
-
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== BUTTON ACTION EVENT CALLED HERE ===❉===❉
 /*****************************************************************************************************************/
+
 -(IBAction)btnBackItem:(UIButton *)sender
 {
     [[UIDevice currentDevice] setValue:

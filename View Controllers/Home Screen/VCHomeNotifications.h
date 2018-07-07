@@ -1,6 +1,6 @@
 //
 //  VCHomeNotifications.h
-//  Tradologie
+//  TradologieSeller
 //
 //  Created by Chandresh Maurya on 09/05/18.
 //  Copyright © 2018 Chandresh Maurya. All rights reserved.

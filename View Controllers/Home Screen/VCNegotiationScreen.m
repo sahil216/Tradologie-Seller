@@ -13,6 +13,7 @@
 #import "CommonUtility.h"
 #import "SharedManager.h"
 #import "MBAPIManager.h"
+#import "VCLoadLiveAuction.h"
 
 #define K_CUSTOM_WIDTH 170
 
@@ -25,6 +26,9 @@
     CGFloat height , lblHeight;
     UITextField *txtNegotiation;
     UILabel *headLabel;
+    
+    UIRefreshControl *refreshController;
+
 }
 
 @property (nonatomic, strong) UIView * contentView;
@@ -59,15 +63,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+/**************************************************************************/
+#pragma mark ---- UIREFRESH CONTROL CALLED ----
+/**************************************************************************/
+-(void)handlePulltoRefresh:(UIRefreshControl *)Control
+{
+    [refreshController endRefreshing];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-            [self setEdgesForExtendedLayout:UIRectEdgeNone];
-        self.automaticallyAdjustsScrollViewInsets = NO;
-        self.myTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    });
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 }
@@ -88,7 +94,7 @@
     UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, headerTotalWidth, height) style:UITableViewStylePlain];
     tableView.delegate=self;
     tableView.dataSource=self;
-    tableView.bounces=NO;
+    tableView.bounces = YES;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.myTableView = tableView;
     
@@ -98,6 +104,12 @@
     [myScrollView setShowsHorizontalScrollIndicator:NO];
     myScrollView.contentSize = CGSizeMake(headerTotalWidth, 0);
     [_contentView addSubview:myScrollView];
+    
+    
+    refreshController = [[UIRefreshControl alloc] init];
+    [refreshController addTarget:self action:@selector(handlePulltoRefresh:)
+                forControlEvents:UIControlEventValueChanged];
+    [self.myTableView addSubview:refreshController];
     
     [self getAuctionDataListfromDataBase];
 }
@@ -191,7 +203,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    SellerAuctionList *objAuctionList = [MBDataBaseHandler getSellerAuctionList];
+    SellerAuctionListData *data = [objAuctionList.detail objectAtIndex:indexPath.row];
     
+    if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
+    {
+        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
+    }
 }
 
 /******************************************************************************************************************/
@@ -239,19 +257,37 @@
 /*****************************************************************************************************************/
 -(void)setSelectItemViewWithData:(NSIndexPath *)selectedIndex withTittle:(NSString *)btnState
 {
+    NSLog(@"%ld",(long)selectedIndex.row);
+    SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
+    
+    SellerAuctionList *objAuctionList = [MBDataBaseHandler getSellerAuctionList];
+    SellerAuctionListData *data = [objAuctionList.detail objectAtIndex:selectedIndex.row];
+    NSString *strBtnTittile = [NSString stringWithFormat:@"Charges of Enquiry: %@ Participate",data.AuctionCharge];
+    
     if ([btnState isEqualToString:@"Update Rate"])
+    {
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+        
+        NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
+        NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
+        NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.detail.APIVerificationCode];
+        NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
+        
+        VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
+        objVCLoadLive.strUrlForLiveAuction = loadURL;
+        [self.navigationController pushViewController:objVCLoadLive animated:YES];
+    }
+    else if ([btnState isEqualToString:@"POAccepted"])
     {
         
     }
-    else if ([btnState isEqualToString:@"po Accepted"])
+    else if ([btnState isEqualToString:strBtnTittile])
     {
-        
+        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1];
     }
     else
     {
-        SellerAuctionList *objAuctionList = [MBDataBaseHandler getSellerAuctionList];
-        SellerAuctionListData *data = [objAuctionList.detail objectAtIndex:selectedIndex.row];
-        [self GetSupplierAuctionDetailAPI:data.AuctionCode];
+        [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:0];
     }
 }
 /******************************************************************************************************************/
@@ -369,25 +405,37 @@
         
         [dataDict setObject:strDeliveryLastDate forKey:[arrTittle objectAtIndex:10]];
         
-        if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
+        if (data.IsStarted == 1 && data.Isclosed == 0 && data.IsStarted == 0)
+        {
+            [dataDict setObject:[NSString stringWithFormat:@"Update Rate"] forKey:@"btnTittle"];
+        }
+        else if([data.AcceptanceStatus isEqualToString:@"Pending"] && data.Isclosed == NO)
         {
             [dataDict setObject:[NSString stringWithFormat:@"Charges of Enquiry: %@ Participate",data.AuctionCharge] forKey:@"btnTittle"];
+        }
+        else if ([data.AcceptanceStatus isEqualToString:@"PaymentPending"] && data.Isclosed == NO)
+        {
+             [dataDict setObject:[NSString stringWithFormat:@"Payment Pending"] forKey:@"btnTittle"];
+        }
+        else if([data.AcceptanceStatus isEqualToString:@"PaymentProcess"] && data.Isclosed == YES)
+        {
+            [dataDict setObject:[NSString stringWithFormat:@"Payment Process"] forKey:@"btnTittle"];
         }
         else if([data.AcceptanceStatus isEqualToString:@"Accepted"]  && [data.OrderStatus isEqualToString:@"Accept"])
         {
             [dataDict setObject:[NSString stringWithFormat:@"View Order"] forKey:@"btnTittle"];
         }
-        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && [data.CounterStatus isEqualToString:@"TimeOut"])
-        {
-            [dataDict setObject:@"" forKey:@"btnTittle"];
-        }
         else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && [data.OrderStatus isEqualToString:@"POAccepted"])
         {
             [dataDict setObject:data.OrderStatus forKey:@"btnTittle"];
         }
-        else if ([data.OrderStatus isEqualToString:@""] && [data.CounterStatus isEqualToString:@""] && [data.PONo isEqualToString:@""] && data.IsStarted == NO)
+        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && [data.CounterStatus isEqualToString:@"TimeOut"])
         {
-             [dataDict setObject:[NSString stringWithFormat:@"Update Rate"] forKey:@"btnTittle"];
+            [dataDict setObject:@"" forKey:@"btnTittle"];
+        }
+        else if ([data.AcceptanceStatus isEqualToString:@"Accepted"] && data.Isclosed == YES)
+        {
+            [dataDict setObject:@"" forKey:@"btnTittle"];
         }
         [arrData addObject:dataDict];
     }

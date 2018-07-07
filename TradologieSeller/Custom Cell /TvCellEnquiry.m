@@ -150,7 +150,6 @@
                     [btnRate.titleLabel setTextAlignment:NSTextAlignmentCenter];
                     [btnRate.titleLabel setNumberOfLines:2];
                     [btnRate.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
-                    NSLog(@"btn Tittle ====> %@", [dataDict valueForKey:@"btnTittle"]);
                 }
                 [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
                 [tempLabel setTextAlignment:NSTextAlignmentCenter];

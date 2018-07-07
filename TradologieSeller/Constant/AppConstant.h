@@ -13,6 +13,12 @@
 #import <UIKit/UIKit.h>
 #import <MagicalRecord/MagicalRecord.h>
 #import <SafariServices/SFSafariViewController.h>
+#import <WebKit/WKWebView.h>
+#import <WebKit/WKWebViewConfiguration.h>
+#import <WebKit/WKUserContentController.h>
+#import <WebKit/WKNavigationAction.h>
+#import <WebKit/WKUIDelegate.h>
+#import <WebKit/WebKit.h>
 
 #import "INSSearchBar.h"
 
@@ -36,6 +42,9 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "TvCellEnquiry.h"
 #import "ViewEnquiryState.h"
 #import "SAuctionDetailCell.h"
+#import "EnquirySellerAcceptCell.h"
+
+
 /*********************************************************************************************************/
 #pragma Mark- BASE URL IMPORT
 /*********************************************************************************************************/
@@ -64,6 +73,7 @@ static NSString *SELLER_LOGIN_API = @"Login";
 static NSString *DASHBOARD_NOTIFICATION_API =@"DashboardNotification";
 static NSString *AUCTION_LIST_API = @"AuctionList";
 static NSString *SUPPLIER_AUCTION_DETAIL_API = @"AuctionDetail";
+static NSString *SUPPLIER_AUCTION_ACCEPTANCE_API = @"SupplierAuctionAcceptance";
 
 
 /*********************************************************************************************************/

@@ -34,6 +34,11 @@
 		4A2BADDE20CE81A200AF3F8A /* INSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2BADDD20CE81A200AF3F8A /* INSSearchBar.m */; };
 		4A30851020EDFC9F002E3026 /* SBaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30850E20EDFC9E002E3026 /* SBaseLabel.m */; };
 		4A30851320EE1334002E3026 /* SAuctionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851220EE1334002E3026 /* SAuctionDetailCell.m */; };
+		4A30851620EF4F93002E3026 /* VCLoadLiveAuction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851520EF4F93002E3026 /* VCLoadLiveAuction.m */; };
+		4A30851820EF4FF0002E3026 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A30851720EF4FF0002E3026 /* WebKit.framework */; };
+		4A30851C20F0998E002E3026 /* EnquirySellerAcceptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851A20F0998E002E3026 /* EnquirySellerAcceptCell.m */; };
+		4A30851D20F0998E002E3026 /* EnquirySellerAcceptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A30851B20F0998E002E3026 /* EnquirySellerAcceptCell.xib */; };
+		4A30852020F0B624002E3026 /* TVPaymentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851F20F0B624002E3026 /* TVPaymentScreen.m */; };
 		4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E4520C92D2800AEC718 /* OfflineObject.m */; };
 		4A913E9020C92D2D00AEC718 /* MBDataBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E4A20C92D2800AEC718 /* MBDataBaseHandler.m */; };
 		4A913E9820C92D2D00AEC718 /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E5E20C92D2A00AEC718 /* Validation.m */; };
@@ -135,6 +140,14 @@
 		4A30850F20EDFC9E002E3026 /* SBaseLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBaseLabel.h; sourceTree = "<group>"; };
 		4A30851120EE1334002E3026 /* SAuctionDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAuctionDetailCell.h; sourceTree = "<group>"; };
 		4A30851220EE1334002E3026 /* SAuctionDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAuctionDetailCell.m; sourceTree = "<group>"; };
+		4A30851420EF4F93002E3026 /* VCLoadLiveAuction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCLoadLiveAuction.h; sourceTree = "<group>"; };
+		4A30851520EF4F93002E3026 /* VCLoadLiveAuction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCLoadLiveAuction.m; sourceTree = "<group>"; };
+		4A30851720EF4FF0002E3026 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		4A30851920F0998E002E3026 /* EnquirySellerAcceptCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnquirySellerAcceptCell.h; sourceTree = "<group>"; };
+		4A30851A20F0998E002E3026 /* EnquirySellerAcceptCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnquirySellerAcceptCell.m; sourceTree = "<group>"; };
+		4A30851B20F0998E002E3026 /* EnquirySellerAcceptCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnquirySellerAcceptCell.xib; sourceTree = "<group>"; };
+		4A30851E20F0B623002E3026 /* TVPaymentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVPaymentScreen.h; sourceTree = "<group>"; };
+		4A30851F20F0B624002E3026 /* TVPaymentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVPaymentScreen.m; sourceTree = "<group>"; };
 		4A913E4220C92D2800AEC718 /* MBDataBaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDataBaseHandler.h; sourceTree = "<group>"; };
 		4A913E4520C92D2800AEC718 /* OfflineObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineObject.m; sourceTree = "<group>"; };
 		4A913E4A20C92D2800AEC718 /* MBDataBaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDataBaseHandler.m; sourceTree = "<group>"; };
@@ -203,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A30851820EF4FF0002E3026 /* WebKit.framework in Frameworks */,
 				4A1C3F3020ECDFC80030E865 /* SafariServices.framework in Frameworks */,
 				73780F2BE947DD15C0A5DF21 /* libPods-TradologieSeller.a in Frameworks */,
 				4A913EF620C9398200AEC718 /* linkedin-sdk.framework in Frameworks */,
@@ -263,6 +277,10 @@
 				4A1C3F1E20ECDD0E0030E865 /* VCNegotiationScreen.m */,
 				4A1C3F2320ECDD0E0030E865 /* VCEnquirySellerAccept.h */,
 				4A1C3F2020ECDD0E0030E865 /* VCEnquirySellerAccept.m */,
+				4A30851420EF4F93002E3026 /* VCLoadLiveAuction.h */,
+				4A30851520EF4F93002E3026 /* VCLoadLiveAuction.m */,
+				4A30851E20F0B623002E3026 /* TVPaymentScreen.h */,
+				4A30851F20F0B624002E3026 /* TVPaymentScreen.m */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -343,6 +361,9 @@
 				4A1C3F2A20ECDE030030E865 /* ViewEnquiryState.h */,
 				4A1C3F2C20ECDE030030E865 /* ViewEnquiryState.m */,
 				4A1C3F2B20ECDE030030E865 /* ViewEnquiryState.xib */,
+				4A30851920F0998E002E3026 /* EnquirySellerAcceptCell.h */,
+				4A30851A20F0998E002E3026 /* EnquirySellerAcceptCell.m */,
+				4A30851B20F0998E002E3026 /* EnquirySellerAcceptCell.xib */,
 			);
 			path = "Custom Cell ";
 			sourceTree = "<group>";
@@ -497,6 +518,7 @@
 		5310C97C1048AECD81F736F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A30851720EF4FF0002E3026 /* WebKit.framework */,
 				4A1C3F2F20ECDFC80030E865 /* SafariServices.framework */,
 				4A913EF420C9398100AEC718 /* LinkedInFrameWork */,
 				4C303D42924A166DA851D0F1 /* libPods-TradologieSeller.a */,
@@ -621,6 +643,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A30851D20F0998E002E3026 /* EnquirySellerAcceptCell.xib in Resources */,
 				4A2395DA20C90C9800DF33E6 /* LaunchScreen.storyboard in Resources */,
 				4A913EB120C9376000AEC718 /* Neuropol-Bold.ttf in Resources */,
 				4A1C3F2D20ECDE040030E865 /* ViewEnquiryState.xib in Resources */,
@@ -832,12 +855,14 @@
 				4A913EA420C92D2D00AEC718 /* NSDate+Extra.m in Sources */,
 				4A2BADDE20CE81A200AF3F8A /* INSSearchBar.m in Sources */,
 				4A2395DD20C90C9800DF33E6 /* main.m in Sources */,
+				4A30852020F0B624002E3026 /* TVPaymentScreen.m in Sources */,
 				4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */,
 				4A913E9A20C92D2D00AEC718 /* CommonUtility.m in Sources */,
 				4A913EA520C92D2D00AEC718 /* NSString+MB.m in Sources */,
 				4A913E9920C92D2D00AEC718 /* FRHyperLabel.m in Sources */,
 				4A913EDF20C9377600AEC718 /* RootViewController.m in Sources */,
 				4A913EAA20C92D2D00AEC718 /* EveryPage.m in Sources */,
+				4A30851620EF4F93002E3026 /* VCLoadLiveAuction.m in Sources */,
 				4A1C3F2420ECDD0E0030E865 /* TvAlreadyUserScreen.m in Sources */,
 				4A913E9D20C92D2D00AEC718 /* MBAPIManager.m in Sources */,
 				4A30851020EDFC9F002E3026 /* SBaseLabel.m in Sources */,
@@ -847,6 +872,7 @@
 				4A913E9C20C92D2D00AEC718 /* FTPopOverMenu.m in Sources */,
 				4A2395D520C90C9800DF33E6 /* TradologieSeller.xcdatamodeld in Sources */,
 				4A913EA720C92D2D00AEC718 /* UIView+Extra.m in Sources */,
+				4A30851C20F0998E002E3026 /* EnquirySellerAcceptCell.m in Sources */,
 				4A913E9B20C92D2D00AEC718 /* ISMessages.m in Sources */,
 				4A913E9E20C92D2D00AEC718 /* MBHTTPClient.m in Sources */,
 				4A913EA220C92D2D00AEC718 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,

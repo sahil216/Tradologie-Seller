@@ -11,5 +11,6 @@
 @interface VCEnquirySellerAccept : UIViewController
 
 @property (strong, nonatomic) NSMutableArray *arrProductListData;
+@property (assign, nonatomic) NSInteger isfromChargeAccount;
 
 @end

@@ -188,15 +188,7 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
             break;
         case 1:
         {
-            // [self GetNegotiationListUsingAuction];
-            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                
-//            });
-            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-            VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
-            
-            [self pushViewController:objNegotiationScreen];
+            [self GetNegotiationListUsingAuction];
         }
             break;
         case 2:
@@ -306,15 +298,13 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
                    NSError* Error;
                    SellerAuctionList *objAuctionList = [[SellerAuctionList alloc]initWithDictionary:response error:&Error];
                    [MBDataBaseHandler saveSellerAuctionListData:objAuctionList];
-                   
-                   dispatch_async(dispatch_get_main_queue(), ^{
-                      [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-                       VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
+
+                   dispatch_async(dispatch_get_main_queue (), ^{
+                       [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
                        
+                       VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
                        [self pushViewController:objNegotiationScreen];
                    });
-                   
-                   
                }
            }
            else

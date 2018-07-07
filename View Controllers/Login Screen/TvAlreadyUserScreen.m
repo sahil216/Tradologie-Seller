@@ -142,6 +142,10 @@
     
     [txtUserID setText:@"rswsteelmzn@gmail.com"];
     [txtPassword setText:@"reset"];
+
+//    [txtUserID setText:@"tiwarieco@gmail.com"];
+//    [txtPassword setText:@"reset"];
+    
     
     if ([Validation validateTextField:txtUserID])
     {

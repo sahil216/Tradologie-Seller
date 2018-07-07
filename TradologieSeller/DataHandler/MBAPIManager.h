@@ -19,5 +19,5 @@ void MBCall_RegisterUserWithPostData(NSDictionary *dict ,NSData *image_data,TSAp
 void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_GetAuctionListUsingDashboardApi(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_SupplierAuctionDetailAPI(NSDictionary* params,TSApiManagerCompletion completion);
-
+void MBCall_SupplierAuctionAcceptanceAPI(NSDictionary* params,TSApiManagerCompletion completion);
 @end
