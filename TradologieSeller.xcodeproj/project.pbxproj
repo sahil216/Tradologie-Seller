@@ -39,6 +39,9 @@
 		4A30851C20F0998E002E3026 /* EnquirySellerAcceptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851A20F0998E002E3026 /* EnquirySellerAcceptCell.m */; };
 		4A30851D20F0998E002E3026 /* EnquirySellerAcceptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A30851B20F0998E002E3026 /* EnquirySellerAcceptCell.xib */; };
 		4A30852020F0B624002E3026 /* TVPaymentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851F20F0B624002E3026 /* TVPaymentScreen.m */; };
+		4A30852320F33A5A002E3026 /* VCContactTradologie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852120F33A5A002E3026 /* VCContactTradologie.m */; };
+		4A30852920F344B4002E3026 /* VCNegotiationOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */; };
+		4A30852C20F345CF002E3026 /* TVCellOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852A20F345CF002E3026 /* TVCellOrderHistory.m */; };
 		4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E4520C92D2800AEC718 /* OfflineObject.m */; };
 		4A913E9020C92D2D00AEC718 /* MBDataBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E4A20C92D2800AEC718 /* MBDataBaseHandler.m */; };
 		4A913E9820C92D2D00AEC718 /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E5E20C92D2A00AEC718 /* Validation.m */; };
@@ -148,6 +151,12 @@
 		4A30851B20F0998E002E3026 /* EnquirySellerAcceptCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnquirySellerAcceptCell.xib; sourceTree = "<group>"; };
 		4A30851E20F0B623002E3026 /* TVPaymentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVPaymentScreen.h; sourceTree = "<group>"; };
 		4A30851F20F0B624002E3026 /* TVPaymentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVPaymentScreen.m; sourceTree = "<group>"; };
+		4A30852120F33A5A002E3026 /* VCContactTradologie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCContactTradologie.m; sourceTree = "<group>"; };
+		4A30852220F33A5A002E3026 /* VCContactTradologie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCContactTradologie.h; sourceTree = "<group>"; };
+		4A30852720F344B4002E3026 /* VCNegotiationOrderHistory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCNegotiationOrderHistory.h; sourceTree = "<group>"; };
+		4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationOrderHistory.m; sourceTree = "<group>"; };
+		4A30852A20F345CF002E3026 /* TVCellOrderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCellOrderHistory.m; sourceTree = "<group>"; };
+		4A30852B20F345CF002E3026 /* TVCellOrderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCellOrderHistory.h; sourceTree = "<group>"; };
 		4A913E4220C92D2800AEC718 /* MBDataBaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDataBaseHandler.h; sourceTree = "<group>"; };
 		4A913E4520C92D2800AEC718 /* OfflineObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineObject.m; sourceTree = "<group>"; };
 		4A913E4A20C92D2800AEC718 /* MBDataBaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDataBaseHandler.m; sourceTree = "<group>"; };
@@ -281,6 +290,8 @@
 				4A30851520EF4F93002E3026 /* VCLoadLiveAuction.m */,
 				4A30851E20F0B623002E3026 /* TVPaymentScreen.h */,
 				4A30851F20F0B624002E3026 /* TVPaymentScreen.m */,
+				4A30852720F344B4002E3026 /* VCNegotiationOrderHistory.h */,
+				4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -356,6 +367,8 @@
 				4A30850E20EDFC9E002E3026 /* SBaseLabel.m */,
 				4A265F5E20CBE36C007B44B8 /* TvCellEnquiry.h */,
 				4A265F5820CBE36C007B44B8 /* TvCellEnquiry.m */,
+				4A30852B20F345CF002E3026 /* TVCellOrderHistory.h */,
+				4A30852A20F345CF002E3026 /* TVCellOrderHistory.m */,
 				4A30851120EE1334002E3026 /* SAuctionDetailCell.h */,
 				4A30851220EE1334002E3026 /* SAuctionDetailCell.m */,
 				4A1C3F2A20ECDE030030E865 /* ViewEnquiryState.h */,
@@ -480,6 +493,8 @@
 				4A1C3F1D20ECDD0E0030E865 /* Home Screen */,
 				4A1C3F1620ECDD0D0030E865 /* Login Screen */,
 				4A913EB520C9377500AEC718 /* SlideMenu */,
+				4A30852220F33A5A002E3026 /* VCContactTradologie.h */,
+				4A30852120F33A5A002E3026 /* VCContactTradologie.m */,
 				4A04DF0220CA8FB000054187 /* VCTradePolicyScreen.h */,
 				4A04DF0120CA8FAF00054187 /* VCTradePolicyScreen.m */,
 			);
@@ -838,6 +853,7 @@
 				4A265F6720CBF569007B44B8 /* SellerAuctionList.m in Sources */,
 				4A1C3F2620ECDD0E0030E865 /* TVLoginScreen.m in Sources */,
 				4A913EE020C9377600AEC718 /* MenuViewCell.m in Sources */,
+				4A30852C20F345CF002E3026 /* TVCellOrderHistory.m in Sources */,
 				4A1C3F2920ECDD0E0030E865 /* VCHomeNotifications.m in Sources */,
 				4A1C3F3320ECEE0B0030E865 /* SellerAuctionDetail.m in Sources */,
 				4A913E9020C92D2D00AEC718 /* MBDataBaseHandler.m in Sources */,
@@ -853,6 +869,7 @@
 				4A265F6020CBE36C007B44B8 /* TvCellEnquiry.m in Sources */,
 				4A2395CC20C90C9800DF33E6 /* AppDelegate.m in Sources */,
 				4A913EA420C92D2D00AEC718 /* NSDate+Extra.m in Sources */,
+				4A30852320F33A5A002E3026 /* VCContactTradologie.m in Sources */,
 				4A2BADDE20CE81A200AF3F8A /* INSSearchBar.m in Sources */,
 				4A2395DD20C90C9800DF33E6 /* main.m in Sources */,
 				4A30852020F0B624002E3026 /* TVPaymentScreen.m in Sources */,
@@ -876,6 +893,7 @@
 				4A913E9B20C92D2D00AEC718 /* ISMessages.m in Sources */,
 				4A913E9E20C92D2D00AEC718 /* MBHTTPClient.m in Sources */,
 				4A913EA220C92D2D00AEC718 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
+				4A30852920F344B4002E3026 /* VCNegotiationOrderHistory.m in Sources */,
 				4A1C3F2820ECDD0E0030E865 /* VCEnquirySellerAccept.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,8 +1063,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Super E Factory Depot Private limited (3SHU27LL97)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3SHU27LL97;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LinkedInFrameWork",
@@ -1056,7 +1076,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tradologie.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "75d0632c-92b8-4228-8e68-af4831d3d71c";
+				PROVISIONING_PROFILE_SPECIFIER = TradologieSellerDistribution;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1067,8 +1088,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Super E Factory Depot Private limited (3SHU27LL97)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3SHU27LL97;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LinkedInFrameWork",
@@ -1078,7 +1101,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tradologie.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "75d0632c-92b8-4228-8e68-af4831d3d71c";
+				PROVISIONING_PROFILE_SPECIFIER = TradologieSellerDistribution;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1089,6 +1113,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SHU27LL97;
 				INFOPLIST_FILE = TradologieSellerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerTests;
@@ -1104,6 +1129,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SHU27LL97;
 				INFOPLIST_FILE = TradologieSellerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerTests;
@@ -1118,6 +1144,7 @@
 			baseConfigurationReference = E5BFCAEB6D4B90FEC46A9AC2 /* Pods-TradologieSellerUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SHU27LL97;
 				INFOPLIST_FILE = TradologieSellerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerUITests;
@@ -1132,6 +1159,7 @@
 			baseConfigurationReference = F3EDCF393254658C8B743E05 /* Pods-TradologieSellerUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SHU27LL97;
 				INFOPLIST_FILE = TradologieSellerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerUITests;

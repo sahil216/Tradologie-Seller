@@ -17,6 +17,10 @@
 #import "MBAPIManager.h"
 #import "SharedManager.h"
 
+#import "VCNegotiationOrderHistory.h"
+#import "VCContactTradologie.h"
+#import "TvAlreadyUserScreen.h"
+
 //#import "VcEnquiryRequestScreen.h"
 //#import "VCContactTradologie.h"
 //#import "VCAddNegotiation.h"
@@ -116,18 +120,54 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
     dispatch_async(dispatch_get_main_queue(), ^{
         [self->tblView reloadData];
     });
-    
+    SellerUserDetail *objSeller = [MBDataBaseHandler getSellerUserDetailData];
+    [lblUserName setText:objSeller.detail.VendorName];
     
 }
 //************************************************************************************************
 #pragma mark ❉===❉=== USER LOGOUT ===❉===❉
 //************************************************************************************************
 
--(IBAction)clickOnLogoutBtn:(id)sender
+-(IBAction)clickOnLogoutBtn:(UIButton *)sender
 {
     [indicator startAnimating];
     [indicator setColor:[UIColor whiteColor]];
-    // TODO: Some stuff here...
+    [sender setTitle:@"" forState:UIControlStateNormal];
+    
+    UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Tradologie"
+                                                                  message:@"Are you Sure You want to LogOut"
+                                                           preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesButton = [UIAlertAction actionWithTitle:@"Yes, please"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * action)
+                                {
+                                    [self->indicator stopAnimating];
+                                    [self->indicator setHidesWhenStopped:YES];
+                                    [sender setTitle:@"LogOut" forState:UIControlStateNormal];
+                                    [MBDataBaseHandler clearAllDataBase];
+                                    
+                                    UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                    TvAlreadyUserScreen * rootVC = [storyboard instantiateViewControllerWithIdentifier:@"TvAlreadyUserScreen"];
+                                    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:rootVC];
+                                    
+                                    AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+                                    [delegateClass setRootViewController:nav];
+                                }];
+    
+    UIAlertAction* noButton = [UIAlertAction actionWithTitle:@"No, thanks"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action)
+                               {
+                                   [self->indicator stopAnimating];
+                                   [self->indicator setHidesWhenStopped:YES];
+                                   [sender setTitle:@"LogOut" forState:UIControlStateNormal];
+                               }];
+    
+    [alert addAction:yesButton];
+    [alert addAction:noButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 //************************************************************************************************
@@ -190,14 +230,18 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
         {
             [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
             
-            VCNegotiationScreen *objNegotiationScreen=[self.storyboard instantiateViewControllerWithIdentifier:@"VCNegotiationScreen"];
+            VCNegotiationScreen *objNegotiationScreen=GET_VIEW_CONTROLLER(@"VCNegotiationScreen");
             [self pushViewController:objNegotiationScreen];
             //[self GetNegotiationListUsingAuction];
         }
             break;
         case 2:
         {
-
+//            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+//            
+//            VCNegotiationOrderHistory *objNegotiationScreen = GET_VIEW_CONTROLLER(@"VCNegotiationOrderHistory");
+//            [self pushViewController:objNegotiationScreen];
+            
         }
             break;
         case 3:
@@ -265,13 +309,8 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
             break;
         case 14:
         {
-            
-        }
-            break;
-        case 15:
-        {
-//            VCContactTradologie *objContactScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"VCContactTradologie"];
-//            [self pushViewController:objContactScreen];
+            VCContactTradologie *objContactScreen = GET_VIEW_CONTROLLER(@"VCContactTradologie");
+            [self pushViewController:objContactScreen];
         }
             break;
         

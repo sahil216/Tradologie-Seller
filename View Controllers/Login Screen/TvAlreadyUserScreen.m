@@ -14,6 +14,7 @@
 #import "SharedManager.h"
 #import "AppConstant.h"
 #import "MBDataBaseHandler.h"
+#import "TVLoginScreen.h"
 
 
 @interface TvAlreadyUserScreen ()
@@ -70,6 +71,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+
 }
 - (void)didReceiveMemoryWarning
 {
@@ -116,7 +119,13 @@
 
 -(IBAction)btnBackClicked:(UIButton *)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TVLoginScreen * rootVC = [storyboard instantiateViewControllerWithIdentifier:@"TVLoginScreen"];
+    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:rootVC];
+    
+    AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [delegateClass setRootViewController:nav];
+    
 }
 -(IBAction)btnViewpasswordClick:(UIButton *)sender
 {

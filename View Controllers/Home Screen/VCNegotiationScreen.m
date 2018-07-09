@@ -44,7 +44,7 @@
 {
     [super viewDidLoad];
     
-    [self.navigationItem setNavigationTittleWithLogoforLanscapeMode:@"tradologie.com"];
+    [self.navigationItem setNavigationTittleWithLogoforLanscapeMode:@"Negotiation List"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController.navigationItem setHidesBackButton:YES animated:YES];
     [self.navigationItem setHidesBackButton:YES];
@@ -69,6 +69,7 @@
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+    
 }
 
 /******************************************************************************************************************/

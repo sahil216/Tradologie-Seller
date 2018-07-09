@@ -43,6 +43,7 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "ViewEnquiryState.h"
 #import "SAuctionDetailCell.h"
 #import "EnquirySellerAcceptCell.h"
+#import "TVCellOrderHistory.h"
 
 
 /*********************************************************************************************************/
