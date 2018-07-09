@@ -75,6 +75,7 @@ static NSString *AUCTION_LIST_API = @"AuctionList";
 static NSString *SUPPLIER_AUCTION_DETAIL_API = @"AuctionDetail";
 static NSString *SUPPLIER_AUCTION_ACCEPTANCE_API  = @"SupplierAuctionAcceptance";
 static NSString *SUPPLIER_AUCTION_CHARGE_DETAIL_API        =@"AuctionChargesDetail";
+static NSString *SUPPLIER_AUCTION_OFFLINE_PAYMENT_API      =@"AuctionOffLinePayment";
 
 
 /*********************************************************************************************************/

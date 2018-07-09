@@ -295,6 +295,10 @@
         objScreen.strAuctionID = [data.AuctionID stringValue];
         [self.navigationController pushViewController:objScreen animated:YES];
     }
+    else if ([btnState isEqualToString:@"Payment Process"])
+    {
+        
+    }
     else if ([btnState isEqualToString:strBtnTittile])
     {
         [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:1];
@@ -450,7 +454,7 @@
                         {
                             [dataDict setObject:[NSString stringWithFormat:@"Payment Pending"] forKey:@"btnTittle"];
                         }
-                        else if([data.AcceptanceStatus isEqualToString:@"PaymentProcess"] && data.Isclosed == YES)
+                        else if([data.AcceptanceStatus isEqualToString:@"PaymentProcess"])
                         {
                             [dataDict setObject:[NSString stringWithFormat:@"Payment Process"] forKey:@"btnTittle"];
                         }

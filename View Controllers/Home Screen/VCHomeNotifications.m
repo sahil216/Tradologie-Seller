@@ -148,7 +148,7 @@
     }
     else if (indexPath.section == 1)
     {
-        [cell.lblMessage setText:@"No Negotiation Complete Or Going to Start"];
+        [cell.lblMessage setText:@"No Negotiation Live..!"];
     }
     else
     {
@@ -398,7 +398,7 @@
         [_lblOrderCode setText:objSellerAuction.AuctionCode];
        
         if (objSellerAuction.IsStarted == 1 && ![objSellerAuction.SupplierStatus isEqualToString:@"Pending"]
-            && ![objSellerAuction.SupplierStatus isEqualToString:@"PaymentPending"] )
+            && ![objSellerAuction.SupplierStatus isEqualToString:@"PaymentPending"] && ![objSellerAuction.SupplierStatus isEqualToString:@"PaymentProcess"])
         {
             [_lblOrderStatus setText:@"Activated"];
             [_lblOrderStatus setFont:UI_DEFAULT_FONT_MEDIUM(16)];
@@ -407,8 +407,11 @@
         else if ([objSellerAuction.SupplierStatus isEqualToString:@"PaymentPending"])
         {
             [_lblOrderStatus setText:@"Pending"];
-            [_lblOrderStatus setNumberOfLines:2];
-            [_lblOrderStatus setLineBreakMode:NSLineBreakByWordWrapping];
+            [_lblOrderStatus setTextColor:[UIColor redColor]];
+        }
+        else if ([objSellerAuction.SupplierStatus isEqualToString:@"PaymentProcess"])
+        {
+            [_lblOrderStatus setText:@"Process"];
             [_lblOrderStatus setTextColor:[UIColor redColor]];
         }
         else {

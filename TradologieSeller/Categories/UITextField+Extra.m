@@ -120,7 +120,8 @@
     [self.layer setBorderColor:DEFAULT_COLOR.CGColor];
     [self setKeyboardAppearance:UIKeyboardAppearanceDark];
     [self setBackgroundColor:[UIColor whiteColor]];
-    
+    [self setTag:tag];
+
     UIView *userView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 45)];
     self.leftView = userView;
     self.leftViewMode = UITextFieldViewModeAlways;

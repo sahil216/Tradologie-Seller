@@ -395,7 +395,8 @@
     [textField resignFirstResponder];
     return YES;
 }
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
     if (textField.tag == 1001)
     {
         [textField resignFirstResponder];
@@ -446,7 +447,10 @@
     SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
     [dicValueData setValue:objseller.detail.APIVerificationCode forKey:@"Token"];
     [dicValueData setValue:objseller.detail.VendorID forKey:@"VendorID"];
-    [dicValueData setValue:_strAuctionID forKey:@"AuctionID"];
+    
+    NSNumber * AuctionSupplierID  = [NSNumber numberWithInteger:[[dicDetailCharges valueForKey:@"AuctionSupplierID"]intValue]];
+    [dicValueData setValue:AuctionSupplierID forKey:@"AuctionSupplierID"];
+    
     NSNumber * AuctionCharge  = [NSNumber numberWithInteger:[[dicDetailCharges valueForKey:@"SellerAuctionCharge"]intValue]];
     [dicValueData setValue:AuctionCharge forKey:@"AuctionCharge"];
     
@@ -454,25 +458,33 @@
     {
         [CommonUtility showProgressWithMessage:@"Please Wait.."];
         
-//        MBCall_AuctionOffLinePaymentWithCustomerIdAPI(dicValueData, ^(id response, NSString *error, BOOL status)
-//        {
-//            [CommonUtility HideProgress];
-//            
-//            self->dicDetailCharges  = [[NSMutableDictionary alloc]init];
-//            
-//            if (status && [[response valueForKey:@"success"]isEqual:@1])
-//            {
-//                if (response != (NSDictionary *)[NSNull null])
-//                {
-//                    
-//                }
-//            }
-//            else
-//            {
-//                [CommonUtility HideProgress];
-//                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
-//            }
-//        });
+        MBCall_SupplierAuctionOffLinePaymentWithCustomerIdAPI(dicValueData, ^(id response, NSString *error, BOOL status)
+        {
+            [CommonUtility HideProgress];
+            
+            self->dicDetailCharges  = [[NSMutableDictionary alloc]init];
+            
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                if (response != (NSDictionary *)[NSNull null])
+                {
+                    [[UIDevice currentDevice] setValue:
+                     [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+                    [self.navigationItem setNavigationTittleWithLogo:@"tradologie.com"];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+                        AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+                        [delegateClass setRootViewController:rootVC];
+                    });
+                }
+            }
+            else
+            {
+                [CommonUtility HideProgress];
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
+            }
+        });
     }
     else
     {
