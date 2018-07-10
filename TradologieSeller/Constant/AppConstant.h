@@ -34,7 +34,7 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "DashBoardNotification.h"
 #import "SellerAuctionList.h"
 #import "SellerAuctionDetail.h"
-
+#import "SellerAuctionOrderHistory.h"
 
 /*********************************************************************************************************/
 #pragma Mark- CUSTOM CELL IMPORT
@@ -77,8 +77,7 @@ static NSString *SUPPLIER_AUCTION_DETAIL_API = @"AuctionDetail";
 static NSString *SUPPLIER_AUCTION_ACCEPTANCE_API  = @"SupplierAuctionAcceptance";
 static NSString *SUPPLIER_AUCTION_CHARGE_DETAIL_API        =@"AuctionChargesDetail";
 static NSString *SUPPLIER_AUCTION_OFFLINE_PAYMENT_API      =@"AuctionOffLinePayment";
-
-
+static NSString *SUPPLIER_AUCTION_ORDER_HISTORY_API        = @"AuctionOrderHistoryList";
 /*********************************************************************************************************/
 #pragma CONTROLLER IDENTIFIRES
 /*********************************************************************************************************/

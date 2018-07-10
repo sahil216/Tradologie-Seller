@@ -42,6 +42,7 @@
 		4A30852320F33A5A002E3026 /* VCContactTradologie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852120F33A5A002E3026 /* VCContactTradologie.m */; };
 		4A30852920F344B4002E3026 /* VCNegotiationOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */; };
 		4A30852C20F345CF002E3026 /* TVCellOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852A20F345CF002E3026 /* TVCellOrderHistory.m */; };
+		4A30852F20F38E01002E3026 /* SellerAuctionOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852E20F38E01002E3026 /* SellerAuctionOrderHistory.m */; };
 		4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E4520C92D2800AEC718 /* OfflineObject.m */; };
 		4A913E9020C92D2D00AEC718 /* MBDataBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E4A20C92D2800AEC718 /* MBDataBaseHandler.m */; };
 		4A913E9820C92D2D00AEC718 /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E5E20C92D2A00AEC718 /* Validation.m */; };
@@ -157,6 +158,8 @@
 		4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationOrderHistory.m; sourceTree = "<group>"; };
 		4A30852A20F345CF002E3026 /* TVCellOrderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCellOrderHistory.m; sourceTree = "<group>"; };
 		4A30852B20F345CF002E3026 /* TVCellOrderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCellOrderHistory.h; sourceTree = "<group>"; };
+		4A30852D20F38E01002E3026 /* SellerAuctionOrderHistory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerAuctionOrderHistory.h; sourceTree = "<group>"; };
+		4A30852E20F38E01002E3026 /* SellerAuctionOrderHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerAuctionOrderHistory.m; sourceTree = "<group>"; };
 		4A913E4220C92D2800AEC718 /* MBDataBaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDataBaseHandler.h; sourceTree = "<group>"; };
 		4A913E4520C92D2800AEC718 /* OfflineObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineObject.m; sourceTree = "<group>"; };
 		4A913E4A20C92D2800AEC718 /* MBDataBaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDataBaseHandler.m; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 				4A265F6620CBF569007B44B8 /* SellerAuctionList.m */,
 				4A1C3F3120ECEE0B0030E865 /* SellerAuctionDetail.h */,
 				4A1C3F3220ECEE0B0030E865 /* SellerAuctionDetail.m */,
+				4A30852D20F38E01002E3026 /* SellerAuctionOrderHistory.h */,
+				4A30852E20F38E01002E3026 /* SellerAuctionOrderHistory.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -442,7 +447,7 @@
 				4A913E7220C92D2B00AEC718 /* UIView+Extra.h */,
 				4A913E7D20C92D2B00AEC718 /* UIView+Extra.m */,
 				4A913E7320C92D2B00AEC718 /* UINavigationBar+Extra.h */,
-				4A913E7420C92D2B00AEC718 /* UINavigationItem+Extra.m */,
+				4A913E7C20C92D2B00AEC718 /* UINavigationBar+Extra.m */,
 				4A913E8120C92D2B00AEC718 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
 				4A913E7520C92D2B00AEC718 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 				4A913E8020C92D2B00AEC718 /* UIButton+Extra.h */,
@@ -454,7 +459,7 @@
 				4A913E8220C92D2B00AEC718 /* NSDate+Extra.h */,
 				4A913E7920C92D2B00AEC718 /* NSDate+Extra.m */,
 				4A913E7B20C92D2B00AEC718 /* UINavigationItem+Extra.h */,
-				4A913E7C20C92D2B00AEC718 /* UINavigationBar+Extra.m */,
+				4A913E7420C92D2B00AEC718 /* UINavigationItem+Extra.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -846,6 +851,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A30852F20F38E01002E3026 /* SellerAuctionOrderHistory.m in Sources */,
 				4A913E9820C92D2D00AEC718 /* Validation.m in Sources */,
 				4A913EE120C9377600AEC718 /* MenuViewController.m in Sources */,
 				4A913EA320C92D2D00AEC718 /* UIButton+Extra.m in Sources */,

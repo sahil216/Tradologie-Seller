@@ -337,6 +337,27 @@ void MBCall_SupplierAuctionOffLinePaymentWithCustomerIdAPI(NSDictionary* params,
          }
      }];
 }
+
+void MBCall_SupplierAuctionOrderHistoryWithVendorID(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SUPPLIER_AUCTION_ORDER_HISTORY_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+             
+         }
+     }];
+}
+
+
+
+
 //void MBCall_GetCategoryListForNegotiation(RMApiManagerCompletion completion)
 //{
 //    [[MBHTTPClient sharedInstance] requestGETServiceOnURL:getUrlForMethod(CATEGORY_NEGOTIATION_API) WithDictionary:nil withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response) {

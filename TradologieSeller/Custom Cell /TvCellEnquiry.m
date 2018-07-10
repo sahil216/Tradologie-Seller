@@ -71,25 +71,30 @@
             [btnViewRate.titleLabel setFont:UI_DEFAULT_FONT_MEDIUM(14)];
             
             [bgView addSubview:btnViewRate];
-            [headLabel setFont:UI_DEFAULT_FONT(18)];
-            [headLabel setNumberOfLines:5];
-            [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
             [bgView addSubview:headLabel];
             [labelArray addObject:headLabel];
         }
         else
         {
             bgView = [[UIView alloc] initWithFrame:CGRectMake(xx, 0, width, itemSize.height)];
-            headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, bgView.frame.size.width, bgView.frame.size.height)];
-            [headLabel setBackgroundColor:[UIColor clearColor]];
-            [headLabel setFont:UI_DEFAULT_FONT(18)];
-            [headLabel setNumberOfLines:5];
-            [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
+            if (i == 1)
+            {
+                headLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, width - 20, itemSize.height)];
+            }
+            else
+            {
+                headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, width, itemSize.height)];
+            }
             [bgView addSubview:headLabel];
             [labelArray addObject:headLabel];
         }
         [bgView setBackgroundColor:[UIColor whiteColor]];
-
+        
+        [headLabel setBackgroundColor:[UIColor clearColor]];
+        [headLabel setFont:UI_DEFAULT_FONT(18)];
+        [headLabel setNumberOfLines:5];
+        [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        
         UILabel *lblline = [[UILabel alloc]init];
         [lblline setFrame:CGRectMake(0, bgView.frame.size.height + 5, width + 10, 1)];
         [lblline setBackgroundColor:[UIColor lightGrayColor]];
@@ -98,6 +103,24 @@
         [bgArray addObject:bgView];
         
         xx = xx + width + 10;
+        
+        if(i == keyArray.count - 3)
+        {
+            width = itemSize.width - 80;
+        }
+        else if(i == keyArray.count - 4)
+        {
+            width = itemSize.width - 80;
+        }
+        else if (i == keyArray.count - 5)
+        {
+            width = itemSize.width - 80;
+        }
+        else
+        {
+            width = itemSize.width;
+        }
+        
     }
 }
 
@@ -142,7 +165,6 @@
                 if ([[labelArray lastObject] isKindOfClass:[UIButton class]])
                 {
                     UIButton *btnRate = [labelArray objectAtIndex:[labelArray count]-1];
-                    [btnRate.titleLabel setFont:UI_DEFAULT_FONT_MEDIUM(18)];
                     [btnRate setTintColor:[UIColor clearColor]];
                     [btnRate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                     [btnRate setTitle:[dataDict valueForKey:@"btnTittle"] forState:UIControlStateNormal];
@@ -150,6 +172,9 @@
                     [btnRate.titleLabel setTextAlignment:NSTextAlignmentCenter];
                     [btnRate.titleLabel setNumberOfLines:2];
                     [btnRate.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+                    [btnRate setDefaultButtonShadowStyle:DefaultThemeColor];
+                    [btnRate.titleLabel setFont:UI_DEFAULT_FONT_MEDIUM(18)];
+
                 }
                 [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
                 [tempLabel setTextAlignment:NSTextAlignmentCenter];

@@ -22,5 +22,5 @@ void MBCall_SupplierAuctionDetailAPI(NSDictionary* params,TSApiManagerCompletion
 void MBCall_SupplierAuctionAcceptanceAPI(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_AuctionChargesDetailAPI(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_SupplierAuctionOffLinePaymentWithCustomerIdAPI(NSDictionary* params,TSApiManagerCompletion completion);
-
+void MBCall_SupplierAuctionOrderHistoryWithVendorID(NSDictionary* params,TSApiManagerCompletion completion);
 @end

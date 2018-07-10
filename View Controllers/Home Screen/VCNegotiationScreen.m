@@ -52,7 +52,7 @@
     
     lblHeight = 110;
     
-    arrTittle = [[NSMutableArray alloc]initWithObjects:@"Negotiation No",@"Negotiation Name",@"Order Status",@"Start Date",@"End Date",@"Prefered Date",@"Enquiry Status",@"Total Quantity",@"Min Quantity",@"Participate Quantity",@"Last Date of Delivery",nil];
+    arrTittle = [[NSMutableArray alloc]initWithObjects:@"Negotiation No",@"Negotiation Name",@"Order Status",@"Start Date",@"End Date",@"Prefered Date",@"Enquiry Status",@"Total Quantity",@"Minimum Quantity",@"Participate Quantity",@"Last Date of Delivery",nil];
     
     [self SetInitialSetup];
     
@@ -81,7 +81,7 @@
     [_contentView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:_contentView];
     
-    headerTotalWidth =  [arrTittle count] * K_CUSTOM_WIDTH + SCREEN_WIDTH - 100;
+    headerTotalWidth =  ([arrTittle count] * K_CUSTOM_WIDTH) * 1.22 ;
     
     height = ([SDVersion deviceSize] > Screen4Dot7inch)?_contentView.frame.size.height - 75:([SDVersion deviceSize] < Screen4Dot7inch)?_contentView.frame.size.height - 65:_contentView.frame.size.height - 70;
     
@@ -140,46 +140,63 @@
     TvCellEnquiry *cell = (TvCellEnquiry *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil)
     {
-        cell=[[TvCellEnquiry alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier itemSize:CGSizeMake(K_CUSTOM_WIDTH +30, lblHeight) headerArray:arrTittle];
+        cell=[[TvCellEnquiry alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier itemSize:CGSizeMake(K_CUSTOM_WIDTH + 30, lblHeight) headerArray:arrTittle];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     cell.dataDict = [arrData objectAtIndex:indexPath.row];
-    NSLog(@"VALUE FOR BUTTON :- %@",[[arrData valueForKey:@"btnTittle"] objectAtIndex:indexPath.row]);
-    
     cell.delegate = self;
+    
     return cell;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *tableViewHeadView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [arrTittle count] * K_CUSTOM_WIDTH, 45)];
+    UIView *tableViewHeadView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [arrTittle count] * K_CUSTOM_WIDTH, 50)];
     [tableViewHeadView setBackgroundColor:DefaultThemeColor];
     
     if (section ==  1)
     {
-        int xx = 0;
-        for(int i = 0 ; i < [arrTittle count] ; i++)
+        int xx = 20;
+        CGFloat width = K_CUSTOM_WIDTH + xx - 10;
+        
+        for(int i = 0 ; i < [arrTittle count]; i++)
         {
             if(i == 0)
             {
-                headLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, K_CUSTOM_WIDTH + 10, 45)];
+                headLabel=[[UILabel alloc]initWithFrame:CGRectMake(xx, 0, width, 50)];
                 [headLabel setTextAlignment:NSTextAlignmentLeft];
             }
             else
             {
-                headLabel=[[UILabel alloc]initWithFrame:CGRectMake(xx, 0, K_CUSTOM_WIDTH + 30, 45)];
+                headLabel=[[UILabel alloc]initWithFrame:CGRectMake(xx, 0, width, 50)];
                 [headLabel setTextAlignment:NSTextAlignmentCenter];
             }
             [headLabel setText:[arrTittle objectAtIndex:i]];
             [headLabel setNumberOfLines:0];
-            [headLabel setBackgroundColor:[UIColor clearColor]];
-            
             [headLabel setTextColor:[UIColor whiteColor]];
+            [headLabel setBackgroundColor:[UIColor clearColor]];
             [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
-            [headLabel setFont:UI_DEFAULT_FONT_MEDIUM(18)];
+            [headLabel setFont:UI_DEFAULT_FONT_MEDIUM(20)];
             [tableViewHeadView addSubview:headLabel];
             
-            xx = xx + K_CUSTOM_WIDTH + 40;
+            xx = xx + width + 10;
+            
+            if(i == arrTittle.count - 3)
+            {
+                width = K_CUSTOM_WIDTH - 50;
+            }
+            else if(i == arrTittle.count - 4)
+            {
+                width = K_CUSTOM_WIDTH - 50;
+            }
+            else if (i == arrTittle.count - 5)
+            {
+                width = K_CUSTOM_WIDTH - 50;
+            }
+            else
+            {
+                width = K_CUSTOM_WIDTH + 30;
+            }
             
         }
     }
@@ -199,7 +216,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 55;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

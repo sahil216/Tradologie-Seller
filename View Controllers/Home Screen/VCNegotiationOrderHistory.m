@@ -42,7 +42,7 @@
     [self.navigationItem SetBackButtonWithID:self withSelectorAction:@selector(btnBackItemTaped:)];
     
     lblHeight = 90;
-
+    
     [self SetInitialSetup];
 }
 
@@ -72,7 +72,7 @@
     [_contentView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:_contentView];
     
-    headerTotalWidth =  SCREEN_WIDTH * 2.50;
+    headerTotalWidth =  SCREEN_WIDTH * 2.22;
     
     height = ([SDVersion deviceSize] > Screen4Dot7inch)?_contentView.frame.size.height - 75:([SDVersion deviceSize] < Screen4Dot7inch)?_contentView.frame.size.height - 65:_contentView.frame.size.height - 70;
     
@@ -110,7 +110,7 @@
     TVCellOrderHistory *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell==nil)
     {
-        cell=[[TVCellOrderHistory alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier itemSize:CGSizeMake(K_CUSTOM_WIDTH, lblHeight) headerArray:arrTittle];
+        cell=[[TVCellOrderHistory alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier itemSize:CGSizeMake(K_CUSTOM_WIDTH + 30, lblHeight) headerArray:arrTittle];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     
@@ -120,47 +120,44 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *viewHeader=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [arrTittle count] * K_CUSTOM_WIDTH, 90)];
-    [viewHeader setBackgroundColor:DefaultThemeColor];
+    UIView *viewHeader=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [arrTittle count] * K_CUSTOM_WIDTH + 30, 90)];
+    [viewHeader setBackgroundColor:DefaultThemeColor];//
     
-    UIView *ViewBG =[[UIView alloc]initWithFrame:CGRectMake(0, 50, ([arrTittle count] * K_CUSTOM_WIDTH) + 30, 45)];
+    UIView *ViewBG =[[UIView alloc]initWithFrame:CGRectMake(0, 50, ([arrTittle count] * K_CUSTOM_WIDTH) + 30, 50)];
     [ViewBG setBackgroundColor:DefaultThemeColor];
     int xx = 0;
     int width = 80;
     
-    for(int i = 0 ; i < [arrTittle count] ; i++)
+    for(int i = 0 ; i < [arrTittle count]; i++)
     {
-        UILabel *headLabel=[[UILabel alloc]initWithFrame:CGRectMake(xx, 0, width, 45)];
+        UILabel *headLabel=[[UILabel alloc]initWithFrame:CGRectMake(xx, 0, width, 50)];
         [headLabel setText:[arrTittle objectAtIndex:i]];
         [headLabel setTextAlignment:NSTextAlignmentCenter];
         [headLabel setNumberOfLines:0];
         [headLabel setTextColor:[UIColor whiteColor]];
         [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [headLabel setFont:UI_DEFAULT_FONT_MEDIUM(20)];
-        CGFloat hue = ( arc4random() % 256 / 256.0 );
-        CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
-        CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
-        UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-        [headLabel setBackgroundColor:color];
         [ViewBG addSubview:headLabel];
-        
+    
         xx = xx + width;
-        if (i == 1)
+        
+        if(i == arrTittle.count - 5)
         {
-            width = K_CUSTOM_WIDTH - 30;
+            width = K_CUSTOM_WIDTH - 50;
         }
-        else if (i == 2)
+        else if(i == arrTittle.count - 4)
         {
-            width = K_CUSTOM_WIDTH - 30;
+            width = K_CUSTOM_WIDTH + 50;
         }
         else
         {
             width = K_CUSTOM_WIDTH + 30;
-
+            
         }
     }
     [viewHeader addSubview:ViewBG];
   
+    
     return viewHeader;
 }
 
@@ -203,7 +200,7 @@
     arrData = [[NSMutableArray alloc]init];
     count = 0;
     
-    //[self GetAuctionOrderHistoryWithData];
+    [self GetAuctionOrderHistoryWithData];
 }
 /******************************************************************************************************************/
 #pragma mark ❉===❉===  GET AUCTION ORDER HISTORY LIST API CALLED HERE ===❉===❉
@@ -214,59 +211,58 @@
     NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
     [dicParams setObject:objSellerUser.detail.APIVerificationCode forKey:@"Token"];
     [dicParams setObject:objSellerUser.detail.VendorID forKey:@"VendorID"];
-    
+    [dicParams setObject:@"" forKey:@"FilterAuction"];
+
     if (SharedObject.isNetAvailable)
     {
         [CommonUtility showProgressWithMessage:@"Please Wait.."];
         
-//        MBCall_GetAuctionOrderHistoryWithID(dicParams, ^(id response, NSString *error, BOOL status)
-//                                            {
-//                                                [CommonUtility HideProgress];
-//
-//                                                if (status && [[response valueForKey:@"success"]isEqual:@1])
-//                                                {
-//                                                    if (response != (NSDictionary *)[NSNull null])
-//                                                    {
-//                                                        NSError* Error;
-//                                                        AuctionOrderHistory *objOrderHistory = [[AuctionOrderHistory alloc]initWithDictionary:response error:&Error];
-//                                                        [MBDataBaseHandler saveAuctionOrderHistory:objOrderHistory];
-//
-//                                                        for (OrderHistoryData *data in objOrderHistory.detail)
-//                                                        {
-//                                                            NSMutableDictionary *dataDict = [NSMutableDictionary new];
-//                                                            self->count ++;
-//
-//                                                            [dataDict setObject:[NSString stringWithFormat:@"%lu",self->count] forKey:[self->arrTittle objectAtIndex:0]];
-//                                                            [dataDict setObject:data.AuctionCode forKey:[self->arrTittle objectAtIndex:1]];
-//                                                            [dataDict setObject:data.VendorName forKey:[self->arrTittle objectAtIndex:2]];
-//                                                            [dataDict setObject:data.ReferenceNo forKey:[self->arrTittle objectAtIndex:3]];
-//                                                            [dataDict setObject:data.AccountDocumentCount forKey:[self->arrTittle objectAtIndex:4]];
-//                                                            [dataDict setObject:data.PONo forKey:[self->arrTittle objectAtIndex:5]];
-//                                                            [dataDict setObject:data.OrderStatus forKey:[self->arrTittle objectAtIndex:6]];
-//                                                            [dataDict setObject:data.TotalOrderQty forKey:[self->arrTittle objectAtIndex:7]];
-//
-//                                                            NSString *startDate = [NSString stringWithFormat:@" %@",[self dateFromString:[NSString stringWithFormat:@"%@",data.StartDate]]];
-//                                                            NSString *EndDate = [NSString stringWithFormat:@" %@",[self dateFromString:[NSString stringWithFormat:@"%@",data.EndDate]]];
-//
-//                                                            [dataDict setObject:startDate forKey:[self->arrTittle objectAtIndex:8]];
-//                                                            [dataDict setObject:EndDate forKey:[self->arrTittle objectAtIndex:9]];
-//
-//                                                            [self->arrData addObject:dataDict];
-//
-//                                                        }
-//                                                        [self.myTableView reloadData];
-//                                                    }
-//                                                    else
-//                                                    {
-//                                                        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
-//                                                    }
-//                                                }
-//                                                else
-//                                                {
-//                                                    [CommonUtility HideProgress];
-//                                                    [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
-//                                                }
-//                                            });
+        MBCall_SupplierAuctionOrderHistoryWithVendorID(dicParams, ^(id response, NSString *error, BOOL status)
+        {
+            [CommonUtility HideProgress];
+            
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                if (response != (NSDictionary *)[NSNull null])
+                {
+                    NSError* Error;
+                    SellerAuctionOrderHistory *objOrderHistory = [[SellerAuctionOrderHistory alloc]initWithDictionary:response error:&Error];
+                    [MBDataBaseHandler saveSellerAuctionOrderHistoryData:objOrderHistory];
+
+                    for (SellerAuctionOrderHistoryData *data in objOrderHistory.detail)
+                    {
+                        NSMutableDictionary *dataDict = [NSMutableDictionary new];
+                        self->count ++;
+
+                        [dataDict setObject:[NSString stringWithFormat:@"%lu",self->count] forKey:[self->arrTittle objectAtIndex:0]];
+                        [dataDict setObject:data.AuctionCode forKey:[self->arrTittle objectAtIndex:1]];
+                        [dataDict setObject:data.PONo forKey:[self->arrTittle objectAtIndex:2]];
+                        [dataDict setObject:data.OrderStatus forKey:[self->arrTittle objectAtIndex:3]];
+                        [dataDict setObject:data.TotalQuantity forKey:[self->arrTittle objectAtIndex:4]];
+
+                         NSString *strStartDate = [CommonUtility getDateFromSting:data.StartDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+                         NSString *strEndDate = [CommonUtility getDateFromSting:data.EndDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+                         NSString *strDeliveryLastDate = [CommonUtility getDateFromSting:data.DeliveryLastDate fromFromate:@"MM/dd/yyyy hh:mm:ss a" withRequiredDateFormate:@"dd-MMM-yyyy HH:mm"];
+
+                        [dataDict setObject:strDeliveryLastDate forKey:[self->arrTittle objectAtIndex:5]];
+                        [dataDict setObject:strStartDate forKey:[self->arrTittle objectAtIndex:6]];
+                        [dataDict setObject:strEndDate forKey:[self->arrTittle objectAtIndex:7]];
+                        [self->arrData addObject:dataDict];
+
+                    }
+                    [self.myTableView reloadData];
+                }
+                else
+                {
+                    [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
+                }
+            }
+            else
+            {
+                [CommonUtility HideProgress];
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:error];
+            }
+        });
         
     }
     else{

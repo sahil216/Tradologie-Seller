@@ -74,6 +74,21 @@
     
     return nil;
 }
++(SellerAuctionOrderHistory *)getSellerAuctionOrderHistoryData
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:auctionOrderHistory]];
+    
+    NSArray *array = [OfflineObject MR_findAllWithPredicate:predicate];
+    
+    if (array.count>0)
+    {
+        OfflineObject *object = array[0];
+        SellerAuctionOrderHistory *objSellerOrderHistory = [[SellerAuctionOrderHistory alloc] initWithString:object.objData error:nil];
+        return objSellerOrderHistory;
+    }
+    
+    return nil;
+}
 /*********************************************************************************************/
 #pragma mark ❉===❉=== SETTER METHOD TO SET VALUE IN DATABASE ❉===❉===
 /*********************************************************************************************/
@@ -150,6 +165,23 @@
          newUser.objType = [NSNumber numberWithInt:SAdetail];
          newUser.objClass = NSStringFromClass([objSellerAuctionDetail class]);
          
+     }];
+}
++(void)saveSellerAuctionOrderHistoryData:(SellerAuctionOrderHistory *)objOrderHistory
+{
+    [self deleteAllRecordsForType:auctionOrderHistory];
+    
+    if (!objOrderHistory)
+    {
+        return;
+    }
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext)
+     {
+         OfflineObject *newUser = [OfflineObject MR_createEntityInContext:localContext];
+         newUser.objData = objOrderHistory.toJSONString;
+         newUser.objType = [NSNumber numberWithInt:auctionOrderHistory];
+         newUser.objClass = NSStringFromClass([objOrderHistory class]);
      }];
 }
 

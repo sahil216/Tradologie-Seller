@@ -343,7 +343,7 @@
                             }
                         }
                     }
-                                
+                    [self countdownTimer];
                     [CommonUtility HideProgress];
                     [self->lblMessage setHidden:YES];
                     [self.tbtNotify setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
@@ -368,13 +368,135 @@
     }
 }
 
+/******************************************************************************************************************/
+#pragma mark ❉===❉=== GET TIMER COUNT DOWN START ===❉===❉
+/******************************************************************************************************************/
+
+-(void)updateCounter:(NSTimer *)theTimer
+{
+    if(secondsLeft > 0 )
+    {
+        secondsLeft -- ;
+        hours = secondsLeft / 3600;
+        minutes = (secondsLeft % 3600) / 60;
+        seconds = (secondsLeft % 3600) % 60;
+        strTimer = [NSString stringWithFormat:@"%02d : %02d : %02d", hours, minutes, seconds];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"CounterTimer" object:strTimer];
+        NSLog(@"%@",strTimer);
+    }
+    else
+    {
+        if([timer isValid])
+        {
+            strTimer = @"";
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"CounterTimer" object:strTimer];
+            [timer invalidate];
+            timer = nil;
+        }
+    }
+}
+-(void)countdownTimer
+{
+    secondsLeft = hours = minutes = seconds = (int)getTime();
+    
+    if([timer isValid])
+    {
+        strTimer = @"";
+       [[NSNotificationCenter defaultCenter]postNotificationName:@"CounterTimer" object:strTimer];
+        [timer invalidate];
+        timer = nil;
+    }
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+    
+}
+
+NSInteger getTime()
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm:ss"];
+    
+    DashBoardNotification *objData = [MBDataBaseHandler getDashBoardNotificationData];
+    for (DashBoardNotificationDetail *objdetail in objData.detail)
+    {
+        for (SellerAuctionDetailData *data in objdetail.SellerAuctionDetail)
+        {
+            if ([data.OrderStatus isEqualToString:@""] && [data.CounterStatus isEqualToString:@""] && [data.PONo isEqualToString:@""] && data.IsStarted == NO && data.IsGoingStart == YES)
+            {
+               
+            }
+            else  if (data.IsStarted == 1)
+            {
+                NSString *strCalDate = [data.EndDate stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+                
+                NSString *strDate = [CommonUtility getDateFromSting:strCalDate fromFromate:@"yyyy/MM/dd hh:mm:ss" withRequiredDateFormate:@"MM/dd/yyyy hh:mm:ss"];
+                
+                NSDate *dateFrom = [dateFormatter dateFromString:strDate];
+                NSTimeInterval aTimeInterval = [dateFrom timeIntervalSinceReferenceDate] + 60 ;
+                NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
+                
+                NSString *strGiventime = [dateFormatter stringFromDate:newDate];
+                NSString *strCurrentTime = [dateFormatter stringFromDate:[NSDate date]];
+                
+                NSDate* date1 = date(strGiventime);
+                NSDate* date2 = date(strCurrentTime);
+                
+                NSComparisonResult result = [newDate compare: [NSDate date]];
+                
+                if(result==NSOrderedAscending)
+                {
+                    NSTimeInterval distanceBetweenDates = [date1 timeIntervalSinceDate:date2];
+                    return distanceBetweenDates;
+                }
+                else if(result==NSOrderedDescending)
+                {
+                    NSTimeInterval distanceBetweenDates = [date2 timeIntervalSinceDate:date1];
+                    return distanceBetweenDates;
+                }
+                else
+                {
+                    NSLog(@"Both dates are same");
+                }
+            }
+            
+        }
+    }
+    return 0;
+}
+
+NSDate *date(NSString *dateStr)
+{
+    NSString *dateString =  dateStr;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    [date descriptionWithLocale: [NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+
+    return date;
+}
+
+
+
+
 @end
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== TABLEVIEW CELL METHOD CALLED HERE ===❉===❉
 /*****************************************************************************************************************/
 
 @implementation NotificationList
-
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveCounterNotification:)
+                                                 name:@"CounterTimer"
+                                               object:nil];
+    
+}
 - (void)ConfigureNotificationListbyCellwithData:(SellerAuctionDetailData *)objSellerAuction withSectionIndex:(NSInteger)section
 {
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -428,5 +550,17 @@
         
     }
 }
-
+- (void) receiveCounterNotification:(NSNotification *) notification
+{
+    [_lblOrderTimeLeft setText:[NSString stringWithFormat:@"%@",notification.object]];
+    [_lblOrderTimeLeft setTextAlignment:NSTextAlignmentCenter];
+    [_lblOrderTimeLeft setBackgroundColor:[UIColor orangeColor]];
+    [_lblOrderTimeLeft setTextColor:[UIColor whiteColor]];
+    [_lblOrderTimeLeft.layer setCornerRadius:5.0f];
+    _lblOrderTimeLeft.layer.shadowColor = DefaultThemeColor.CGColor;
+    _lblOrderTimeLeft.layer.shadowOpacity = 1.0;
+    _lblOrderTimeLeft.layer.shadowRadius = 1.0;
+    _lblOrderTimeLeft.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+    [_lblOrderTimeLeft setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(12):UI_DEFAULT_FONT_MEDIUM(16)];
+}
 @end

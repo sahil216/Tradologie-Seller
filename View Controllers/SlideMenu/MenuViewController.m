@@ -237,10 +237,9 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
             break;
         case 2:
         {
-//            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-//            
-//            VCNegotiationOrderHistory *objNegotiationScreen = GET_VIEW_CONTROLLER(@"VCNegotiationOrderHistory");
-//            [self pushViewController:objNegotiationScreen];
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+            VCNegotiationOrderHistory *objNegotiationScreen = GET_VIEW_CONTROLLER(@"VCNegotiationOrderHistory");
+            [self pushViewController:objNegotiationScreen];
             
         }
             break;

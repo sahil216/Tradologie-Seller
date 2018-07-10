@@ -54,18 +54,26 @@
     int width = 80;
     for(int i = 0 ; i < [keyArray count] ; i++)
     {
-        if (i == 5)
+        bgView = [[UIView alloc] initWithFrame:CGRectMake(xx, 0, width, itemSize.height)];
+        [bgView setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:bgView];
+        
+        if (i == 1)
         {
-            bgView = [[UIView alloc] initWithFrame:CGRectMake(xx, 20, width, itemSize.height - 40)];
+            headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 15, bgView.frame.size.width , bgView.frame.size.height - 30)];
+        }
+        else if (i == 2)
+        {
+            headLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, bgView.frame.size.width - 40 , bgView.frame.size.height - 30)];
+        }
+        else if (i == 3)
+        {
+            headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 15, bgView.frame.size.width , bgView.frame.size.height - 30)];
         }
         else
         {
-            bgView = [[UIView alloc] initWithFrame:CGRectMake(xx, 0, width, itemSize.height)];
+            headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, bgView.frame.size.width , bgView.frame.size.height)];
         }
-        [bgView setBackgroundColor:[UIColor whiteColor]];
-        [self addSubview:bgView];
-        
-        headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, bgView.frame.size.width , bgView.frame.size.height)];
         [headLabel setBackgroundColor:[UIColor clearColor]];
         [headLabel setFont:UI_DEFAULT_FONT(16)];
         [headLabel setNumberOfLines:5];
@@ -73,8 +81,22 @@
         [bgView addSubview:headLabel];
         [labelArray addObject:headLabel];
         [bgArray addObject:bgView];
+    
         xx = xx + width;
-        width = itemSize.width;
+        
+        if(i == keyArray.count - 5)
+        {
+            width = itemSize.width - 80;
+        }
+        else if(i == keyArray.count - 4)
+        {
+            width = itemSize.width + 20;
+            
+        }
+        else
+        {
+            width = itemSize.width;
+        }
     }
 }
 
@@ -96,7 +118,10 @@
                 
             case 1:
             {
-                [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
+                NSString *strValue = [NSString stringWithFormat:@"%@",[dataDict objectForKey:[keyArray objectAtIndex:i]]];
+                [tempLabel setText:strValue];
+                [tempLabel setBackgroundColor:DefaultThemeColor];
+                [tempLabel setTextColor:[UIColor whiteColor]];
                 [tempLabel setTextAlignment:NSTextAlignmentCenter];
             }
                 break;
@@ -105,27 +130,29 @@
             {
                 [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
                 [tempLabel setTextAlignment:NSTextAlignmentCenter];
+                [tempLabel setNumberOfLines:5];
+                [tempLabel setLineBreakMode:NSLineBreakByWordWrapping];
             }
                 break;
                 
             case 3:
             {
                 [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
+                [tempLabel setBackgroundColor:DefaultThemeColor];
+                [tempLabel setTextColor:[UIColor whiteColor]];
                 [tempLabel setTextAlignment:NSTextAlignmentCenter];
             }
                 break;
                 
             case 4:
             {
-                [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
+                [tempLabel setText:[NSString stringWithFormat:@"%@",[dataDict objectForKey:[keyArray objectAtIndex:i]]]];
                 [tempLabel setTextAlignment:NSTextAlignmentCenter];
             }
                 break;
             case 5:
             {
                 [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
-                [tempLabel setBackgroundColor:DefaultThemeColor];
-                [tempLabel setTextColor:[UIColor whiteColor]];
                 [tempLabel setTextAlignment:NSTextAlignmentCenter];
             }
                 break;
@@ -145,18 +172,7 @@
             }
                 
                 break;
-            case 8:
-            {
-                [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
-                [tempLabel setTextAlignment:NSTextAlignmentCenter];
-            }
-                break;
-            case 9:
-            {
-                [tempLabel setText:[dataDict objectForKey:[keyArray objectAtIndex:i]]];
-                [tempLabel setTextAlignment:NSTextAlignmentCenter];
-            }
-                break;
+
                 
             default:
                 break;
