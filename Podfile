@@ -17,6 +17,7 @@ target 'TradologieSeller' do
   pod 'Firebase/Messaging'
   pod 'GoogleSignIn'
   pod 'RESideMenu'
+  pod 'HMSegmentedControl'
   # Pods for TradologieSeller
 
   target 'TradologieSellerTests' do

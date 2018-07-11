@@ -73,6 +73,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.15)
   - GTMSessionFetcher/Full (1.1.15):
     - GTMSessionFetcher/Core (= 1.1.15)
+  - HMSegmentedControl (1.5.5)
   - JSONModel (1.7.0)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
@@ -105,6 +106,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - GoogleSignIn
+  - HMSegmentedControl
   - JSONModel
   - MagicalRecord
   - Reachability
@@ -129,6 +131,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
@@ -141,6 +144,6 @@ SPEC CHECKSUMS:
   SDWebImage-ProgressView: 291e1b9ec4aea8b4a8cc7eca948bdf558c0c2150
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: b71fae4b8cee9d059b494f85b2ad784c22b7d7bc
+PODFILE CHECKSUM: aec3e312a82703de2bfbd90738a20324609ca760
 
 COCOAPODS: 1.4.0

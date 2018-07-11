@@ -416,7 +416,8 @@ NSInteger getTime()
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm:ss"];
-    
+    [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
+
     DashBoardNotification *objData = [MBDataBaseHandler getDashBoardNotificationData];
     for (DashBoardNotificationDetail *objdetail in objData.detail)
     {
@@ -424,7 +425,36 @@ NSInteger getTime()
         {
             if ([data.OrderStatus isEqualToString:@""] && [data.CounterStatus isEqualToString:@""] && [data.PONo isEqualToString:@""] && data.IsStarted == NO && data.IsGoingStart == YES)
             {
-               
+                NSString *strCalDate = [data.StartDate stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+                
+                NSString *strDate = [CommonUtility getDateFromSting:strCalDate fromFromate:@"yyyy/MM/dd hh:mm:ss" withRequiredDateFormate:@"MM/dd/yyyy hh:mm:ss"];
+                
+                NSDate *dateFrom = [dateFormatter dateFromString:strDate];
+                NSTimeInterval aTimeInterval = [dateFrom timeIntervalSinceReferenceDate] + 60;
+                NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
+                
+                NSString *strGiventime = [dateFormatter stringFromDate:newDate];
+                NSString *strCurrentTime = [dateFormatter stringFromDate:[NSDate date]];
+                
+                NSDate* date1 = date(strGiventime);
+                NSDate* date2 = date(strCurrentTime);
+                
+                NSComparisonResult result = [[NSDate date] compare: newDate];
+                
+                if(result==NSOrderedAscending)
+                {
+                    NSTimeInterval distanceBetweenDates = [date1 timeIntervalSinceDate:date2];
+                    return distanceBetweenDates;
+                }
+                else if(result==NSOrderedDescending)
+                {
+                    NSTimeInterval distanceBetweenDates = [date1 timeIntervalSinceDate:date2];
+                    return distanceBetweenDates;
+                }
+                else
+                {
+                    NSLog(@"Both dates are same");
+                }
             }
             else  if (data.IsStarted == 1)
             {
@@ -491,6 +521,7 @@ NSDate *date(NSString *dateStr)
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveCounterNotification:)
                                                  name:@"CounterTimer"
@@ -500,7 +531,8 @@ NSDate *date(NSString *dateStr)
 - (void)ConfigureNotificationListbyCellwithData:(SellerAuctionDetailData *)objSellerAuction withSectionIndex:(NSInteger)section
 {
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+    [_lblOrderTimeLeft setBackgroundColor:[UIColor clearColor]];
+
     if (section == 0)
     {
         [_lblOrderCode setText:objSellerAuction.AuctionCode];
@@ -554,7 +586,6 @@ NSDate *date(NSString *dateStr)
 {
     [_lblOrderTimeLeft setText:[NSString stringWithFormat:@"%@",notification.object]];
     [_lblOrderTimeLeft setTextAlignment:NSTextAlignmentCenter];
-    [_lblOrderTimeLeft setBackgroundColor:[UIColor orangeColor]];
     [_lblOrderTimeLeft setTextColor:[UIColor whiteColor]];
     [_lblOrderTimeLeft.layer setCornerRadius:5.0f];
     _lblOrderTimeLeft.layer.shadowColor = DefaultThemeColor.CGColor;
@@ -562,5 +593,7 @@ NSDate *date(NSString *dateStr)
     _lblOrderTimeLeft.layer.shadowRadius = 1.0;
     _lblOrderTimeLeft.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
     [_lblOrderTimeLeft setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(12):UI_DEFAULT_FONT_MEDIUM(16)];
+    [_lblOrderTimeLeft setBackgroundColor:[UIColor orangeColor]];
+
 }
 @end

@@ -21,8 +21,6 @@
 
     [self.navigationItem setNavigationTittleWithLogoforLanscapeMode:@"tradologie.com"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController.navigationItem setHidesBackButton:YES animated:YES];
-    [self.navigationItem setHidesBackButton:YES];
     [self.navigationItem SetBackButtonWithID:self withSelectorAction:@selector(btnBackFromLiveAuctionScreen:)];
     
     [self SetInitialSetUp];

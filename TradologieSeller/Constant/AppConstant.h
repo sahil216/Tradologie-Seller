@@ -19,7 +19,8 @@
 #import <WebKit/WKNavigationAction.h>
 #import <WebKit/WKUIDelegate.h>
 #import <WebKit/WebKit.h>
-
+#import "THSegmentedPageViewControllerDelegate.h"
+#import "THSegmentedPager.h"
 #import "INSSearchBar.h"
 
 #define SAVE_USER_DEFAULTS(VALUE,KEY) [[NSUserDefaults standardUserDefaults] setObject:VALUE forKey:KEY]; [[NSUserDefaults standardUserDefaults] synchronize]

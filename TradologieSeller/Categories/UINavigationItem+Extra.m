@@ -36,6 +36,8 @@
     [btnback addTarget:targetID action:sector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnback];
     self.leftBarButtonItem = backBarButtonItem;
+    [self setHidesBackButton:YES animated:YES];
+    [self setHidesBackButton:YES];
 }
 -(void)SetRightButtonWithID:(id)targetID withSelectorAction:(SEL)sector withImage:(NSString *)strImage
 {

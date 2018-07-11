@@ -331,4 +331,46 @@
     return flippedImage;
 }
 
+//************************************************************************************************
+#pragma mark ❉===❉=== SAVE IMAGE & GET PATH ===❉===❉
+//************************************************************************************************
+
++(NSString*)saveImageTODocumentAndGetPath:(UIImage *)image
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:@"Tradology.png"];
+    
+    NSData* data = UIImagePNGRepresentation(image);
+    
+    [data writeToFile:path atomically:YES];
+    
+    BOOL isalready = [self fileExistsInProject:path];
+    
+    if (isalready)
+    {
+        NSError *error;
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
+        
+        if (error)
+        {
+            return nil;
+        }
+    }
+    
+    return path;
+}
++(BOOL) fileExistsInProject:(NSString *)fileName
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *fileInResourcesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fileName];
+    
+    return [fileManager fileExistsAtPath:fileInResourcesFolder];
+    
+}
+
 @end
+

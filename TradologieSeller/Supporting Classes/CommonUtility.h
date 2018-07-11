@@ -41,4 +41,7 @@ typedef void (^FTPopOverMenuDismissBlock)(void);
 
 +(NSString *)getDateFromSting:(NSString *)strDate fromFromate:(NSString *)StrGivenFormate
       withRequiredDateFormate:(NSString *)strRequiredDateFormate;
+
++(NSString*)saveImageTODocumentAndGetPath:(UIImage *)image;
++(BOOL)fileExistsInProject:(NSString *)fileName;
 @end

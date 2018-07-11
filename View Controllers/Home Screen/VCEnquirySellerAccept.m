@@ -43,9 +43,6 @@
     [super viewDidLoad];
     [self.navigationItem setNavigationTittleWithLogoforLanscapeMode:@"Enquiry Seller Acceptance"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController.navigationItem setHidesBackButton:YES animated:YES];
-    [self.navigationItem setHidesBackButton:YES];
-    
     arrSellerAucList = [[NSMutableArray alloc]initWithObjects:@"Sr.No",@"Grade",@"Quantity",@"Packing Type",@"Packing Size",@"Packing Image",nil];
     
     lblHeight = 120;

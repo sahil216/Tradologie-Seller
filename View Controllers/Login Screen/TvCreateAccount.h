@@ -18,11 +18,12 @@
     __weak IBOutlet UIButton    *btnback;
     __weak IBOutlet UIButton    *btnAgreeTerms;
     __weak IBOutlet UIButton    *btnSubmit;
-    __weak IBOutlet UILabel * lbl_logoname;
-    __weak IBOutlet UILabel   *lblNewUser;
+    __weak IBOutlet UILabel     *lbl_logoname;
+    __weak IBOutlet UILabel     *lblNewUser;
 
 
 }
 
 @property(nonatomic,weak)IBOutlet UIView * viewHeader;
+
 @end

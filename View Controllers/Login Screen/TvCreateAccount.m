@@ -7,15 +7,15 @@
 //
 
 #import "TvCreateAccount.h"
-//#import "VcPopScreen.h"
 #import "CommonUtility.h"
 #import "Constant.h"
 #import "MBAPIManager.h"
 #import "AppConstant.h"
 #import "SharedManager.h"
-//#import "VCMessageScreen.h"
-//#import "TVCompanyRegister.h"
+#import "TVManageAccountScreen.h"
 #import "MBDataBaseHandler.h"
+#import "TVLoginControlScreen.h"
+#import "TVCompanyDetails.h"
 
 
 @interface TvCreateAccount ()
@@ -76,6 +76,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
 }
 
 /******************************************************************************************************************/
@@ -124,76 +126,79 @@
 
 -(IBAction)btnSubmitUserClicked:(UIButton *)sender
 {
-    [self.view endEditing:YES];
-    BOOL isValidate=TRUE;
+    [self getManageAccountScreenWithPagination];
     
-    if ([Validation validateTextField:txtName])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Full Name..!"];
-        return;
-    }
-    else if ([Validation validateTextField:txtEmailID])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Email Address..!"];
-        return;
-    }
-    else if (![Validation validateEmail:txtEmailID.text])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Email Id..!"];
-        return;
-    }
-    else if ([Validation validateTextField:txtMobile])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Mobile Number..!"];
-        return;
-    }
-    else if (![Validation validatePhoneNumber:txtMobile.text])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Mobile Number with Country Code..!"];
-        return;
-    }
-    else if ([Validation validateTextField:txtPassword])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password..!"];
-        return;
-    }
-    else if (![Validation isAlphaNumericAndContainsAtLeastSixDigit:txtPassword.text])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password between 4 to 10 Digits Alpha Numeric..!"];
-        return;
-    }
-    else if ([Validation validateTextField:txtConfirmPassword])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter Your Confirm Password..!"];
-        return;
-    }
-    else if (![Validation validatePassword:txtPassword ConfirmPassword:txtConfirmPassword])
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Opps Your Password Did Not Match..!"];
-        return;
-    }
-    else if(!btnAgreeTerms.isSelected)
-    {
-        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Agree the Term's & Privacy Policy..!"];
-        return;
-    }
-    if (isValidate)
-    {
-        if (SharedObject.isNetAvailable)
-        {
-            [CommonUtility showProgressWithMessage:@"Please Wait.."];
-            
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-            [dic setValue:API_DEFAULT_TOKEN forKey:@"Token"];
-            [dic setValue:txtName.text forKey:@"UserName"];
-            [dic setValue:txtEmailID.text forKey:@"EmailID"];
-            [dic setValue:txtMobile.text forKey:@"MobileNo"];
-            [dic setValue:txtPassword.text forKey:@"Password"];
-            [dic setValue:strGender forKey:@"GenderID"];
-            [dic setValue:TYPE_OF_ACCOUNT_ID forKey:@"TypeOfAccountID"];
-            NSString *strID = [selectedID componentsJoinedByString:@","];
-            [dic setValue:strID forKey:@"GroupIDs"];
-            
+    
+//    [self.view endEditing:YES];
+//    BOOL isValidate=TRUE;
+//
+//    if ([Validation validateTextField:txtName])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Full Name..!"];
+//        return;
+//    }
+//    else if ([Validation validateTextField:txtEmailID])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Email Address..!"];
+//        return;
+//    }
+//    else if (![Validation validateEmail:txtEmailID.text])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Email Id..!"];
+//        return;
+//    }
+//    else if ([Validation validateTextField:txtMobile])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Mobile Number..!"];
+//        return;
+//    }
+//    else if (![Validation validatePhoneNumber:txtMobile.text])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Mobile Number with Country Code..!"];
+//        return;
+//    }
+//    else if ([Validation validateTextField:txtPassword])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password..!"];
+//        return;
+//    }
+//    else if (![Validation isAlphaNumericAndContainsAtLeastSixDigit:txtPassword.text])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password between 4 to 10 Digits Alpha Numeric..!"];
+//        return;
+//    }
+//    else if ([Validation validateTextField:txtConfirmPassword])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter Your Confirm Password..!"];
+//        return;
+//    }
+//    else if (![Validation validatePassword:txtPassword ConfirmPassword:txtConfirmPassword])
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Opps Your Password Did Not Match..!"];
+//        return;
+//    }
+//    else if(!btnAgreeTerms.isSelected)
+//    {
+//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Agree the Term's & Privacy Policy..!"];
+//        return;
+//    }
+//    if (isValidate)
+//    {
+//        if (SharedObject.isNetAvailable)
+//        {
+//            [CommonUtility showProgressWithMessage:@"Please Wait.."];
+//
+//            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+//            [dic setValue:API_DEFAULT_TOKEN forKey:@"Token"];
+//            [dic setValue:txtName.text forKey:@"UserName"];
+//            [dic setValue:txtEmailID.text forKey:@"EmailID"];
+//            [dic setValue:txtMobile.text forKey:@"MobileNo"];
+//            [dic setValue:txtPassword.text forKey:@"Password"];
+//            [dic setValue:strGender forKey:@"GenderID"];
+//            [dic setValue:TYPE_OF_ACCOUNT_ID forKey:@"TypeOfAccountID"];
+//            NSString *strID = [selectedID componentsJoinedByString:@","];
+//            [dic setValue:strID forKey:@"GroupIDs"];
+    
             
 //            MBCall_RegisterUserWithPostData(dic, nil, ^(id response, NSString *error, BOOL status)
 //            {
@@ -212,12 +217,12 @@
 //                }
 //
 //            });
-        }
-        else
-        {
-            [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
-        }
-    }
+//        }
+//        else
+//        {
+//            [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+//        }
+//    }
     
 }
 //-(void)getLoginServiceCalles
@@ -286,5 +291,95 @@
     return YES;
 }
 
+-(void)getManageAccountScreenWithPagination
+{
+    THSegmentedPager *objManageAccountMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"THSegmentedPager"];
+    
+    NSMutableArray *arrMenuTittle = [[NSMutableArray alloc]initWithObjects:@"LOGIN CONTROL",@"INFORMATION",@"MEMBERSHIP TYPE",@"COMPANY DETAILS",@"DOCUMENTS",@"AUTHORIZED PERSON",@"LEGAL DOCUMENTS",@"BANK DETAILS",@"SELLING LOCATION",@"BULK RETAIL",nil];
+    
+    NSMutableArray *pages = [NSMutableArray new];
+    
+    for (NSInteger SceenNo = 0; SceenNo < [arrMenuTittle count]; SceenNo++)
+    {
+                switch (SceenNo)
+                {
+                    case 0:
+                    {
+                        TVLoginControlScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLoginControlScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:0]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 1:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 2:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 3:
+                    {
+                        TVCompanyDetails *objTVCompanyDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"TVCompanyDetails"];
+                        objTVCompanyDetails.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objTVCompanyDetails];
+                    }
+                        break;
+                    case 4:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 5:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 6:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 7:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 8:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    case 9:
+                    {
+                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objManageScreen];
+                    }
+                        break;
+                    default:
+                        break;
+                }
+    }
+    [objManageAccountMenu setPages:pages];
+    [objManageAccountMenu setSelectIndex:1];
+    [self.navigationController pushViewController:objManageAccountMenu animated:YES];
+}
 
 @end
