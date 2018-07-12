@@ -25,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [txtVendorName setDefaultTextfieldStyleWithPlaceHolder:@"Your Name" withTag:0];
     [txtAnnualTurnOver setDefaultTextfieldStyleWithPlaceHolder:@"Your Annual TurnOver" withTag:0];
     [txtDescriptions setDefaultTextfieldStyleWithPlaceHolder:@"Enter Descriptions" withTag:0];

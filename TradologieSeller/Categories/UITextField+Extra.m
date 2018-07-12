@@ -128,7 +128,7 @@
     
     UIImageView *viewRight=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     [viewRight setClipsToBounds:YES];
-    UIImageView *rightView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 15, 20)];
+    UIImageView *rightView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 7, 25, 25)];
     [rightView setImage:IMAGE(imageName)];
     [viewRight addSubview:rightView];
     [self setRightView:viewRight];
