@@ -17,6 +17,7 @@
 #import "TVLoginControlScreen.h"
 #import "TVCompanyDetails.h"
 #import "TVSupplierDocument.h"
+#import "VCAuthorizedPersonal.h"
 
 
 @interface TvCreateAccount ()
@@ -341,9 +342,9 @@
                         break;
                     case 5:
                     {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
+                        VCAuthorizedPersonal *objAuthorized = [self.storyboard instantiateViewControllerWithIdentifier:@"VCAuthorizedPersonal"];
+                        objAuthorized.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objAuthorized];
                     }
                         break;
                     case 6:
