@@ -16,6 +16,7 @@
 #import "MBDataBaseHandler.h"
 #import "TVLoginControlScreen.h"
 #import "TVCompanyDetails.h"
+#import "TVSupplierDocument.h"
 
 
 @interface TvCreateAccount ()
@@ -333,7 +334,7 @@
                         break;
                     case 4:
                     {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                        TVSupplierDocument *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVSupplierDocument"];
                         objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
                         [pages addObject:objManageScreen];
                     }

@@ -27,6 +27,7 @@
 		4A21BEF820F71AA200F4430A /* TVManageAccountScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEF220F71AA200F4430A /* TVManageAccountScreen.m */; };
 		4A21BEF920F71AA200F4430A /* TVLoginControlScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEF420F71AA200F4430A /* TVLoginControlScreen.m */; };
 		4A21BEFA20F71AA200F4430A /* TVCompanyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEF520F71AA200F4430A /* TVCompanyDetails.m */; };
+		4A21BEFD20F71B5200F4430A /* TVSupplierDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEFC20F71B5200F4430A /* TVSupplierDocument.m */; };
 		4A2395CC20C90C9800DF33E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2395CB20C90C9800DF33E6 /* AppDelegate.m */; };
 		4A2395D220C90C9800DF33E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2395D020C90C9800DF33E6 /* Main.storyboard */; };
 		4A2395D520C90C9800DF33E6 /* TradologieSeller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A2395D320C90C9800DF33E6 /* TradologieSeller.xcdatamodeld */; };
@@ -136,6 +137,8 @@
 		4A21BEF520F71AA200F4430A /* TVCompanyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCompanyDetails.m; sourceTree = "<group>"; };
 		4A21BEF620F71AA200F4430A /* TVManageAccountScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVManageAccountScreen.h; sourceTree = "<group>"; };
 		4A21BEF720F71AA200F4430A /* TVLoginControlScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLoginControlScreen.h; sourceTree = "<group>"; };
+		4A21BEFB20F71B5200F4430A /* TVSupplierDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVSupplierDocument.h; sourceTree = "<group>"; };
+		4A21BEFC20F71B5200F4430A /* TVSupplierDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVSupplierDocument.m; sourceTree = "<group>"; };
 		4A2395C720C90C9800DF33E6 /* TradologieSeller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradologieSeller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2395CA20C90C9800DF33E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4A2395CB20C90C9800DF33E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 				4A21BEF420F71AA200F4430A /* TVLoginControlScreen.m */,
 				4A21BEF620F71AA200F4430A /* TVManageAccountScreen.h */,
 				4A21BEF220F71AA200F4430A /* TVManageAccountScreen.m */,
+				4A21BEFB20F71B5200F4430A /* TVSupplierDocument.h */,
+				4A21BEFC20F71B5200F4430A /* TVSupplierDocument.m */,
 			);
 			path = ManageAccountScreen;
 			sourceTree = "<group>";
@@ -958,6 +963,7 @@
 				4A30851620EF4F93002E3026 /* VCLoadLiveAuction.m in Sources */,
 				4A1C3F2420ECDD0E0030E865 /* TvAlreadyUserScreen.m in Sources */,
 				4A913E9D20C92D2D00AEC718 /* MBAPIManager.m in Sources */,
+				4A21BEFD20F71B5200F4430A /* TVSupplierDocument.m in Sources */,
 				4A30851020EDFC9F002E3026 /* SBaseLabel.m in Sources */,
 				4A265F2520CB97DA007B44B8 /* DashBoardNotification.m in Sources */,
 				4A913EA020C92D2D00AEC718 /* SharedManager.m in Sources */,
