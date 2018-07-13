@@ -89,7 +89,7 @@
                 cell = [[TVCellAuthorizedPerson alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
             }
-            [cell ConfigureAuthorizedPersonInfoCellwithSectionIndex:[arrInfoTittle objectAtIndex:indexPath.row] withPlaceholder:[arrPlaceHolder objectAtIndex:indexPath.row]];
+            [cell ConfigureAuthorizedPersonInfoCellwithData:[arrInfoTittle objectAtIndex:indexPath.row] withPlaceholder:[arrPlaceHolder objectAtIndex:indexPath.row]];
             return cell;
         }
     }

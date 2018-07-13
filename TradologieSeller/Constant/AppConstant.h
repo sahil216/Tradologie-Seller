@@ -46,6 +46,7 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "EnquirySellerAcceptCell.h"
 #import "TVCellOrderHistory.h"
 #import "TVCellAuthorizedPerson.h"
+#import "TVCellSellingLocation.h"
 
 /*********************************************************************************************************/
 #pragma Mark- BASE URL IMPORT

@@ -45,10 +45,8 @@
     NSString * strValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
     if (textField.isEditing)
     {
-       // [[NSNotificationCenter defaultCenter] postNotificationName:@"textFieldValueChange" object:strValue];
         if([_delegate respondsToSelector:@selector(textFieldValueChange:)])
         {
-            //NSIndexPath *indexPath = [CommonUtility MB_IndexPathForCellContainingView:sender];
             [_delegate textFieldValueChange:strValue];
         }
         return YES;

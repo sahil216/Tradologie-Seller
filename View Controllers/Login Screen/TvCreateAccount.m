@@ -18,6 +18,9 @@
 #import "TVCompanyDetails.h"
 #import "TVSupplierDocument.h"
 #import "VCAuthorizedPersonal.h"
+#import "TVLegalDocumentScreen.h"
+#import "TVBankDetailScreen.h"
+#import "VCSellingLocation.h"
 
 
 @interface TvCreateAccount ()
@@ -349,23 +352,23 @@
                         break;
                     case 6:
                     {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
+                        TVLegalDocumentScreen *objLegalDocument = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLegalDocumentScreen"];
+                        objLegalDocument.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objLegalDocument];
                     }
                         break;
                     case 7:
                     {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
+                        TVBankDetailScreen *objBankDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"TVBankDetailScreen"];
+                        objBankDetail.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objBankDetail];
                     }
                         break;
                     case 8:
                     {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
+                        VCSellingLocation *objVCSelling = [self.storyboard instantiateViewControllerWithIdentifier:@"VCSellingLocation"];
+                        objVCSelling.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                        [pages addObject:objVCSelling];
                     }
                         break;
                     case 9:

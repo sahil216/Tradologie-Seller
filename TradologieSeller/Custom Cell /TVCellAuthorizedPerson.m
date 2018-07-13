@@ -20,7 +20,7 @@
     [super setSelected:selected animated:animated];
 
 }
-- (void)ConfigureAuthorizedPersonInfoCellwithSectionIndex:(NSString *)strTittle withPlaceholder:(NSString *)strPlaceHolder
+- (void)ConfigureAuthorizedPersonInfoCellwithData:(NSString *)strTittle withPlaceholder:(NSString *)strPlaceHolder
 {
     [_lblTittle setText:strTittle];
     [_txtInfoField setDefaultTextfieldStyleWithPlaceHolder:strPlaceHolder withTag:0];

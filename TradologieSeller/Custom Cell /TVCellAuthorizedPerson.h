@@ -20,7 +20,7 @@
 @property (nonatomic,strong) IBOutlet UILabel *lblDesignation;
 
 
-- (void)ConfigureAuthorizedPersonInfoCellwithSectionIndex:(NSString *)strTittle withPlaceholder:(NSString *)strPlaceHolder;
+- (void)ConfigureAuthorizedPersonInfoCellwithData:(NSString *)strTittle withPlaceholder:(NSString *)strPlaceHolder;
 - (void)ConfigureUploadPersonInfoPicCellwithSectionIndex:(NSInteger)index;
 - (void)ConfigureListAuthenticatePersonInfoCell:(NSInteger)Count withData:(id)authenticateData;
 
