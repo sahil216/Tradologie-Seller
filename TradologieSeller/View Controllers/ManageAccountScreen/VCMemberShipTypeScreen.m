@@ -17,7 +17,8 @@
 #define K_CUSTOM_WIDTH 150
 
 
-@interface VCMemberShipTypeScreen ()<THSegmentedPageViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface VCMemberShipTypeScreen ()<THSegmentedPageViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,
+TVCellMemberShipPlanDelegate,UITextFieldDelegate>
 {
     NSMutableArray *arrHeaderTittle;
     NSMutableArray *arrMemberData;
@@ -74,7 +75,7 @@
     
     [self getSupplierInformationServiceCalled];
     
-//    [self.tblMemberType registerNib:[UINib nibWithNibName:@"TVSellerBulkRetailCell" bundle:nil] forCellReuseIdentifier:@"CellBulkRetailIdentifier"];
+    [self.tblMemberType registerNib:[UINib nibWithNibName:@"TVCellMemberShipPlan" bundle:nil] forCellReuseIdentifier:CELL_MEMBERSHIP_ID];
 //
 //    [self.tblMemberType registerNib:[UINib nibWithNibName:@"TVCustomBulkRetailCell" bundle:nil] forCellReuseIdentifier:@"CellEnableIdentifier"];
     
@@ -94,7 +95,7 @@
     {
         return (arrMemberData.count > 0) ? arrMemberData.count:0;
     }
-    return 4;
+    return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -116,7 +117,8 @@
         if (indexPath.row % 2)
         {
             cell.backgroundColor = [UIColor whiteColor];
-        } else {
+        } else
+        {
             cell.backgroundColor = GET_COLOR_WITH_RGB(240, 235, 235, 1.0f);
         }
         cell.dataDict = [arrMemberData objectAtIndex:indexPath.row];
@@ -124,23 +126,27 @@
         return cell;
     }
    
-    cellIdentifier = @"CellIDMemeberPlan";
+    cellIdentifier = CELL_MEMBERSHIP_ID;
     
-    UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TVCellMemberShipPlan *cell = (TVCellMemberShipPlan *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        
+        cell = [[TVCellMemberShipPlan alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+       
     }
-    
+    [cell setDelegate:self];
     
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return lblHeight;
+    if (indexPath.section == 0)
+    {
+        return lblHeight;
+    }
+    return 230;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -182,7 +188,6 @@
             {
                 width = K_CUSTOM_WIDTH;
                 [headLabel setTextAlignment:NSTextAlignmentCenter];
-
             }
         }
         [viewSection addSubview:ViewBG];
@@ -207,6 +212,30 @@
 -(NSString *)viewControllerTitle
 {
     return _strManageAcTittle;
+}
+/******************************************************************************************************************/
+#pragma mark ❉===❉=== CELL DELEGATE CALLED HERE ===❉===❉
+/*****************************************************************************************************************/
+
+-(void)selectMemberShipPlan:(UIButton *)sender withIndex:(NSIndexPath *)index
+{
+    NSMutableArray *arrInfoTittle = [[NSMutableArray alloc]initWithObjects:@"Basic", nil];
+    if (index.row == 0)
+    {
+        [CommonUtility showPopUpWithData:sender withArray:arrInfoTittle withCompletion:^(NSInteger response)
+         {
+             
+         } withDismissBlock:^{
+         }];
+    }
+}
+/******************************************************************************************************************/
+#pragma mark ❉===❉=== TEXTFIELD DELEGATE CALLED HERE ===❉===❉
+/******************************************************************************************************************/
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+{
+    [textField resignFirstResponder];
+    return NO;
 }
 
 /******************************************************************************************************************/

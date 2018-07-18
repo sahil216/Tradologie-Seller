@@ -53,6 +53,7 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "TVCustomBulkRetailCell.h"
 #import "TVCellBulkRetailList.h"
 #import "TVCellMembershipType.h"
+#import "TVCellMemberShipPlan.h"
 
 /*********************************************************************************************************/
 #pragma Mark- BASE URL IMPORT
@@ -74,7 +75,7 @@ static NSString *UNCHECK_IMAGE = @"IconUnCheckBox";
 static NSString *COLLECTION_CELL_ID = @"CVcell_Identifier";
 static NSString *COMMON_CELL_ID = @"Cell_Identifier";
 static NSString *CELL_BULK_RETAIL_ID = @"CellBulkRetailIdentifier";
-
+static NSString *CELL_MEMBERSHIP_ID = @"CellMemberShipPlanIdentifier";
 /*********************************************************************************************************/
 #pragma Mark - API KEY NAME
 /*********************************************************************************************************/

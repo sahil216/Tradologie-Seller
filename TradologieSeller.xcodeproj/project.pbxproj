@@ -8,13 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11FF9EE541D2A024CACC5A3A /* libPods-TradologieSellerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FD802CC950E21847047C07 /* libPods-TradologieSellerUITests.a */; };
-		4A04DF0320CA8FB000054187 /* VCTradePolicyScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A04DF0120CA8FAF00054187 /* VCTradePolicyScreen.m */; };
 		4A04DF0620CA9BA900054187 /* SellerUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A04DF0520CA9BA900054187 /* SellerUserDetail.m */; };
-		4A1C3F2420ECDD0E0030E865 /* TvAlreadyUserScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C3F1820ECDD0D0030E865 /* TvAlreadyUserScreen.m */; };
-		4A1C3F2520ECDD0E0030E865 /* TvCreateAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C3F1920ECDD0D0030E865 /* TvCreateAccount.m */; };
-		4A1C3F2720ECDD0E0030E865 /* VCNegotiationScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C3F1E20ECDD0E0030E865 /* VCNegotiationScreen.m */; };
-		4A1C3F2820ECDD0E0030E865 /* VCEnquirySellerAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C3F2020ECDD0E0030E865 /* VCEnquirySellerAccept.m */; };
-		4A1C3F2920ECDD0E0030E865 /* VCHomeNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C3F2220ECDD0E0030E865 /* VCHomeNotifications.m */; };
 		4A1C3F2D20ECDE040030E865 /* ViewEnquiryState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1C3F2B20ECDE030030E865 /* ViewEnquiryState.xib */; };
 		4A1C3F2E20ECDE040030E865 /* ViewEnquiryState.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C3F2C20ECDE030030E865 /* ViewEnquiryState.m */; };
 		4A1C3F3020ECDFC80030E865 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1C3F2F20ECDFC80030E865 /* SafariServices.framework */; };
@@ -23,26 +17,41 @@
 		4A21BEDC20F4B5C900F4430A /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A21BED620F4B5C900F4430A /* LICENSE.md */; };
 		4A21BEDD20F4B5C900F4430A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A21BED720F4B5C900F4430A /* README.md */; };
 		4A21BEDE20F4B5C900F4430A /* THSegmentedPager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEDA20F4B5C900F4430A /* THSegmentedPager.m */; };
-		4A21BEF020F71A9200F4430A /* TVLoginScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEEF20F71A9200F4430A /* TVLoginScreen.m */; };
-		4A21BEF820F71AA200F4430A /* TVManageAccountScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEF220F71AA200F4430A /* TVManageAccountScreen.m */; };
-		4A21BEF920F71AA200F4430A /* TVLoginControlScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEF420F71AA200F4430A /* TVLoginControlScreen.m */; };
-		4A21BEFA20F71AA200F4430A /* TVCompanyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEF520F71AA200F4430A /* TVCompanyDetails.m */; };
-		4A21BEFD20F71B5200F4430A /* TVSupplierDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEFC20F71B5200F4430A /* TVSupplierDocument.m */; };
-		4A21BF0020F74D3400F4430A /* VCAuthorizedPersonal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BEFF20F74D3400F4430A /* VCAuthorizedPersonal.m */; };
 		4A21BF0320F74EFE00F4430A /* TVCellAuthorizedPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0220F74EFE00F4430A /* TVCellAuthorizedPerson.m */; };
-		4A21BF0620F86F7E00F4430A /* TVLegalDocumentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0520F86F7E00F4430A /* TVLegalDocumentScreen.m */; };
-		4A21BF0920F882A300F4430A /* TVBankDetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0820F882A300F4430A /* TVBankDetailScreen.m */; };
-		4A21BF0C20F88AB900F4430A /* VCSellingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0B20F88AB900F4430A /* VCSellingLocation.m */; };
 		4A21BF0F20F8A2AC00F4430A /* TVCellSellingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0E20F8A2AC00F4430A /* TVCellSellingLocation.m */; };
 		4A21BF1220F9F9AD00F4430A /* SellerLoginControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF1120F9F9AD00F4430A /* SellerLoginControl.m */; };
-		4A21BF1520FDC4BF00F4430A /* VCBulkRetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF1420FDC4BF00F4430A /* VCBulkRetailScreen.m */; };
 		4A21BF2120FDFF7B00F4430A /* TVSellerBulkRetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF1F20FDFF7B00F4430A /* TVSellerBulkRetailCell.m */; };
 		4A21BF2220FDFF7B00F4430A /* TVSellerBulkRetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A21BF2020FDFF7B00F4430A /* TVSellerBulkRetailCell.xib */; };
 		4A21BF2B20FE088A00F4430A /* TVCustomBulkRetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF2920FE088A00F4430A /* TVCustomBulkRetailCell.m */; };
 		4A21BF2C20FE088A00F4430A /* TVCustomBulkRetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A21BF2A20FE088A00F4430A /* TVCustomBulkRetailCell.xib */; };
 		4A21BF2F20FE1B4300F4430A /* TVCellBulkRetailList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF2E20FE1B4300F4430A /* TVCellBulkRetailList.m */; };
-		4A21BF3520FF17D800F4430A /* VCMemberShipTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF3420FF17D800F4430A /* VCMemberShipTypeScreen.m */; };
 		4A21BF3820FF200900F4430A /* TVCellMembershipType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF3720FF200900F4430A /* TVCellMembershipType.m */; };
+		4A21BF3F20FF3A3B00F4430A /* TVCellMemberShipPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF3D20FF3A3B00F4430A /* TVCellMemberShipPlan.m */; };
+		4A21BF4020FF3A3B00F4430A /* TVCellMemberShipPlan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A21BF3E20FF3A3B00F4430A /* TVCellMemberShipPlan.xib */; };
+		4A21BF7720FF499300F4430A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF4420FF499300F4430A /* RootViewController.m */; };
+		4A21BF7820FF499300F4430A /* MenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF4720FF499300F4430A /* MenuViewCell.m */; };
+		4A21BF7920FF499300F4430A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF4920FF499300F4430A /* MenuViewController.m */; };
+		4A21BF7A20FF499300F4430A /* VCContactTradologie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF4A20FF499300F4430A /* VCContactTradologie.m */; };
+		4A21BF7B20FF499300F4430A /* TVManageAccountScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF4C20FF499300F4430A /* TVManageAccountScreen.m */; };
+		4A21BF7C20FF499300F4430A /* TVLegalDocumentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF4F20FF499300F4430A /* TVLegalDocumentScreen.m */; };
+		4A21BF7D20FF499300F4430A /* TVSupplierDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5020FF499300F4430A /* TVSupplierDocument.m */; };
+		4A21BF7E20FF499300F4430A /* TVLoginControlScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5220FF499300F4430A /* TVLoginControlScreen.m */; };
+		4A21BF7F20FF499300F4430A /* VCMemberShipTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5420FF499300F4430A /* VCMemberShipTypeScreen.m */; };
+		4A21BF8020FF499300F4430A /* TVBankDetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5520FF499300F4430A /* TVBankDetailScreen.m */; };
+		4A21BF8120FF499300F4430A /* TVCompanyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5620FF499300F4430A /* TVCompanyDetails.m */; };
+		4A21BF8220FF499300F4430A /* VCBulkRetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5A20FF499300F4430A /* VCBulkRetailScreen.m */; };
+		4A21BF8320FF499300F4430A /* VCAuthorizedPersonal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5C20FF499300F4430A /* VCAuthorizedPersonal.m */; };
+		4A21BF8420FF499300F4430A /* VCSellingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF5E20FF499300F4430A /* VCSellingLocation.m */; };
+		4A21BF8520FF499300F4430A /* TvAlreadyUserScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6320FF499300F4430A /* TvAlreadyUserScreen.m */; };
+		4A21BF8620FF499300F4430A /* TvCreateAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6420FF499300F4430A /* TvCreateAccount.m */; };
+		4A21BF8720FF499300F4430A /* TVLoginScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6620FF499300F4430A /* TVLoginScreen.m */; };
+		4A21BF8820FF499300F4430A /* VCTradePolicyScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6820FF499300F4430A /* VCTradePolicyScreen.m */; };
+		4A21BF8920FF499300F4430A /* VCNegotiationOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6B20FF499300F4430A /* VCNegotiationOrderHistory.m */; };
+		4A21BF8A20FF499300F4430A /* VCNegotiationScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6C20FF499300F4430A /* VCNegotiationScreen.m */; };
+		4A21BF8B20FF499300F4430A /* VCEnquirySellerAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6E20FF499300F4430A /* VCEnquirySellerAccept.m */; };
+		4A21BF8C20FF499300F4430A /* VCLoadLiveAuction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF6F20FF499300F4430A /* VCLoadLiveAuction.m */; };
+		4A21BF8D20FF499300F4430A /* TVPaymentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF7120FF499300F4430A /* TVPaymentScreen.m */; };
+		4A21BF8E20FF499300F4430A /* VCHomeNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF7320FF499300F4430A /* VCHomeNotifications.m */; };
 		4A2395CC20C90C9800DF33E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2395CB20C90C9800DF33E6 /* AppDelegate.m */; };
 		4A2395D220C90C9800DF33E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2395D020C90C9800DF33E6 /* Main.storyboard */; };
 		4A2395D520C90C9800DF33E6 /* TradologieSeller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A2395D320C90C9800DF33E6 /* TradologieSeller.xcdatamodeld */; };
@@ -57,13 +66,9 @@
 		4A2BADDE20CE81A200AF3F8A /* INSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2BADDD20CE81A200AF3F8A /* INSSearchBar.m */; };
 		4A30851020EDFC9F002E3026 /* SBaseLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30850E20EDFC9E002E3026 /* SBaseLabel.m */; };
 		4A30851320EE1334002E3026 /* SAuctionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851220EE1334002E3026 /* SAuctionDetailCell.m */; };
-		4A30851620EF4F93002E3026 /* VCLoadLiveAuction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851520EF4F93002E3026 /* VCLoadLiveAuction.m */; };
 		4A30851820EF4FF0002E3026 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A30851720EF4FF0002E3026 /* WebKit.framework */; };
 		4A30851C20F0998E002E3026 /* EnquirySellerAcceptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851A20F0998E002E3026 /* EnquirySellerAcceptCell.m */; };
 		4A30851D20F0998E002E3026 /* EnquirySellerAcceptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A30851B20F0998E002E3026 /* EnquirySellerAcceptCell.xib */; };
-		4A30852020F0B624002E3026 /* TVPaymentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30851F20F0B624002E3026 /* TVPaymentScreen.m */; };
-		4A30852320F33A5A002E3026 /* VCContactTradologie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852120F33A5A002E3026 /* VCContactTradologie.m */; };
-		4A30852920F344B4002E3026 /* VCNegotiationOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */; };
 		4A30852C20F345CF002E3026 /* TVCellOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852A20F345CF002E3026 /* TVCellOrderHistory.m */; };
 		4A30852F20F38E01002E3026 /* SellerAuctionOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A30852E20F38E01002E3026 /* SellerAuctionOrderHistory.m */; };
 		4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913E4520C92D2800AEC718 /* OfflineObject.m */; };
@@ -90,9 +95,6 @@
 		4A913EAF20C9376000AEC718 /* Neuropol-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A913EAC20C9376000AEC718 /* Neuropol-Medium.ttf */; };
 		4A913EB020C9376000AEC718 /* NeuropolRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A913EAD20C9376000AEC718 /* NeuropolRegular.ttf */; };
 		4A913EB120C9376000AEC718 /* Neuropol-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A913EAE20C9376000AEC718 /* Neuropol-Bold.ttf */; };
-		4A913EDF20C9377600AEC718 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913EB720C9377500AEC718 /* RootViewController.m */; };
-		4A913EE020C9377600AEC718 /* MenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913EBA20C9377500AEC718 /* MenuViewCell.m */; };
-		4A913EE120C9377600AEC718 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A913EBC20C9377500AEC718 /* MenuViewController.m */; };
 		4A913EF620C9398200AEC718 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A913EF520C9398100AEC718 /* linkedin-sdk.framework */; };
 		609A8B4B582409AC8589B241 /* libPods-TradologieSellerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF62158AD637D6F85C9EA3B /* libPods-TradologieSellerTests.a */; };
 		73780F2BE947DD15C0A5DF21 /* libPods-TradologieSeller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C303D42924A166DA851D0F1 /* libPods-TradologieSeller.a */; };
@@ -118,20 +120,8 @@
 /* Begin PBXFileReference section */
 		02FD802CC950E21847047C07 /* libPods-TradologieSellerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TradologieSellerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		094F61A0170CF08849BBC384 /* Pods-TradologieSeller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradologieSeller.release.xcconfig"; path = "Pods/Target Support Files/Pods-TradologieSeller/Pods-TradologieSeller.release.xcconfig"; sourceTree = "<group>"; };
-		4A04DF0120CA8FAF00054187 /* VCTradePolicyScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCTradePolicyScreen.m; sourceTree = "<group>"; };
-		4A04DF0220CA8FB000054187 /* VCTradePolicyScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCTradePolicyScreen.h; sourceTree = "<group>"; };
 		4A04DF0420CA9BA900054187 /* SellerUserDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerUserDetail.h; sourceTree = "<group>"; };
 		4A04DF0520CA9BA900054187 /* SellerUserDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerUserDetail.m; sourceTree = "<group>"; };
-		4A1C3F1820ECDD0D0030E865 /* TvAlreadyUserScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TvAlreadyUserScreen.m; sourceTree = "<group>"; };
-		4A1C3F1920ECDD0D0030E865 /* TvCreateAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TvCreateAccount.m; sourceTree = "<group>"; };
-		4A1C3F1A20ECDD0D0030E865 /* TvAlreadyUserScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TvAlreadyUserScreen.h; sourceTree = "<group>"; };
-		4A1C3F1C20ECDD0D0030E865 /* TvCreateAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TvCreateAccount.h; sourceTree = "<group>"; };
-		4A1C3F1E20ECDD0E0030E865 /* VCNegotiationScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationScreen.m; sourceTree = "<group>"; };
-		4A1C3F1F20ECDD0E0030E865 /* VCHomeNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCHomeNotifications.h; sourceTree = "<group>"; };
-		4A1C3F2020ECDD0E0030E865 /* VCEnquirySellerAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCEnquirySellerAccept.m; sourceTree = "<group>"; };
-		4A1C3F2120ECDD0E0030E865 /* VCNegotiationScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCNegotiationScreen.h; sourceTree = "<group>"; };
-		4A1C3F2220ECDD0E0030E865 /* VCHomeNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCHomeNotifications.m; sourceTree = "<group>"; };
-		4A1C3F2320ECDD0E0030E865 /* VCEnquirySellerAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCEnquirySellerAccept.h; sourceTree = "<group>"; };
 		4A1C3F2A20ECDE030030E865 /* ViewEnquiryState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEnquiryState.h; sourceTree = "<group>"; };
 		4A1C3F2B20ECDE030030E865 /* ViewEnquiryState.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewEnquiryState.xib; sourceTree = "<group>"; };
 		4A1C3F2C20ECDE030030E865 /* ViewEnquiryState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEnquiryState.m; sourceTree = "<group>"; };
@@ -144,32 +134,12 @@
 		4A21BED920F4B5C900F4430A /* THSegmentedPager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSegmentedPager.h; sourceTree = "<group>"; };
 		4A21BEDA20F4B5C900F4430A /* THSegmentedPager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSegmentedPager.m; sourceTree = "<group>"; };
 		4A21BEDB20F4B5C900F4430A /* THSegmentedPageViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSegmentedPageViewControllerDelegate.h; sourceTree = "<group>"; };
-		4A21BEEE20F71A9100F4430A /* TVLoginScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLoginScreen.h; sourceTree = "<group>"; };
-		4A21BEEF20F71A9200F4430A /* TVLoginScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLoginScreen.m; sourceTree = "<group>"; };
-		4A21BEF220F71AA200F4430A /* TVManageAccountScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVManageAccountScreen.m; sourceTree = "<group>"; };
-		4A21BEF320F71AA200F4430A /* TVCompanyDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCompanyDetails.h; sourceTree = "<group>"; };
-		4A21BEF420F71AA200F4430A /* TVLoginControlScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLoginControlScreen.m; sourceTree = "<group>"; };
-		4A21BEF520F71AA200F4430A /* TVCompanyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCompanyDetails.m; sourceTree = "<group>"; };
-		4A21BEF620F71AA200F4430A /* TVManageAccountScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVManageAccountScreen.h; sourceTree = "<group>"; };
-		4A21BEF720F71AA200F4430A /* TVLoginControlScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLoginControlScreen.h; sourceTree = "<group>"; };
-		4A21BEFB20F71B5200F4430A /* TVSupplierDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVSupplierDocument.h; sourceTree = "<group>"; };
-		4A21BEFC20F71B5200F4430A /* TVSupplierDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVSupplierDocument.m; sourceTree = "<group>"; };
-		4A21BEFE20F74D3400F4430A /* VCAuthorizedPersonal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCAuthorizedPersonal.h; sourceTree = "<group>"; };
-		4A21BEFF20F74D3400F4430A /* VCAuthorizedPersonal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCAuthorizedPersonal.m; sourceTree = "<group>"; };
 		4A21BF0120F74EFE00F4430A /* TVCellAuthorizedPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellAuthorizedPerson.h; sourceTree = "<group>"; };
 		4A21BF0220F74EFE00F4430A /* TVCellAuthorizedPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellAuthorizedPerson.m; sourceTree = "<group>"; };
-		4A21BF0420F86F7E00F4430A /* TVLegalDocumentScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVLegalDocumentScreen.h; sourceTree = "<group>"; };
-		4A21BF0520F86F7E00F4430A /* TVLegalDocumentScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVLegalDocumentScreen.m; sourceTree = "<group>"; };
-		4A21BF0720F882A300F4430A /* TVBankDetailScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVBankDetailScreen.h; sourceTree = "<group>"; };
-		4A21BF0820F882A300F4430A /* TVBankDetailScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVBankDetailScreen.m; sourceTree = "<group>"; };
-		4A21BF0A20F88AB900F4430A /* VCSellingLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCSellingLocation.h; sourceTree = "<group>"; };
-		4A21BF0B20F88AB900F4430A /* VCSellingLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCSellingLocation.m; sourceTree = "<group>"; };
 		4A21BF0D20F8A2AC00F4430A /* TVCellSellingLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellSellingLocation.h; sourceTree = "<group>"; };
 		4A21BF0E20F8A2AC00F4430A /* TVCellSellingLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellSellingLocation.m; sourceTree = "<group>"; };
 		4A21BF1020F9F9AD00F4430A /* SellerLoginControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerLoginControl.h; sourceTree = "<group>"; };
 		4A21BF1120F9F9AD00F4430A /* SellerLoginControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerLoginControl.m; sourceTree = "<group>"; };
-		4A21BF1320FDC4BF00F4430A /* VCBulkRetailScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCBulkRetailScreen.h; sourceTree = "<group>"; };
-		4A21BF1420FDC4BF00F4430A /* VCBulkRetailScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCBulkRetailScreen.m; sourceTree = "<group>"; };
 		4A21BF1E20FDFF7B00F4430A /* TVSellerBulkRetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVSellerBulkRetailCell.h; sourceTree = "<group>"; };
 		4A21BF1F20FDFF7B00F4430A /* TVSellerBulkRetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVSellerBulkRetailCell.m; sourceTree = "<group>"; };
 		4A21BF2020FDFF7B00F4430A /* TVSellerBulkRetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVSellerBulkRetailCell.xib; sourceTree = "<group>"; };
@@ -178,10 +148,59 @@
 		4A21BF2A20FE088A00F4430A /* TVCustomBulkRetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVCustomBulkRetailCell.xib; sourceTree = "<group>"; };
 		4A21BF2D20FE1B4300F4430A /* TVCellBulkRetailList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellBulkRetailList.h; sourceTree = "<group>"; };
 		4A21BF2E20FE1B4300F4430A /* TVCellBulkRetailList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellBulkRetailList.m; sourceTree = "<group>"; };
-		4A21BF3320FF17D800F4430A /* VCMemberShipTypeScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCMemberShipTypeScreen.h; sourceTree = "<group>"; };
-		4A21BF3420FF17D800F4430A /* VCMemberShipTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCMemberShipTypeScreen.m; sourceTree = "<group>"; };
 		4A21BF3620FF200900F4430A /* TVCellMembershipType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellMembershipType.h; sourceTree = "<group>"; };
 		4A21BF3720FF200900F4430A /* TVCellMembershipType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellMembershipType.m; sourceTree = "<group>"; };
+		4A21BF3C20FF3A3B00F4430A /* TVCellMemberShipPlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellMemberShipPlan.h; sourceTree = "<group>"; };
+		4A21BF3D20FF3A3B00F4430A /* TVCellMemberShipPlan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellMemberShipPlan.m; sourceTree = "<group>"; };
+		4A21BF3E20FF3A3B00F4430A /* TVCellMemberShipPlan.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVCellMemberShipPlan.xib; sourceTree = "<group>"; };
+		4A21BF4420FF499300F4430A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4A21BF4520FF499300F4430A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4A21BF4620FF499300F4430A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		4A21BF4720FF499300F4430A /* MenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewCell.m; sourceTree = "<group>"; };
+		4A21BF4820FF499300F4430A /* MenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewCell.h; sourceTree = "<group>"; };
+		4A21BF4920FF499300F4430A /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		4A21BF4A20FF499300F4430A /* VCContactTradologie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCContactTradologie.m; sourceTree = "<group>"; };
+		4A21BF4C20FF499300F4430A /* TVManageAccountScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVManageAccountScreen.m; sourceTree = "<group>"; };
+		4A21BF4D20FF499300F4430A /* TVCompanyDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCompanyDetails.h; sourceTree = "<group>"; };
+		4A21BF4E20FF499300F4430A /* VCBulkRetailScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCBulkRetailScreen.h; sourceTree = "<group>"; };
+		4A21BF4F20FF499300F4430A /* TVLegalDocumentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLegalDocumentScreen.m; sourceTree = "<group>"; };
+		4A21BF5020FF499300F4430A /* TVSupplierDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVSupplierDocument.m; sourceTree = "<group>"; };
+		4A21BF5120FF499300F4430A /* VCSellingLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCSellingLocation.h; sourceTree = "<group>"; };
+		4A21BF5220FF499300F4430A /* TVLoginControlScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLoginControlScreen.m; sourceTree = "<group>"; };
+		4A21BF5320FF499300F4430A /* VCAuthorizedPersonal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCAuthorizedPersonal.h; sourceTree = "<group>"; };
+		4A21BF5420FF499300F4430A /* VCMemberShipTypeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCMemberShipTypeScreen.m; sourceTree = "<group>"; };
+		4A21BF5520FF499300F4430A /* TVBankDetailScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVBankDetailScreen.m; sourceTree = "<group>"; };
+		4A21BF5620FF499300F4430A /* TVCompanyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCompanyDetails.m; sourceTree = "<group>"; };
+		4A21BF5720FF499300F4430A /* TVManageAccountScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVManageAccountScreen.h; sourceTree = "<group>"; };
+		4A21BF5820FF499300F4430A /* TVSupplierDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVSupplierDocument.h; sourceTree = "<group>"; };
+		4A21BF5920FF499300F4430A /* TVLegalDocumentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLegalDocumentScreen.h; sourceTree = "<group>"; };
+		4A21BF5A20FF499300F4430A /* VCBulkRetailScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCBulkRetailScreen.m; sourceTree = "<group>"; };
+		4A21BF5B20FF499300F4430A /* VCMemberShipTypeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCMemberShipTypeScreen.h; sourceTree = "<group>"; };
+		4A21BF5C20FF499300F4430A /* VCAuthorizedPersonal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCAuthorizedPersonal.m; sourceTree = "<group>"; };
+		4A21BF5D20FF499300F4430A /* TVLoginControlScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLoginControlScreen.h; sourceTree = "<group>"; };
+		4A21BF5E20FF499300F4430A /* VCSellingLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCSellingLocation.m; sourceTree = "<group>"; };
+		4A21BF5F20FF499300F4430A /* TVBankDetailScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVBankDetailScreen.h; sourceTree = "<group>"; };
+		4A21BF6020FF499300F4430A /* VCTradePolicyScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCTradePolicyScreen.h; sourceTree = "<group>"; };
+		4A21BF6220FF499300F4430A /* TVLoginScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLoginScreen.h; sourceTree = "<group>"; };
+		4A21BF6320FF499300F4430A /* TvAlreadyUserScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TvAlreadyUserScreen.m; sourceTree = "<group>"; };
+		4A21BF6420FF499300F4430A /* TvCreateAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TvCreateAccount.m; sourceTree = "<group>"; };
+		4A21BF6520FF499300F4430A /* TvAlreadyUserScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TvAlreadyUserScreen.h; sourceTree = "<group>"; };
+		4A21BF6620FF499300F4430A /* TVLoginScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLoginScreen.m; sourceTree = "<group>"; };
+		4A21BF6720FF499300F4430A /* TvCreateAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TvCreateAccount.h; sourceTree = "<group>"; };
+		4A21BF6820FF499300F4430A /* VCTradePolicyScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCTradePolicyScreen.m; sourceTree = "<group>"; };
+		4A21BF6A20FF499300F4430A /* TVPaymentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVPaymentScreen.h; sourceTree = "<group>"; };
+		4A21BF6B20FF499300F4430A /* VCNegotiationOrderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationOrderHistory.m; sourceTree = "<group>"; };
+		4A21BF6C20FF499300F4430A /* VCNegotiationScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationScreen.m; sourceTree = "<group>"; };
+		4A21BF6D20FF499300F4430A /* VCHomeNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCHomeNotifications.h; sourceTree = "<group>"; };
+		4A21BF6E20FF499300F4430A /* VCEnquirySellerAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCEnquirySellerAccept.m; sourceTree = "<group>"; };
+		4A21BF6F20FF499300F4430A /* VCLoadLiveAuction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCLoadLiveAuction.m; sourceTree = "<group>"; };
+		4A21BF7020FF499300F4430A /* VCNegotiationOrderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCNegotiationOrderHistory.h; sourceTree = "<group>"; };
+		4A21BF7120FF499300F4430A /* TVPaymentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVPaymentScreen.m; sourceTree = "<group>"; };
+		4A21BF7220FF499300F4430A /* VCNegotiationScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCNegotiationScreen.h; sourceTree = "<group>"; };
+		4A21BF7320FF499300F4430A /* VCHomeNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCHomeNotifications.m; sourceTree = "<group>"; };
+		4A21BF7420FF499300F4430A /* VCLoadLiveAuction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCLoadLiveAuction.h; sourceTree = "<group>"; };
+		4A21BF7520FF499300F4430A /* VCEnquirySellerAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCEnquirySellerAccept.h; sourceTree = "<group>"; };
+		4A21BF7620FF499300F4430A /* VCContactTradologie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCContactTradologie.h; sourceTree = "<group>"; };
 		4A2395C720C90C9800DF33E6 /* TradologieSeller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradologieSeller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2395CA20C90C9800DF33E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4A2395CB20C90C9800DF33E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -209,18 +228,10 @@
 		4A30850F20EDFC9E002E3026 /* SBaseLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBaseLabel.h; sourceTree = "<group>"; };
 		4A30851120EE1334002E3026 /* SAuctionDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAuctionDetailCell.h; sourceTree = "<group>"; };
 		4A30851220EE1334002E3026 /* SAuctionDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAuctionDetailCell.m; sourceTree = "<group>"; };
-		4A30851420EF4F93002E3026 /* VCLoadLiveAuction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCLoadLiveAuction.h; sourceTree = "<group>"; };
-		4A30851520EF4F93002E3026 /* VCLoadLiveAuction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCLoadLiveAuction.m; sourceTree = "<group>"; };
 		4A30851720EF4FF0002E3026 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4A30851920F0998E002E3026 /* EnquirySellerAcceptCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnquirySellerAcceptCell.h; sourceTree = "<group>"; };
 		4A30851A20F0998E002E3026 /* EnquirySellerAcceptCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnquirySellerAcceptCell.m; sourceTree = "<group>"; };
 		4A30851B20F0998E002E3026 /* EnquirySellerAcceptCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnquirySellerAcceptCell.xib; sourceTree = "<group>"; };
-		4A30851E20F0B623002E3026 /* TVPaymentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVPaymentScreen.h; sourceTree = "<group>"; };
-		4A30851F20F0B624002E3026 /* TVPaymentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVPaymentScreen.m; sourceTree = "<group>"; };
-		4A30852120F33A5A002E3026 /* VCContactTradologie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCContactTradologie.m; sourceTree = "<group>"; };
-		4A30852220F33A5A002E3026 /* VCContactTradologie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCContactTradologie.h; sourceTree = "<group>"; };
-		4A30852720F344B4002E3026 /* VCNegotiationOrderHistory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCNegotiationOrderHistory.h; sourceTree = "<group>"; };
-		4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationOrderHistory.m; sourceTree = "<group>"; };
 		4A30852A20F345CF002E3026 /* TVCellOrderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCellOrderHistory.m; sourceTree = "<group>"; };
 		4A30852B20F345CF002E3026 /* TVCellOrderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCellOrderHistory.h; sourceTree = "<group>"; };
 		4A30852D20F38E01002E3026 /* SellerAuctionOrderHistory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerAuctionOrderHistory.h; sourceTree = "<group>"; };
@@ -272,12 +283,6 @@
 		4A913EAC20C9376000AEC718 /* Neuropol-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neuropol-Medium.ttf"; sourceTree = "<group>"; };
 		4A913EAD20C9376000AEC718 /* NeuropolRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NeuropolRegular.ttf; sourceTree = "<group>"; };
 		4A913EAE20C9376000AEC718 /* Neuropol-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neuropol-Bold.ttf"; sourceTree = "<group>"; };
-		4A913EB720C9377500AEC718 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4A913EB820C9377500AEC718 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		4A913EB920C9377500AEC718 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		4A913EBA20C9377500AEC718 /* MenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewCell.m; sourceTree = "<group>"; };
-		4A913EBB20C9377500AEC718 /* MenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewCell.h; sourceTree = "<group>"; };
-		4A913EBC20C9377500AEC718 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		4A913EF520C9398100AEC718 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		4C303D42924A166DA851D0F1 /* libPods-TradologieSeller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TradologieSeller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74CFC34C0D0287FBBEEAA070 /* Pods-TradologieSellerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradologieSellerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TradologieSellerTests/Pods-TradologieSellerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -333,38 +338,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		4A1C3F1620ECDD0D0030E865 /* Login Screen */ = {
-			isa = PBXGroup;
-			children = (
-				4A21BEEE20F71A9100F4430A /* TVLoginScreen.h */,
-				4A21BEEF20F71A9200F4430A /* TVLoginScreen.m */,
-				4A1C3F1C20ECDD0D0030E865 /* TvCreateAccount.h */,
-				4A1C3F1920ECDD0D0030E865 /* TvCreateAccount.m */,
-				4A1C3F1A20ECDD0D0030E865 /* TvAlreadyUserScreen.h */,
-				4A1C3F1820ECDD0D0030E865 /* TvAlreadyUserScreen.m */,
-			);
-			path = "Login Screen";
-			sourceTree = "<group>";
-		};
-		4A1C3F1D20ECDD0E0030E865 /* Home Screen */ = {
-			isa = PBXGroup;
-			children = (
-				4A1C3F1F20ECDD0E0030E865 /* VCHomeNotifications.h */,
-				4A1C3F2220ECDD0E0030E865 /* VCHomeNotifications.m */,
-				4A1C3F2120ECDD0E0030E865 /* VCNegotiationScreen.h */,
-				4A1C3F1E20ECDD0E0030E865 /* VCNegotiationScreen.m */,
-				4A1C3F2320ECDD0E0030E865 /* VCEnquirySellerAccept.h */,
-				4A1C3F2020ECDD0E0030E865 /* VCEnquirySellerAccept.m */,
-				4A30851420EF4F93002E3026 /* VCLoadLiveAuction.h */,
-				4A30851520EF4F93002E3026 /* VCLoadLiveAuction.m */,
-				4A30851E20F0B623002E3026 /* TVPaymentScreen.h */,
-				4A30851F20F0B624002E3026 /* TVPaymentScreen.m */,
-				4A30852720F344B4002E3026 /* VCNegotiationOrderHistory.h */,
-				4A30852820F344B4002E3026 /* VCNegotiationOrderHistory.m */,
-			);
-			path = "Home Screen";
-			sourceTree = "<group>";
-		};
 		4A21BED520F4B5C900F4430A /* THSegmentedPager */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,38 +365,105 @@
 			path = "Custom Class";
 			sourceTree = "<group>";
 		};
-		4A21BEF120F71AA200F4430A /* ManageAccountScreen */ = {
+		4A21BF4120FF499300F4430A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4A21BEF720F71AA200F4430A /* TVLoginControlScreen.h */,
-				4A21BEF420F71AA200F4430A /* TVLoginControlScreen.m */,
-				4A21BEF620F71AA200F4430A /* TVManageAccountScreen.h */,
-				4A21BEF220F71AA200F4430A /* TVManageAccountScreen.m */,
-				4A21BEF320F71AA200F4430A /* TVCompanyDetails.h */,
-				4A21BEF520F71AA200F4430A /* TVCompanyDetails.m */,
-				4A21BEFB20F71B5200F4430A /* TVSupplierDocument.h */,
-				4A21BEFC20F71B5200F4430A /* TVSupplierDocument.m */,
-				4A21BEFE20F74D3400F4430A /* VCAuthorizedPersonal.h */,
-				4A21BEFF20F74D3400F4430A /* VCAuthorizedPersonal.m */,
-				4A21BF0420F86F7E00F4430A /* TVLegalDocumentScreen.h */,
-				4A21BF0520F86F7E00F4430A /* TVLegalDocumentScreen.m */,
-				4A21BF0720F882A300F4430A /* TVBankDetailScreen.h */,
-				4A21BF0820F882A300F4430A /* TVBankDetailScreen.m */,
-				4A21BF0A20F88AB900F4430A /* VCSellingLocation.h */,
-				4A21BF0B20F88AB900F4430A /* VCSellingLocation.m */,
-				4A21BF1320FDC4BF00F4430A /* VCBulkRetailScreen.h */,
-				4A21BF1420FDC4BF00F4430A /* VCBulkRetailScreen.m */,
-				4A21BF3320FF17D800F4430A /* VCMemberShipTypeScreen.h */,
-				4A21BF3420FF17D800F4430A /* VCMemberShipTypeScreen.m */,
+				4A21BF4220FF499300F4430A /* SlideMenu */,
+				4A21BF4B20FF499300F4430A /* ManageAccountScreen */,
+				4A21BF6120FF499300F4430A /* Login Screen */,
+				4A21BF6920FF499300F4430A /* Home Screen */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4A21BF4220FF499300F4430A /* SlideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4A21BF7620FF499300F4430A /* VCContactTradologie.h */,
+				4A21BF4A20FF499300F4430A /* VCContactTradologie.m */,
+				4A21BF6020FF499300F4430A /* VCTradePolicyScreen.h */,
+				4A21BF6820FF499300F4430A /* VCTradePolicyScreen.m */,
+				4A21BF4320FF499300F4430A /* MenuRootViewController */,
+				4A21BF4720FF499300F4430A /* MenuViewCell.m */,
+				4A21BF4820FF499300F4430A /* MenuViewCell.h */,
+				4A21BF4620FF499300F4430A /* MenuViewController.h */,
+				4A21BF4920FF499300F4430A /* MenuViewController.m */,
+			);
+			path = SlideMenu;
+			sourceTree = "<group>";
+		};
+		4A21BF4320FF499300F4430A /* MenuRootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A21BF4520FF499300F4430A /* RootViewController.h */,
+				4A21BF4420FF499300F4430A /* RootViewController.m */,
+			);
+			path = MenuRootViewController;
+			sourceTree = "<group>";
+		};
+		4A21BF4B20FF499300F4430A /* ManageAccountScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4A21BF5D20FF499300F4430A /* TVLoginControlScreen.h */,
+				4A21BF5220FF499300F4430A /* TVLoginControlScreen.m */,
+				4A21BF5720FF499300F4430A /* TVManageAccountScreen.h */,
+				4A21BF4C20FF499300F4430A /* TVManageAccountScreen.m */,
+				4A21BF4D20FF499300F4430A /* TVCompanyDetails.h */,
+				4A21BF5620FF499300F4430A /* TVCompanyDetails.m */,
+				4A21BF5920FF499300F4430A /* TVLegalDocumentScreen.h */,
+				4A21BF4F20FF499300F4430A /* TVLegalDocumentScreen.m */,
+				4A21BF5820FF499300F4430A /* TVSupplierDocument.h */,
+				4A21BF5020FF499300F4430A /* TVSupplierDocument.m */,
+				4A21BF5320FF499300F4430A /* VCAuthorizedPersonal.h */,
+				4A21BF5C20FF499300F4430A /* VCAuthorizedPersonal.m */,
+				4A21BF5420FF499300F4430A /* VCMemberShipTypeScreen.m */,
+				4A21BF5B20FF499300F4430A /* VCMemberShipTypeScreen.h */,
+				4A21BF5120FF499300F4430A /* VCSellingLocation.h */,
+				4A21BF5E20FF499300F4430A /* VCSellingLocation.m */,
+				4A21BF4E20FF499300F4430A /* VCBulkRetailScreen.h */,
+				4A21BF5A20FF499300F4430A /* VCBulkRetailScreen.m */,
+				4A21BF5520FF499300F4430A /* TVBankDetailScreen.m */,
+				4A21BF5F20FF499300F4430A /* TVBankDetailScreen.h */,
 			);
 			path = ManageAccountScreen;
+			sourceTree = "<group>";
+		};
+		4A21BF6120FF499300F4430A /* Login Screen */ = {
+			isa = PBXGroup;
+			children = (
+				4A21BF6220FF499300F4430A /* TVLoginScreen.h */,
+				4A21BF6620FF499300F4430A /* TVLoginScreen.m */,
+				4A21BF6720FF499300F4430A /* TvCreateAccount.h */,
+				4A21BF6420FF499300F4430A /* TvCreateAccount.m */,
+				4A21BF6520FF499300F4430A /* TvAlreadyUserScreen.h */,
+				4A21BF6320FF499300F4430A /* TvAlreadyUserScreen.m */,
+			);
+			path = "Login Screen";
+			sourceTree = "<group>";
+		};
+		4A21BF6920FF499300F4430A /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				4A21BF6D20FF499300F4430A /* VCHomeNotifications.h */,
+				4A21BF7320FF499300F4430A /* VCHomeNotifications.m */,
+				4A21BF7020FF499300F4430A /* VCNegotiationOrderHistory.h */,
+				4A21BF6B20FF499300F4430A /* VCNegotiationOrderHistory.m */,
+				4A21BF7220FF499300F4430A /* VCNegotiationScreen.h */,
+				4A21BF6C20FF499300F4430A /* VCNegotiationScreen.m */,
+				4A21BF7520FF499300F4430A /* VCEnquirySellerAccept.h */,
+				4A21BF6E20FF499300F4430A /* VCEnquirySellerAccept.m */,
+				4A21BF6A20FF499300F4430A /* TVPaymentScreen.h */,
+				4A21BF7120FF499300F4430A /* TVPaymentScreen.m */,
+				4A21BF7420FF499300F4430A /* VCLoadLiveAuction.h */,
+				4A21BF6F20FF499300F4430A /* VCLoadLiveAuction.m */,
+			);
+			path = "Home Screen";
 			sourceTree = "<group>";
 		};
 		4A2395BE20C90C9800DF33E6 = {
 			isa = PBXGroup;
 			children = (
 				4A2395C920C90C9800DF33E6 /* TradologieSeller */,
-				4A913EB220C9377500AEC718 /* View Controllers */,
 				4A2395E520C90C9800DF33E6 /* TradologieSellerTests */,
 				4A2395F020C90C9800DF33E6 /* TradologieSellerUITests */,
 				4A2395C820C90C9800DF33E6 /* Products */,
@@ -457,11 +497,12 @@
 				4A2395CA20C90C9800DF33E6 /* AppDelegate.h */,
 				4A2395CB20C90C9800DF33E6 /* AppDelegate.m */,
 				4A2395D020C90C9800DF33E6 /* Main.storyboard */,
-				4A2395D620C90C9800DF33E6 /* Assets.xcassets */,
 				4A2395D820C90C9800DF33E6 /* LaunchScreen.storyboard */,
+				4A2395D320C90C9800DF33E6 /* TradologieSeller.xcdatamodeld */,
+				4A2395D620C90C9800DF33E6 /* Assets.xcassets */,
 				4A2395DB20C90C9800DF33E6 /* Info.plist */,
 				4A2395DC20C90C9800DF33E6 /* main.m */,
-				4A2395D320C90C9800DF33E6 /* TradologieSeller.xcdatamodeld */,
+				4A21BF4120FF499300F4430A /* View Controllers */,
 			);
 			path = TradologieSeller;
 			sourceTree = "<group>";
@@ -515,6 +556,9 @@
 				4A21BF2E20FE1B4300F4430A /* TVCellBulkRetailList.m */,
 				4A21BF3620FF200900F4430A /* TVCellMembershipType.h */,
 				4A21BF3720FF200900F4430A /* TVCellMembershipType.m */,
+				4A21BF3C20FF3A3B00F4430A /* TVCellMemberShipPlan.h */,
+				4A21BF3D20FF3A3B00F4430A /* TVCellMemberShipPlan.m */,
+				4A21BF3E20FF3A3B00F4430A /* TVCellMemberShipPlan.xib */,
 			);
 			path = "Custom Cell ";
 			sourceTree = "<group>";
@@ -628,42 +672,6 @@
 				4A913EAE20C9376000AEC718 /* Neuropol-Bold.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		4A913EB220C9377500AEC718 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				4A21BEF120F71AA200F4430A /* ManageAccountScreen */,
-				4A1C3F1D20ECDD0E0030E865 /* Home Screen */,
-				4A1C3F1620ECDD0D0030E865 /* Login Screen */,
-				4A913EB520C9377500AEC718 /* SlideMenu */,
-				4A30852220F33A5A002E3026 /* VCContactTradologie.h */,
-				4A30852120F33A5A002E3026 /* VCContactTradologie.m */,
-				4A04DF0220CA8FB000054187 /* VCTradePolicyScreen.h */,
-				4A04DF0120CA8FAF00054187 /* VCTradePolicyScreen.m */,
-			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		4A913EB520C9377500AEC718 /* SlideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				4A913EB620C9377500AEC718 /* MenuRootViewController */,
-				4A913EB920C9377500AEC718 /* MenuViewController.h */,
-				4A913EBC20C9377500AEC718 /* MenuViewController.m */,
-				4A913EBB20C9377500AEC718 /* MenuViewCell.h */,
-				4A913EBA20C9377500AEC718 /* MenuViewCell.m */,
-			);
-			path = SlideMenu;
-			sourceTree = "<group>";
-		};
-		4A913EB620C9377500AEC718 /* MenuRootViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4A913EB820C9377500AEC718 /* RootViewController.h */,
-				4A913EB720C9377500AEC718 /* RootViewController.m */,
-			);
-			path = MenuRootViewController;
 			sourceTree = "<group>";
 		};
 		4A913EF420C9398100AEC718 /* LinkedInFrameWork */ = {
@@ -809,6 +817,7 @@
 				4A21BF2C20FE088A00F4430A /* TVCustomBulkRetailCell.xib in Resources */,
 				4A2395DA20C90C9800DF33E6 /* LaunchScreen.storyboard in Resources */,
 				4A913EB120C9376000AEC718 /* Neuropol-Bold.ttf in Resources */,
+				4A21BF4020FF3A3B00F4430A /* TVCellMemberShipPlan.xib in Resources */,
 				4A1C3F2D20ECDE040030E865 /* ViewEnquiryState.xib in Resources */,
 				4A21BF2220FDFF7B00F4430A /* TVSellerBulkRetailCell.xib in Resources */,
 				4A913EAF20C9376000AEC718 /* Neuropol-Medium.ttf in Resources */,
@@ -995,74 +1004,75 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A21BF3F20FF3A3B00F4430A /* TVCellMemberShipPlan.m in Sources */,
+				4A21BF8B20FF499300F4430A /* VCEnquirySellerAccept.m in Sources */,
 				4A30852F20F38E01002E3026 /* SellerAuctionOrderHistory.m in Sources */,
-				4A21BF0920F882A300F4430A /* TVBankDetailScreen.m in Sources */,
-				4A21BF0C20F88AB900F4430A /* VCSellingLocation.m in Sources */,
+				4A21BF8120FF499300F4430A /* TVCompanyDetails.m in Sources */,
 				4A913E9820C92D2D00AEC718 /* Validation.m in Sources */,
-				4A913EE120C9377600AEC718 /* MenuViewController.m in Sources */,
+				4A21BF8E20FF499300F4430A /* VCHomeNotifications.m in Sources */,
 				4A21BF0F20F8A2AC00F4430A /* TVCellSellingLocation.m in Sources */,
 				4A913EA320C92D2D00AEC718 /* UIButton+Extra.m in Sources */,
-				4A21BF0620F86F7E00F4430A /* TVLegalDocumentScreen.m in Sources */,
 				4A913EA620C92D2D00AEC718 /* UINavigationBar+Extra.m in Sources */,
-				4A21BEF920F71AA200F4430A /* TVLoginControlScreen.m in Sources */,
 				4A265F6720CBF569007B44B8 /* SellerAuctionList.m in Sources */,
-				4A913EE020C9377600AEC718 /* MenuViewCell.m in Sources */,
-				4A21BF1520FDC4BF00F4430A /* VCBulkRetailScreen.m in Sources */,
 				4A21BEDE20F4B5C900F4430A /* THSegmentedPager.m in Sources */,
 				4A30852C20F345CF002E3026 /* TVCellOrderHistory.m in Sources */,
-				4A1C3F2920ECDD0E0030E865 /* VCHomeNotifications.m in Sources */,
+				4A21BF8320FF499300F4430A /* VCAuthorizedPersonal.m in Sources */,
 				4A1C3F3320ECEE0B0030E865 /* SellerAuctionDetail.m in Sources */,
 				4A913E9020C92D2D00AEC718 /* MBDataBaseHandler.m in Sources */,
-				4A21BF0020F74D3400F4430A /* VCAuthorizedPersonal.m in Sources */,
+				4A21BF7920FF499300F4430A /* MenuViewController.m in Sources */,
+				4A21BF8920FF499300F4430A /* VCNegotiationOrderHistory.m in Sources */,
+				4A21BF8D20FF499300F4430A /* TVPaymentScreen.m in Sources */,
+				4A21BF8220FF499300F4430A /* VCBulkRetailScreen.m in Sources */,
 				4A913E9F20C92D2D00AEC718 /* MBErrorUtility.m in Sources */,
 				4A913EA120C92D2D00AEC718 /* UINavigationItem+Extra.m in Sources */,
-				4A21BEF820F71AA200F4430A /* TVManageAccountScreen.m in Sources */,
 				4A21BF0320F74EFE00F4430A /* TVCellAuthorizedPerson.m in Sources */,
 				4A30851320EE1334002E3026 /* SAuctionDetailCell.m in Sources */,
-				4A04DF0320CA8FB000054187 /* VCTradePolicyScreen.m in Sources */,
-				4A1C3F2520ECDD0E0030E865 /* TvCreateAccount.m in Sources */,
-				4A1C3F2720ECDD0E0030E865 /* VCNegotiationScreen.m in Sources */,
 				4A1C3F2E20ECDE040030E865 /* ViewEnquiryState.m in Sources */,
 				4A04DF0620CA9BA900054187 /* SellerUserDetail.m in Sources */,
 				4A21BF2B20FE088A00F4430A /* TVCustomBulkRetailCell.m in Sources */,
 				4A913EA820C92D2D00AEC718 /* UITextField+Extra.m in Sources */,
 				4A265F6020CBE36C007B44B8 /* TvCellEnquiry.m in Sources */,
+				4A21BF8C20FF499300F4430A /* VCLoadLiveAuction.m in Sources */,
 				4A2395CC20C90C9800DF33E6 /* AppDelegate.m in Sources */,
-				4A21BEF020F71A9200F4430A /* TVLoginScreen.m in Sources */,
+				4A21BF7A20FF499300F4430A /* VCContactTradologie.m in Sources */,
 				4A913EA420C92D2D00AEC718 /* NSDate+Extra.m in Sources */,
-				4A30852320F33A5A002E3026 /* VCContactTradologie.m in Sources */,
 				4A21BF2F20FE1B4300F4430A /* TVCellBulkRetailList.m in Sources */,
 				4A21BF3820FF200900F4430A /* TVCellMembershipType.m in Sources */,
 				4A2BADDE20CE81A200AF3F8A /* INSSearchBar.m in Sources */,
 				4A2395DD20C90C9800DF33E6 /* main.m in Sources */,
-				4A30852020F0B624002E3026 /* TVPaymentScreen.m in Sources */,
 				4A21BF2120FDFF7B00F4430A /* TVSellerBulkRetailCell.m in Sources */,
 				4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */,
 				4A913E9A20C92D2D00AEC718 /* CommonUtility.m in Sources */,
 				4A913EA520C92D2D00AEC718 /* NSString+MB.m in Sources */,
-				4A21BEFA20F71AA200F4430A /* TVCompanyDetails.m in Sources */,
+				4A21BF7F20FF499300F4430A /* VCMemberShipTypeScreen.m in Sources */,
+				4A21BF8A20FF499300F4430A /* VCNegotiationScreen.m in Sources */,
 				4A913E9920C92D2D00AEC718 /* FRHyperLabel.m in Sources */,
-				4A913EDF20C9377600AEC718 /* RootViewController.m in Sources */,
 				4A913EAA20C92D2D00AEC718 /* EveryPage.m in Sources */,
-				4A30851620EF4F93002E3026 /* VCLoadLiveAuction.m in Sources */,
-				4A1C3F2420ECDD0E0030E865 /* TvAlreadyUserScreen.m in Sources */,
+				4A21BF8020FF499300F4430A /* TVBankDetailScreen.m in Sources */,
 				4A913E9D20C92D2D00AEC718 /* MBAPIManager.m in Sources */,
-				4A21BEFD20F71B5200F4430A /* TVSupplierDocument.m in Sources */,
+				4A21BF8420FF499300F4430A /* VCSellingLocation.m in Sources */,
 				4A30851020EDFC9F002E3026 /* SBaseLabel.m in Sources */,
 				4A265F2520CB97DA007B44B8 /* DashBoardNotification.m in Sources */,
-				4A21BF3520FF17D800F4430A /* VCMemberShipTypeScreen.m in Sources */,
 				4A913EA020C92D2D00AEC718 /* SharedManager.m in Sources */,
+				4A21BF7D20FF499300F4430A /* TVSupplierDocument.m in Sources */,
 				4A913EA920C92D2D00AEC718 /* NSDictionary+CheckNullValue.m in Sources */,
 				4A913E9C20C92D2D00AEC718 /* FTPopOverMenu.m in Sources */,
+				4A21BF8820FF499300F4430A /* VCTradePolicyScreen.m in Sources */,
+				4A21BF7E20FF499300F4430A /* TVLoginControlScreen.m in Sources */,
+				4A21BF8620FF499300F4430A /* TvCreateAccount.m in Sources */,
 				4A2395D520C90C9800DF33E6 /* TradologieSeller.xcdatamodeld in Sources */,
+				4A21BF8520FF499300F4430A /* TvAlreadyUserScreen.m in Sources */,
+				4A21BF8720FF499300F4430A /* TVLoginScreen.m in Sources */,
+				4A21BF7C20FF499300F4430A /* TVLegalDocumentScreen.m in Sources */,
 				4A913EA720C92D2D00AEC718 /* UIView+Extra.m in Sources */,
 				4A30851C20F0998E002E3026 /* EnquirySellerAcceptCell.m in Sources */,
 				4A913E9B20C92D2D00AEC718 /* ISMessages.m in Sources */,
+				4A21BF7B20FF499300F4430A /* TVManageAccountScreen.m in Sources */,
+				4A21BF7720FF499300F4430A /* RootViewController.m in Sources */,
 				4A913E9E20C92D2D00AEC718 /* MBHTTPClient.m in Sources */,
 				4A21BF1220F9F9AD00F4430A /* SellerLoginControl.m in Sources */,
+				4A21BF7820FF499300F4430A /* MenuViewCell.m in Sources */,
 				4A913EA220C92D2D00AEC718 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
-				4A30852920F344B4002E3026 /* VCNegotiationOrderHistory.m in Sources */,
-				4A1C3F2820ECDD0E0030E865 /* VCEnquirySellerAccept.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

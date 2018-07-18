@@ -13,4 +13,5 @@
 -(void)SetDefaultTextfieldBackGroundView;
 -(void)SetDefaultBackGroundView;
 -(void)SetDefaultShadowBackGround;
+-(void)setShadowBackGroundwitColor:(UIColor *)color;
 @end

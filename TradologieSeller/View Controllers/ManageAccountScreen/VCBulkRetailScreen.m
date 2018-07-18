@@ -79,7 +79,7 @@
     myScrollView.contentSize = CGSizeMake(headerTotalWidth, 0);
     [_contentView addSubview:myScrollView];
     
-    [self.tblBulkRetail registerNib:[UINib nibWithNibName:@"TVSellerBulkRetailCell" bundle:nil] forCellReuseIdentifier:@"CellBulkRetailIdentifier"];
+    [self.tblBulkRetail registerNib:[UINib nibWithNibName:@"TVSellerBulkRetailCell" bundle:nil] forCellReuseIdentifier:CELL_BULK_RETAIL_ID];
     
     [self.tblBulkRetail registerNib:[UINib nibWithNibName:@"TVCustomBulkRetailCell" bundle:nil] forCellReuseIdentifier:@"CellEnableIdentifier"];
    
