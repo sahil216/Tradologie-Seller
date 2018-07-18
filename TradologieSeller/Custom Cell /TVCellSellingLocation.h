@@ -30,5 +30,6 @@
 
 
 - (void)ConfigureSellingLocationInfoCellData:(NSString *)strTittle withPlaceholder:(NSString *)strPlaceHolder;
+- (void)ConfigureSellingLocationListWithData:(NSInteger)Count withData:(id)locationListData;
 
 @end

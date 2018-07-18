@@ -346,9 +346,9 @@
         SellerAuctionDetail *objData = [MBDataBaseHandler getSellerAuctionDetailData];
 
         NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
-        [dicParams setObject:objseller.detail.APIVerificationCode forKey:@"Token"];
+        [dicParams setObject:objseller.APIVerificationCode forKey:@"Token"];
         [dicParams setObject:objData.AuctionID forKey:@"AuctionID"];
-        [dicParams setObject:objseller.detail.VendorID forKey:@"VendorID"];
+        [dicParams setObject:objseller.VendorID forKey:@"VendorID"];
         [dicParams setObject:strParticipate forKey:@"ParticipateStatus"];
         [dicParams setObject:strTextValue forKey:@"ParticipateQty"];
         [dicParams setObject:strTotalAmt forKey:@"AuctionCharges"];

@@ -207,8 +207,8 @@
 {
     SellerUserDetail *objSellerUser = [MBDataBaseHandler getSellerUserDetailData];
     NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
-    [dicParams setObject:objSellerUser.detail.APIVerificationCode forKey:@"Token"];
-    [dicParams setObject:objSellerUser.detail.VendorID forKey:@"VendorID"];
+    [dicParams setObject:objSellerUser.APIVerificationCode forKey:@"Token"];
+    [dicParams setObject:objSellerUser.VendorID forKey:@"VendorID"];
     [dicParams setObject:@"" forKey:@"FilterAuction"];
 
     if (SharedObject.isNetAvailable)

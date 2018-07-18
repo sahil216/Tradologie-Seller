@@ -26,5 +26,6 @@ typedef NS_ENUM(NSUInteger, RootController)
 
 
 - (void)setRootViewController:(UIViewController *)controller;
++(void)getManageAccountScreenWithPagination:(UIStoryboard *)Mainstory withNavigation:(UINavigationController *)navigation;
 
 @end

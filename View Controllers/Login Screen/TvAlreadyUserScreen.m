@@ -8,14 +8,13 @@
 
 #import "TvAlreadyUserScreen.h"
 #import "RootViewController.h"
-#import "CommonUtility.h"
 #import "AppDelegate.h"
-#import "MBAPIManager.h"
-#import "SharedManager.h"
 #import "AppConstant.h"
-#import "MBDataBaseHandler.h"
 #import "TVLoginScreen.h"
-
+#import "CommonUtility.h"
+#import "MBAPIManager.h"
+#import "MBDataBaseHandler.h"
+#import "SharedManager.h"
 
 @interface TvAlreadyUserScreen ()
 {
@@ -149,11 +148,11 @@
 
     BOOL isValidate=TRUE;
     
-    [txtUserID setText:@"rswsteelmzn@gmail.com"];
-    [txtPassword setText:@"reset"];
-
-//    [txtUserID setText:@"tiwarieco@gmail.com"];
+//    [txtUserID setText:@"rswsteelmzn@gmail.com"];
 //    [txtPassword setText:@"reset"];
+
+    [txtUserID setText:@"demo326@gmail.com"];
+    [txtPassword setText:@"qwe123"];
     
     
     if ([Validation validateTextField:txtUserID])
@@ -188,7 +187,7 @@
             [dic setValue:FIREBASE_TOKEN forKey:@"FcmToken"];
             [dic setValue:@"IOS" forKey:@"OsType"];
             [dic setValue:UNIQUE_IDENTIFIER forKey:@"DeviceId"];
-            
+
             MBCall_LoginUserUsing(dic, ^(id response, NSString *error, BOOL status)
             {
                 NSError* Error;
@@ -196,26 +195,23 @@
                 if (status && [[response valueForKey:@"success"]isEqual:@1])
                 {
                     [CommonUtility HideProgress];
-                    NSMutableDictionary *dicUserDetail = [[NSMutableDictionary alloc]init];
-                    dicUserDetail = [[response valueForKey:@"detail"] mutableCopy];
                     
-                    SellerUserDetail *detail =[[SellerUserDetail alloc]initWithDictionary:response error:&Error];
-                    [MBDataBaseHandler saveSellerUserDetailData:detail];
+                    SellerUserDetail *objSellerdetail = [[SellerUserDetail alloc]initWithDictionary:[response valueForKey:@"detail"] error:&Error];
+                    [MBDataBaseHandler saveSellerUserDetailData:objSellerdetail];
 
-                    if (![[dicUserDetail valueForKey:@"RegistrationStatus"] isEqualToString:@"Complete"])
+//                    RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+//                    AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//                    [delegateClass setRootViewController:rootVC];
+                    if ([objSellerdetail.RegistrationStatus isEqualToString:@"Complete"])
                     {
-//                        TVCompanyRegister *objCompanyScreen = GET_VIEW_CONTROLLER(@"TVCompanyRegister");
-//                        [self.navigationController pushViewController:objCompanyScreen animated:YES];
-
-                    }
-                    else
-                    {
-                        NSLog(@"response == >%@",response);
-                        
                         RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
                         AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
                         [delegateClass setRootViewController:rootVC];
-
+                        
+                    }
+                    else
+                    {
+                        [AppDelegate getManageAccountScreenWithPagination:self.storyboard withNavigation:self.navigationController];
                     }
                 }
                 else{

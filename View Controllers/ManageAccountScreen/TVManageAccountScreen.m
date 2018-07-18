@@ -10,6 +10,9 @@
 #import "Constant.h"
 #import "AppConstant.h"
 #import "CommonUtility.h"
+#import "MBAPIManager.h"
+#import "MBDataBaseHandler.h"
+#import "SharedManager.h"
 
 @interface TVManageAccountScreen ()<THSegmentedPageViewControllerDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -32,7 +35,7 @@
     [txtAreaOfOperation setDefaultTextfieldStyleWithPlaceHolder:@"Your Area Of Operation" withTag:0];
     [txtYearOfEstablish setDefaultTextfieldStyleWithPlaceHolder:@"Your Year of Establishment" withTag:0];
     [txtCertifications setDefaultTextfieldStyleWithPlaceHolder:@"Your Certifications" withTag:0];
-
+    
     UITapGestureRecognizer *recoganize = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapHandle:)];
     [recoganize setNumberOfTapsRequired:1];
     [self.tableView addGestureRecognizer:recoganize];
@@ -47,9 +50,9 @@
     [btnVendorUpload.titleLabel setFont:IS_IPHONE5?UI_DEFAULT_FONT_MEDIUM(18): UI_DEFAULT_FONT_MEDIUM(20)];
     [btnVendorUpload addTarget:self action:@selector(btnCameraVendorUpload:) forControlEvents:UIControlEventTouchUpInside];
     [btnEBrochure addTarget:self action:@selector(btnCameraEBrochure:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     isfromVendor = NO;
-
+    [self getSupplierInformationServiceCalled];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,6 +76,14 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
+    SellerGetInformation *objSellerGetInfo = [MBDataBaseHandler getSellerGetInformationData];
+    [txtVendorName setText:objSellerGetInfo.VendorName];
+    [txtDescriptions setText:objSellerGetInfo.VendorDescription];
+    [txtAnnualTurnOver setText:objSellerGetInfo.AnnualTurnOver];
+    [txtCertifications setText:objSellerGetInfo.Certifications];
+    [txtAreaOfOperation setText:objSellerGetInfo.AreaOfOperation];
+    [txtYearOfEstablish setText:objSellerGetInfo.YearOfEstablishment];
+    [lblVendorCode setText:[NSString stringWithFormat:@"Vendor Code :- %@",objSellerGetInfo.VendorCode]];
 }
 
 /******************************************************************************************************************/
@@ -103,6 +114,46 @@
 /******************************************************************************************************************/
 -(IBAction)btnSubmitVendorInformation:(UIButton *)sender
 {
+    SellerUserDetail *objSeller = [MBDataBaseHandler getSellerUserDetailData];
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:objSeller.APIVerificationCode forKey:@"Token"];
+    [dic setValue:objSeller.VendorID forKey:@"VendorID"];
+    [dic setValue:txtVendorName.text forKey:@"VendorName"];
+    [dic setValue:txtAnnualTurnOver.text forKey:@"AnnualTurnover"];
+    [dic setValue:txtYearOfEstablish.text forKey:@"YearOfEstablishment"];
+    [dic setValue:txtCertifications.text forKey:@"Certifications"];
+    [dic setValue:txtAreaOfOperation.text forKey:@"AreaOfOperation"];
+    [dic setValue:txtDescriptions.text forKey:@"VendorDscription"];
+
+    if (SharedObject.isNetAvailable)
+    {
+        [CommonUtility showProgressWithMessage:@"Please Wait...!"];
+        
+        MBCall_SaveSupplierInformationAPI(dic, ^(id response, NSString *error, BOOL status)
+        {
+            [CommonUtility HideProgress];
+            NSError* Error;
+            
+            if (status && [[response valueForKey:@"success"]  isEqual: @1])
+            {
+                SellerGetInformation *objSellerGetInfo = [[SellerGetInformation alloc]initWithDictionary:[response valueForKey:@"detail"] error:&Error];
+                objSellerGetInfo.RegistrationStatus = [response valueForKey:@"RegistrationStatus"];
+                [MBDataBaseHandler saveSellerGetInformationData:objSellerGetInfo];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
+            }
+        });
+    }
+    else
+    {
+        [CommonUtility HideProgress];
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+    }
     
 }
 -(IBAction)btnCameraVendorUpload:(UIButton *)sender
@@ -184,5 +235,45 @@
         }
     }
     
+}
+/******************************************************************************************************************/
+#pragma mark ❉===❉=== GET SUPPLIER INFORMATION SERVICE CALLED ===❉===❉
+/******************************************************************************************************************/
+-(void)getSupplierInformationServiceCalled
+{
+    SellerUserDetail *objSeller = [MBDataBaseHandler getSellerUserDetailData];
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:objSeller.APIVerificationCode forKey:@"Token"];
+    [dic setValue:objSeller.VendorID forKey:@"VendorID"];
+    
+    if (SharedObject.isNetAvailable)
+    {
+        [CommonUtility showProgressWithMessage:@"Please Wait...!"];
+        
+        MBCall_GetSupplierInformationAPI(dic, ^(id response, NSString *error, BOOL status)
+        {
+            [CommonUtility HideProgress];
+            NSError* Error;
+            
+            if (status && [[response valueForKey:@"success"]  isEqual: @1])
+            {
+                SellerGetInformation *objSellerGetInfo = [[SellerGetInformation alloc]initWithDictionary:[response valueForKey:@"detail"] error:&Error];
+                objSellerGetInfo.RegistrationStatus = [response valueForKey:@"RegistrationStatus"];
+                [MBDataBaseHandler saveSellerGetInformationData:objSellerGetInfo];
+                
+                [self.tableView reloadData];
+            }
+            else
+            {
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
+            }
+        });
+    }
+    else
+    {
+        [CommonUtility HideProgress];
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+    }
 }
 @end

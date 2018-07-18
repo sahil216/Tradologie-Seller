@@ -8,26 +8,29 @@
 
 #import "MenuViewController.h"
 #import "Constant.h"
+#import "AppConstant.h"
 #import "CommonUtility.h"
+#import "MBAPIManager.h"
+#import "MBDataBaseHandler.h"
+#import "SharedManager.h"
+
 #import "VCTradePolicyScreen.h"
 #import "VCHomeNotifications.h"
 #import "VCNegotiationScreen.h"
-#import "MBDataBaseHandler.h"
-#import "AppConstant.h"
-#import "MBAPIManager.h"
-#import "SharedManager.h"
-
 #import "VCNegotiationOrderHistory.h"
 #import "VCContactTradologie.h"
 #import "TvAlreadyUserScreen.h"
-
-//#import "VcEnquiryRequestScreen.h"
-//#import "VCContactTradologie.h"
-//#import "VCAddNegotiation.h"
-//#import "VCOrderHistory.h"
-//#import "VCSupplierShortlist.h"
-
-
+#import "TVManageAccountScreen.h"
+#import "MBDataBaseHandler.h"
+#import "TVLoginControlScreen.h"
+#import "TVCompanyDetails.h"
+#import "TVSupplierDocument.h"
+#import "VCAuthorizedPersonal.h"
+#import "TVLegalDocumentScreen.h"
+#import "TVBankDetailScreen.h"
+#import "VCSellingLocation.h"
+#import "VCBulkRetailScreen.h"
+#import "VCMemberShipTypeScreen.h"
 
 static NSString *const  kCellIdentifire = @"MenuViewCell";
 
@@ -121,7 +124,7 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
         [self->tblView reloadData];
     });
     SellerUserDetail *objSeller = [MBDataBaseHandler getSellerUserDetailData];
-    [lblUserName setText:objSeller.detail.VendorName];
+    [lblUserName setText:objSeller.VendorName];
     
 }
 //************************************************************************************************
@@ -245,7 +248,7 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
             break;
         case 3:
         {
-            
+            [self getManageAccountScreenWithPagination];
         }
             break;
         case 4:
@@ -374,5 +377,95 @@ static NSString *const  kCellIdentifire = @"MenuViewCell";
     });
 }
 
+-(void)getManageAccountScreenWithPagination
+{
+    THSegmentedPager *objManageAccountMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"THSegmentedPager"];
+    objManageAccountMenu.isfromMenu = YES;
+    NSMutableArray *arrMenuTittle = [[NSMutableArray alloc]initWithObjects:@"LOGIN CONTROL",@"INFORMATION",@"MEMBERSHIP TYPE",@"COMPANY DETAILS",@"DOCUMENTS",@"AUTHORIZED PERSON",@"LEGAL DOCUMENTS",@"BANK DETAILS",@"SELLING LOCATION",@"BULK RETAIL",nil];
+    
+    NSMutableArray *pages = [NSMutableArray new];
+    
+    for (NSInteger SceenNo = 0; SceenNo < [arrMenuTittle count]; SceenNo++)
+    {
+        switch (SceenNo)
+        {
+            case 0:
+            {
+                TVLoginControlScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLoginControlScreen"];
+                objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:0]];
+                [pages addObject:objManageScreen];
+            }
+                break;
+            case 1:
+            {
+                TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
+                objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objManageScreen];
+            }
+                break;
+            case 2:
+            {
+                VCMemberShipTypeScreen *objMemberShipType = [self.storyboard instantiateViewControllerWithIdentifier:@"VCMemberShipTypeScreen"];
+                objMemberShipType.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objMemberShipType];
+            }
+                break;
+            case 3:
+            {
+                TVCompanyDetails *objTVCompanyDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"TVCompanyDetails"];
+                objTVCompanyDetails.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objTVCompanyDetails];
+            }
+                break;
+            case 4:
+            {
+                TVSupplierDocument *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVSupplierDocument"];
+                objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objManageScreen];
+            }
+                break;
+            case 5:
+            {
+                VCAuthorizedPersonal *objAuthorized = [self.storyboard instantiateViewControllerWithIdentifier:@"VCAuthorizedPersonal"];
+                objAuthorized.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objAuthorized];
+            }
+                break;
+            case 6:
+            {
+                TVLegalDocumentScreen *objLegalDocument = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLegalDocumentScreen"];
+                objLegalDocument.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objLegalDocument];
+            }
+                break;
+            case 7:
+            {
+                TVBankDetailScreen *objBankDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"TVBankDetailScreen"];
+                objBankDetail.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objBankDetail];
+            }
+                break;
+            case 8:
+            {
+                VCSellingLocation *objVCSelling = [self.storyboard instantiateViewControllerWithIdentifier:@"VCSellingLocation"];
+                objVCSelling.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objVCSelling];
+            }
+                break;
+            case 9:
+            {
+                VCBulkRetailScreen *objVCBulkRetail = [self.storyboard instantiateViewControllerWithIdentifier:@"VCBulkRetailScreen"];
+                objVCBulkRetail.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
+                [pages addObject:objVCBulkRetail];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    [objManageAccountMenu setPages:pages];
+    [objManageAccountMenu setSelectIndex:1];
+    [self pushViewController:objManageAccountMenu];
+}
 
 @end

@@ -2832,6 +2832,21 @@
             </objects>
             <point key="canvasLocation" x="4762" y="9"/>
         </scene>
+        <!--Member Ship Type Screen-->
+        <scene sceneID="qRk-R5-Qet">
+            <objects>
+                <viewController storyboardIdentifier="VCMemberShipTypeScreen" id="gNB-Zv-B8q" customClass="VCMemberShipTypeScreen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q4E-Fj-IMF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tfE-mF-OgL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1be-my-lzS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5412" y="7"/>
+        </scene>
         <!--Company Details-->
         <scene sceneID="Fob-zo-KAw">
             <objects>
@@ -3590,7 +3605,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FyZ-qb-ok5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5396" y="6.746626686656672"/>
+            <point key="canvasLocation" x="6482" y="12"/>
         </scene>
         <!--Supplier Document-->
         <scene sceneID="qSq-Tr-0Uo">
@@ -4024,7 +4039,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NX4-Yl-QoG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6061.6000000000004" y="6.746626686656672"/>
+            <point key="canvasLocation" x="7148" y="12"/>
         </scene>
         <!--Authorized Personal-->
         <scene sceneID="a8X-SA-qtM">
@@ -4228,7 +4243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAh-nQ-g7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6701.6000000000004" y="8.5457271364317844"/>
+            <point key="canvasLocation" x="7788" y="14"/>
         </scene>
         <!--Legal Document Screen-->
         <scene sceneID="Bua-Oj-eu8">
@@ -4506,7 +4521,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8x-vG-3R5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7317.6000000000004" y="5.8470764617691158"/>
+            <point key="canvasLocation" x="8404" y="11"/>
         </scene>
         <!--Bank Detail Screen-->
         <scene sceneID="kiA-qK-7d4">
@@ -4822,7 +4837,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUR-44-yz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7976.8000000000002" y="6.746626686656672"/>
+            <point key="canvasLocation" x="9063" y="12"/>
         </scene>
         <!--Selling Location-->
         <scene sceneID="ECL-Nv-ERW">
@@ -4913,7 +4928,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loe-zS-pJK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loe-zS-pJK">
                                                     <rect key="frame" x="5" y="17" width="40" height="25"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -4924,7 +4939,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfD-ho-InE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="demo 123" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfD-ho-InE">
                                                     <rect key="frame" x="50" y="10" width="120" height="38"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -4934,7 +4949,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKW-SR-bzK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="demo 123" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKW-SR-bzK">
                                                     <rect key="frame" x="175" y="10" width="120" height="38"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -5028,7 +5043,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZl-ki-str" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8621.6000000000004" y="6.746626686656672"/>
+            <point key="canvasLocation" x="9708" y="12"/>
+        </scene>
+        <!--Bulk Retail Screen-->
+        <scene sceneID="Og4-of-JAg">
+            <objects>
+                <viewController storyboardIdentifier="VCBulkRetailScreen" id="odx-nw-cxB" customClass="VCBulkRetailScreen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3ZL-4O-bIv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gaq-ga-pdo"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aWS-3F-36N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10327" y="11"/>
         </scene>
         <!--Segmented Pager-->
         <scene sceneID="UQG-x4-n2c">

@@ -13,9 +13,11 @@
 
 @implementation TVCellSellingLocation
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
-    // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -26,6 +28,7 @@
 }
 - (void)ConfigureSellingLocationInfoCellData:(NSString *)strTittle withPlaceholder:(NSString *)strPlaceHolder;
 {
+    
     [_lblLocationTittle setText:strTittle];
     [_txtLocations setAdditionalInformationTextfieldStyle:strPlaceHolder Withimage:IMAGE(@"IconDropDrown") withID:self withSelectorAction:@selector(btnSelectStateTaped:) withTag:0];
 }
@@ -38,6 +41,11 @@
         NSIndexPath *indexPath = [CommonUtility MB_IndexPathForCellContainingView:sender];
         [_delegate setSelectItemViewWithData:sender withIndex:indexPath];
     }
+}
+
+- (void)ConfigureSellingLocationListWithData:(NSInteger)Count withData:(id)locationListData
+{
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 @end

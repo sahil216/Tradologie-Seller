@@ -14,7 +14,7 @@
 #pragma mark ❉===❉=== GETTER METHOD TO GET VALUE FROM DATABASE ❉===❉===
 /*********************************************************************************************/
 
-+(SellerUserDetail *)getSellerUserDetailData;
++(SellerUserDetail *)getSellerUserDetailData
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:sellerUserDetail]];
     
@@ -26,9 +26,37 @@
         SellerUserDetail *objSellerUser = [[SellerUserDetail alloc] initWithString:object.objData error:nil];
         return objSellerUser;
     }
-    
     return nil;
 }
++(SellerLoginControl *)getSellerLoginControl
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:sellerLC]];
+    
+    NSArray *array = [OfflineObject MR_findAllWithPredicate:predicate];
+    
+    if (array.count>0)
+    {
+        OfflineObject *object = array[0];
+        SellerLoginControl *objSellerLogin = [[SellerLoginControl alloc] initWithString:object.objData error:nil];
+        return objSellerLogin;
+    }
+    return nil;
+}
++(SellerGetInformation *)getSellerGetInformationData
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:sellerInfo]];
+    
+    NSArray *array = [OfflineObject MR_findAllWithPredicate:predicate];
+    
+    if (array.count>0)
+    {
+        OfflineObject *object = array[0];
+        SellerGetInformation *objSellerGetInfo = [[SellerGetInformation alloc] initWithString:object.objData error:nil];
+        return objSellerGetInfo;
+    }
+    return nil;
+}
+
 +(DashBoardNotification *)getDashBoardNotificationData;
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:dashBoardNotification]];
@@ -111,7 +139,6 @@
          newUser.objClass = NSStringFromClass([dashBoardData class]);
      }];
 }
-
 +(void)saveSellerUserDetailData:(SellerUserDetail *)sellerData;
 {
     [self deleteAllRecordsForType:sellerUserDetail];
@@ -124,10 +151,46 @@
      {
          OfflineObject *newUser = [OfflineObject MR_createEntityInContext:localContext];
          newUser.objData = sellerData.toJSONString;
-         newUser.objId = sellerData.detail.VendorID;
+         newUser.objId = sellerData.VendorID;
          newUser.objType = [NSNumber numberWithInt:sellerUserDetail];
          newUser.objClass = NSStringFromClass([sellerData class]);
          
+     }];
+}
++(void)saveSellerLoginControlData:(SellerLoginControl *)sellerLoginControl
+{
+    [self deleteAllRecordsForType:sellerLC];
+    
+    if (!sellerLoginControl)
+    {
+        return;
+    }
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext)
+     {
+         OfflineObject *newUser = [OfflineObject MR_createEntityInContext:localContext];
+         newUser.objData = sellerLoginControl.toJSONString;
+         newUser.objId = sellerLoginControl.VendorID;
+         newUser.objType = [NSNumber numberWithInt:sellerLC];
+         newUser.objClass = NSStringFromClass([sellerLoginControl class]);
+     }];
+}
++(void)saveSellerGetInformationData:(SellerGetInformation *)sellerGetInfo
+{
+    [self deleteAllRecordsForType:sellerInfo];
+    
+    if (!sellerGetInfo)
+    {
+        return;
+    }
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext)
+     {
+         OfflineObject *newUser = [OfflineObject MR_createEntityInContext:localContext];
+         newUser.objData = sellerGetInfo.toJSONString;
+         newUser.objId = sellerGetInfo.VendorID;
+         newUser.objType = [NSNumber numberWithInt:sellerInfo];
+         newUser.objClass = NSStringFromClass([sellerGetInfo class]);
      }];
 }
 +(void)saveSellerAuctionListData:(SellerAuctionList *)AuctionListData

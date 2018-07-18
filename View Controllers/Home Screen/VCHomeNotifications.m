@@ -170,7 +170,7 @@
             
             NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
             NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
-            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.detail.APIVerificationCode];
+            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.APIVerificationCode];
             NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
             
             VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
@@ -199,7 +199,7 @@
             
             NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
             NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
-            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.detail.APIVerificationCode];
+            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.APIVerificationCode];
             NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
             
             VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
@@ -306,8 +306,8 @@
         SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
         
         NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
-        [dicParams setObject:objseller.detail.APIVerificationCode forKey:@"Token"];
-        [dicParams setObject:objseller.detail.VendorID forKey:@"VendorID"];
+        [dicParams setObject:objseller.APIVerificationCode forKey:@"Token"];
+        [dicParams setObject:objseller.VendorID forKey:@"VendorID"];
         
         MBCall_GetDashBoardNotificationDetails(dicParams, ^(id response, NSString *error, BOOL status)
         {

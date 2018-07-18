@@ -23,6 +23,7 @@
 #import "THSegmentedPager.h"
 #import "INSSearchBar.h"
 
+
 #define SAVE_USER_DEFAULTS(VALUE,KEY) [[NSUserDefaults standardUserDefaults] setObject:VALUE forKey:KEY]; [[NSUserDefaults standardUserDefaults] synchronize]
 
 static NSString *API_DEFAULT_TOKEN = @"2018APR031848";
@@ -32,6 +33,7 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #pragma Mark- MODEL IMPORT
 /*********************************************************************************************************/
 #import "SellerUserDetail.h"
+#import "SellerLoginControl.h"
 #import "DashBoardNotification.h"
 #import "SellerAuctionList.h"
 #import "SellerAuctionDetail.h"
@@ -47,6 +49,10 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "TVCellOrderHistory.h"
 #import "TVCellAuthorizedPerson.h"
 #import "TVCellSellingLocation.h"
+#import "TVSellerBulkRetailCell.h"
+#import "TVCustomBulkRetailCell.h"
+#import "TVCellBulkRetailList.h"
+#import "TVCellMembershipType.h"
 
 /*********************************************************************************************************/
 #pragma Mark- BASE URL IMPORT
@@ -67,12 +73,24 @@ static NSString *UNCHECK_IMAGE = @"IconUnCheckBox";
 
 static NSString *COLLECTION_CELL_ID = @"CVcell_Identifier";
 static NSString *COMMON_CELL_ID = @"Cell_Identifier";
-
+static NSString *CELL_BULK_RETAIL_ID = @"CellBulkRetailIdentifier";
 
 /*********************************************************************************************************/
 #pragma Mark - API KEY NAME
 /*********************************************************************************************************/
 static NSString *SELLER_LOGIN_API = @"Login";
+static NSString *SELLER_REGISTER_API = @"Register";
+static NSString *SELLER_LOGIN_CONTROL_API = @"GetLoginControl";
+static NSString *SELLER_SAVE_LOGIN_CONTROL_API =@"SaveLoginControl";
+static NSString *SELLER_UPLOAD_IMAGE_API =@"UploadVendorImage";
+static NSString *SELLER_GET_INFORMATION_API = @"GetInformation";
+static NSString *SELLER_SAVE_INFORMATION_API = @"SaveInformation";
+static NSString *SELLER_MEMBERSHIP_API = @"MemberShipPlanList";
+
+
+
+
+
 static NSString *DASHBOARD_NOTIFICATION_API =@"DashboardNotification";
 static NSString *AUCTION_LIST_API = @"AuctionList";
 static NSString *SUPPLIER_AUCTION_DETAIL_API = @"AuctionDetail";

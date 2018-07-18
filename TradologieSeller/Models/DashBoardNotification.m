@@ -9,11 +9,14 @@
 #import "DashBoardNotification.h"
 
 @implementation DashBoardNotification
+
 +(BOOL)propertyIsOptional:(NSString *)propertyName
 {
     return YES;
 }
 @end
+
+/************************ DashBoardNotificationDetail *********************************************/
 
 @implementation DashBoardNotificationDetail
 

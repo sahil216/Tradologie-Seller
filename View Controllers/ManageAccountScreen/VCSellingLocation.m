@@ -10,6 +10,9 @@
 #import "Constant.h"
 #import "AppConstant.h"
 #import "CommonUtility.h"
+#import "MBAPIManager.h"
+#import "MBDataBaseHandler.h"
+#import "SharedManager.h"
 
 @interface VCSellingLocation ()<THSegmentedPageViewControllerDelegate,TVCellSellingLocationDelegate>
 {
@@ -100,8 +103,9 @@
     if(!cell)
     {
         cell = [[TVCellSellingLocation alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell_ID_Location];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    [cell ConfigureSellingLocationListWithData:indexPath.row withData:nil];
+
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -15,14 +15,6 @@
     return YES;
 }
 
-
 @end
-/************************ SellerUserDetailData *********************************************/
-@implementation SellerUserDetailData
 
-+(BOOL)propertyIsOptional:(NSString *)propertyName
-{
-    return YES;
-}
-@end
 

@@ -7,7 +7,7 @@
 //
 
 //=====================================================All Controllers=====================================================//
-//#import "Alert.h"
+
 #import "UIButton+Extra.h"
 #import "FRHyperLabel.h"
 #import "SDVersion.h"
@@ -15,24 +15,17 @@
 #import "FTPopOverMenu.h"
 #import "NSString+MB.h"
 
-//#import "Reachability.h"
-//#import "CommonUtility.h"
-//#import "CMTextField.h"
 #import "UIView+Extra.h"
 #import "NSDate+Extra.h"
-//#import "Validation.h"
-//#import "NSUserDefaults+Extra.h"
 #import "UINavigationBar+Extra.h"
 #import "UINavigationItem+Extra.h"
 
-//#import "NSDictionary+CheckNullValue.h"
-//#import "viewPopUp.h"
+
 #import "Validation.h"
 #import "ISMessages.h"
 #import "UITextField+Extra.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
-//#import "NSDate+Extra.h"
 
 
 /****** AppDelegate Instance ******/

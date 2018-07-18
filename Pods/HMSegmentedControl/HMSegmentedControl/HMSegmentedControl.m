@@ -869,7 +869,8 @@
     _selectedSegmentIndex = index;
     [self setNeedsDisplay];
     
-    if (index == HMSegmentedControlNoSegment) {
+    if (index == HMSegmentedControlNoSegment) 
+    {
         [self.selectionIndicatorArrowLayer removeFromSuperlayer];
         [self.selectionIndicatorStripLayer removeFromSuperlayer];
         [self.selectionIndicatorBoxLayer removeFromSuperlayer];

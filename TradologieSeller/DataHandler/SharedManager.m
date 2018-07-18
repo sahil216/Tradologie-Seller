@@ -8,7 +8,6 @@
 
 #import "SharedManager.h"
 
-
 static SharedManager *sharedManager;
 
 @implementation SharedManager
@@ -71,6 +70,42 @@ static SharedManager *sharedManager;
     }
    
     return sharedManager;
+}
++(void)ShowCameraWithTittle:(NSString *)strValue withID:(id)showID
+{
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:strValue message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
+                            {
+                                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+                                {
+                                    UIImagePickerController *pickerView =[[UIImagePickerController alloc]init];
+                                    pickerView.allowsEditing = YES;
+                                    pickerView.delegate = showID;
+                                    pickerView.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                    [showID presentViewController:pickerView animated:YES completion:nil];
+                                }
+                                else
+                                {
+                                    
+                                }
+                            }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UIImagePickerController *pickerView = [[UIImagePickerController alloc] init];
+        pickerView.allowsEditing = YES;
+        pickerView.delegate = showID;
+        [pickerView setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [showID presentViewController:pickerView animated:YES completion:nil];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [showID dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    dispatch_async(dispatch_get_main_queue(), ^ {
+        [showID presentViewController:actionSheet animated:YES completion:nil];
+    });
 }
 
 //============================================================================================================

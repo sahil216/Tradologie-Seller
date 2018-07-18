@@ -15,7 +15,14 @@ typedef void(^TSApiPageRequestCompletion)(id response,NSString *error);
 @interface MBAPIManager : NSObject
 
 void MBCall_LoginUserUsing(NSDictionary* params,TSApiManagerCompletion completion);
-void MBCall_RegisterUserWithPostData(NSDictionary *dict ,NSData *image_data,TSApiManagerCompletion completion);
+void MBCall_RegisterUserWithPostData(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_SupplierLoginControlAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_SupplierSaveLoginControlAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_GetSupplierInformationAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_SaveSupplierInformationAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_GetVendorMemberShipPlanAPI(NSDictionary *params, TSApiManagerCompletion completion);
+
+
 void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_GetAuctionListUsingDashboardApi(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_SupplierAuctionDetailAPI(NSDictionary* params,TSApiManagerCompletion completion);

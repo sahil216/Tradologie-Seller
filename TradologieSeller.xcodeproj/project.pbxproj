@@ -34,6 +34,15 @@
 		4A21BF0920F882A300F4430A /* TVBankDetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0820F882A300F4430A /* TVBankDetailScreen.m */; };
 		4A21BF0C20F88AB900F4430A /* VCSellingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0B20F88AB900F4430A /* VCSellingLocation.m */; };
 		4A21BF0F20F8A2AC00F4430A /* TVCellSellingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF0E20F8A2AC00F4430A /* TVCellSellingLocation.m */; };
+		4A21BF1220F9F9AD00F4430A /* SellerLoginControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF1120F9F9AD00F4430A /* SellerLoginControl.m */; };
+		4A21BF1520FDC4BF00F4430A /* VCBulkRetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF1420FDC4BF00F4430A /* VCBulkRetailScreen.m */; };
+		4A21BF2120FDFF7B00F4430A /* TVSellerBulkRetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF1F20FDFF7B00F4430A /* TVSellerBulkRetailCell.m */; };
+		4A21BF2220FDFF7B00F4430A /* TVSellerBulkRetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A21BF2020FDFF7B00F4430A /* TVSellerBulkRetailCell.xib */; };
+		4A21BF2B20FE088A00F4430A /* TVCustomBulkRetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF2920FE088A00F4430A /* TVCustomBulkRetailCell.m */; };
+		4A21BF2C20FE088A00F4430A /* TVCustomBulkRetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A21BF2A20FE088A00F4430A /* TVCustomBulkRetailCell.xib */; };
+		4A21BF2F20FE1B4300F4430A /* TVCellBulkRetailList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF2E20FE1B4300F4430A /* TVCellBulkRetailList.m */; };
+		4A21BF3520FF17D800F4430A /* VCMemberShipTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF3420FF17D800F4430A /* VCMemberShipTypeScreen.m */; };
+		4A21BF3820FF200900F4430A /* TVCellMembershipType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21BF3720FF200900F4430A /* TVCellMembershipType.m */; };
 		4A2395CC20C90C9800DF33E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2395CB20C90C9800DF33E6 /* AppDelegate.m */; };
 		4A2395D220C90C9800DF33E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2395D020C90C9800DF33E6 /* Main.storyboard */; };
 		4A2395D520C90C9800DF33E6 /* TradologieSeller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A2395D320C90C9800DF33E6 /* TradologieSeller.xcdatamodeld */; };
@@ -157,6 +166,22 @@
 		4A21BF0B20F88AB900F4430A /* VCSellingLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCSellingLocation.m; sourceTree = "<group>"; };
 		4A21BF0D20F8A2AC00F4430A /* TVCellSellingLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellSellingLocation.h; sourceTree = "<group>"; };
 		4A21BF0E20F8A2AC00F4430A /* TVCellSellingLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellSellingLocation.m; sourceTree = "<group>"; };
+		4A21BF1020F9F9AD00F4430A /* SellerLoginControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerLoginControl.h; sourceTree = "<group>"; };
+		4A21BF1120F9F9AD00F4430A /* SellerLoginControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerLoginControl.m; sourceTree = "<group>"; };
+		4A21BF1320FDC4BF00F4430A /* VCBulkRetailScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCBulkRetailScreen.h; sourceTree = "<group>"; };
+		4A21BF1420FDC4BF00F4430A /* VCBulkRetailScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCBulkRetailScreen.m; sourceTree = "<group>"; };
+		4A21BF1E20FDFF7B00F4430A /* TVSellerBulkRetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVSellerBulkRetailCell.h; sourceTree = "<group>"; };
+		4A21BF1F20FDFF7B00F4430A /* TVSellerBulkRetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVSellerBulkRetailCell.m; sourceTree = "<group>"; };
+		4A21BF2020FDFF7B00F4430A /* TVSellerBulkRetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVSellerBulkRetailCell.xib; sourceTree = "<group>"; };
+		4A21BF2820FE088A00F4430A /* TVCustomBulkRetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCustomBulkRetailCell.h; sourceTree = "<group>"; };
+		4A21BF2920FE088A00F4430A /* TVCustomBulkRetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCustomBulkRetailCell.m; sourceTree = "<group>"; };
+		4A21BF2A20FE088A00F4430A /* TVCustomBulkRetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVCustomBulkRetailCell.xib; sourceTree = "<group>"; };
+		4A21BF2D20FE1B4300F4430A /* TVCellBulkRetailList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellBulkRetailList.h; sourceTree = "<group>"; };
+		4A21BF2E20FE1B4300F4430A /* TVCellBulkRetailList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellBulkRetailList.m; sourceTree = "<group>"; };
+		4A21BF3320FF17D800F4430A /* VCMemberShipTypeScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCMemberShipTypeScreen.h; sourceTree = "<group>"; };
+		4A21BF3420FF17D800F4430A /* VCMemberShipTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCMemberShipTypeScreen.m; sourceTree = "<group>"; };
+		4A21BF3620FF200900F4430A /* TVCellMembershipType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCellMembershipType.h; sourceTree = "<group>"; };
+		4A21BF3720FF200900F4430A /* TVCellMembershipType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCellMembershipType.m; sourceTree = "<group>"; };
 		4A2395C720C90C9800DF33E6 /* TradologieSeller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradologieSeller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2395CA20C90C9800DF33E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4A2395CB20C90C9800DF33E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -370,12 +395,12 @@
 		4A21BEF120F71AA200F4430A /* ManageAccountScreen */ = {
 			isa = PBXGroup;
 			children = (
-				4A21BEF320F71AA200F4430A /* TVCompanyDetails.h */,
-				4A21BEF520F71AA200F4430A /* TVCompanyDetails.m */,
 				4A21BEF720F71AA200F4430A /* TVLoginControlScreen.h */,
 				4A21BEF420F71AA200F4430A /* TVLoginControlScreen.m */,
 				4A21BEF620F71AA200F4430A /* TVManageAccountScreen.h */,
 				4A21BEF220F71AA200F4430A /* TVManageAccountScreen.m */,
+				4A21BEF320F71AA200F4430A /* TVCompanyDetails.h */,
+				4A21BEF520F71AA200F4430A /* TVCompanyDetails.m */,
 				4A21BEFB20F71B5200F4430A /* TVSupplierDocument.h */,
 				4A21BEFC20F71B5200F4430A /* TVSupplierDocument.m */,
 				4A21BEFE20F74D3400F4430A /* VCAuthorizedPersonal.h */,
@@ -386,6 +411,10 @@
 				4A21BF0820F882A300F4430A /* TVBankDetailScreen.m */,
 				4A21BF0A20F88AB900F4430A /* VCSellingLocation.h */,
 				4A21BF0B20F88AB900F4430A /* VCSellingLocation.m */,
+				4A21BF1320FDC4BF00F4430A /* VCBulkRetailScreen.h */,
+				4A21BF1420FDC4BF00F4430A /* VCBulkRetailScreen.m */,
+				4A21BF3320FF17D800F4430A /* VCMemberShipTypeScreen.h */,
+				4A21BF3420FF17D800F4430A /* VCMemberShipTypeScreen.m */,
 			);
 			path = ManageAccountScreen;
 			sourceTree = "<group>";
@@ -476,6 +505,16 @@
 				4A21BF0220F74EFE00F4430A /* TVCellAuthorizedPerson.m */,
 				4A21BF0D20F8A2AC00F4430A /* TVCellSellingLocation.h */,
 				4A21BF0E20F8A2AC00F4430A /* TVCellSellingLocation.m */,
+				4A21BF1E20FDFF7B00F4430A /* TVSellerBulkRetailCell.h */,
+				4A21BF1F20FDFF7B00F4430A /* TVSellerBulkRetailCell.m */,
+				4A21BF2020FDFF7B00F4430A /* TVSellerBulkRetailCell.xib */,
+				4A21BF2820FE088A00F4430A /* TVCustomBulkRetailCell.h */,
+				4A21BF2920FE088A00F4430A /* TVCustomBulkRetailCell.m */,
+				4A21BF2A20FE088A00F4430A /* TVCustomBulkRetailCell.xib */,
+				4A21BF2D20FE1B4300F4430A /* TVCellBulkRetailList.h */,
+				4A21BF2E20FE1B4300F4430A /* TVCellBulkRetailList.m */,
+				4A21BF3620FF200900F4430A /* TVCellMembershipType.h */,
+				4A21BF3720FF200900F4430A /* TVCellMembershipType.m */,
 			);
 			path = "Custom Cell ";
 			sourceTree = "<group>";
@@ -489,6 +528,8 @@
 				4A913E4520C92D2800AEC718 /* OfflineObject.m */,
 				4A04DF0420CA9BA900054187 /* SellerUserDetail.h */,
 				4A04DF0520CA9BA900054187 /* SellerUserDetail.m */,
+				4A21BF1020F9F9AD00F4430A /* SellerLoginControl.h */,
+				4A21BF1120F9F9AD00F4430A /* SellerLoginControl.m */,
 				4A265F2320CB97DA007B44B8 /* DashBoardNotification.h */,
 				4A265F2420CB97DA007B44B8 /* DashBoardNotification.m */,
 				4A265F6520CBF569007B44B8 /* SellerAuctionList.h */,
@@ -765,9 +806,11 @@
 				4A30851D20F0998E002E3026 /* EnquirySellerAcceptCell.xib in Resources */,
 				4A21BEDC20F4B5C900F4430A /* LICENSE.md in Resources */,
 				4A21BEDD20F4B5C900F4430A /* README.md in Resources */,
+				4A21BF2C20FE088A00F4430A /* TVCustomBulkRetailCell.xib in Resources */,
 				4A2395DA20C90C9800DF33E6 /* LaunchScreen.storyboard in Resources */,
 				4A913EB120C9376000AEC718 /* Neuropol-Bold.ttf in Resources */,
 				4A1C3F2D20ECDE040030E865 /* ViewEnquiryState.xib in Resources */,
+				4A21BF2220FDFF7B00F4430A /* TVSellerBulkRetailCell.xib in Resources */,
 				4A913EAF20C9376000AEC718 /* Neuropol-Medium.ttf in Resources */,
 				4A2395D720C90C9800DF33E6 /* Assets.xcassets in Resources */,
 				4A913EB020C9376000AEC718 /* NeuropolRegular.ttf in Resources */,
@@ -964,6 +1007,7 @@
 				4A21BEF920F71AA200F4430A /* TVLoginControlScreen.m in Sources */,
 				4A265F6720CBF569007B44B8 /* SellerAuctionList.m in Sources */,
 				4A913EE020C9377600AEC718 /* MenuViewCell.m in Sources */,
+				4A21BF1520FDC4BF00F4430A /* VCBulkRetailScreen.m in Sources */,
 				4A21BEDE20F4B5C900F4430A /* THSegmentedPager.m in Sources */,
 				4A30852C20F345CF002E3026 /* TVCellOrderHistory.m in Sources */,
 				4A1C3F2920ECDD0E0030E865 /* VCHomeNotifications.m in Sources */,
@@ -980,15 +1024,19 @@
 				4A1C3F2720ECDD0E0030E865 /* VCNegotiationScreen.m in Sources */,
 				4A1C3F2E20ECDE040030E865 /* ViewEnquiryState.m in Sources */,
 				4A04DF0620CA9BA900054187 /* SellerUserDetail.m in Sources */,
+				4A21BF2B20FE088A00F4430A /* TVCustomBulkRetailCell.m in Sources */,
 				4A913EA820C92D2D00AEC718 /* UITextField+Extra.m in Sources */,
 				4A265F6020CBE36C007B44B8 /* TvCellEnquiry.m in Sources */,
 				4A2395CC20C90C9800DF33E6 /* AppDelegate.m in Sources */,
 				4A21BEF020F71A9200F4430A /* TVLoginScreen.m in Sources */,
 				4A913EA420C92D2D00AEC718 /* NSDate+Extra.m in Sources */,
 				4A30852320F33A5A002E3026 /* VCContactTradologie.m in Sources */,
+				4A21BF2F20FE1B4300F4430A /* TVCellBulkRetailList.m in Sources */,
+				4A21BF3820FF200900F4430A /* TVCellMembershipType.m in Sources */,
 				4A2BADDE20CE81A200AF3F8A /* INSSearchBar.m in Sources */,
 				4A2395DD20C90C9800DF33E6 /* main.m in Sources */,
 				4A30852020F0B624002E3026 /* TVPaymentScreen.m in Sources */,
+				4A21BF2120FDFF7B00F4430A /* TVSellerBulkRetailCell.m in Sources */,
 				4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */,
 				4A913E9A20C92D2D00AEC718 /* CommonUtility.m in Sources */,
 				4A913EA520C92D2D00AEC718 /* NSString+MB.m in Sources */,
@@ -1002,6 +1050,7 @@
 				4A21BEFD20F71B5200F4430A /* TVSupplierDocument.m in Sources */,
 				4A30851020EDFC9F002E3026 /* SBaseLabel.m in Sources */,
 				4A265F2520CB97DA007B44B8 /* DashBoardNotification.m in Sources */,
+				4A21BF3520FF17D800F4430A /* VCMemberShipTypeScreen.m in Sources */,
 				4A913EA020C92D2D00AEC718 /* SharedManager.m in Sources */,
 				4A913EA920C92D2D00AEC718 /* NSDictionary+CheckNullValue.m in Sources */,
 				4A913E9C20C92D2D00AEC718 /* FTPopOverMenu.m in Sources */,
@@ -1010,6 +1059,7 @@
 				4A30851C20F0998E002E3026 /* EnquirySellerAcceptCell.m in Sources */,
 				4A913E9B20C92D2D00AEC718 /* ISMessages.m in Sources */,
 				4A913E9E20C92D2D00AEC718 /* MBHTTPClient.m in Sources */,
+				4A21BF1220F9F9AD00F4430A /* SellerLoginControl.m in Sources */,
 				4A913EA220C92D2D00AEC718 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				4A30852920F344B4002E3026 /* VCNegotiationOrderHistory.m in Sources */,
 				4A1C3F2820ECDD0E0030E865 /* VCEnquirySellerAccept.m in Sources */,

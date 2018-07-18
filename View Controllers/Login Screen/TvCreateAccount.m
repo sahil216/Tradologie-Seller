@@ -7,21 +7,12 @@
 //
 
 #import "TvCreateAccount.h"
-#import "CommonUtility.h"
 #import "Constant.h"
-#import "MBAPIManager.h"
 #import "AppConstant.h"
-#import "SharedManager.h"
-#import "TVManageAccountScreen.h"
+#import "CommonUtility.h"
+#import "MBAPIManager.h"
 #import "MBDataBaseHandler.h"
-#import "TVLoginControlScreen.h"
-#import "TVCompanyDetails.h"
-#import "TVSupplierDocument.h"
-#import "VCAuthorizedPersonal.h"
-#import "TVLegalDocumentScreen.h"
-#import "TVBankDetailScreen.h"
-#import "VCSellingLocation.h"
-
+#import "SharedManager.h"
 
 @interface TvCreateAccount ()
 {
@@ -131,162 +122,159 @@
 
 -(IBAction)btnSubmitUserClicked:(UIButton *)sender
 {
-    [self getManageAccountScreenWithPagination];
-    
-    
-//    [self.view endEditing:YES];
-//    BOOL isValidate=TRUE;
-//
-//    if ([Validation validateTextField:txtName])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Full Name..!"];
-//        return;
-//    }
-//    else if ([Validation validateTextField:txtEmailID])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Email Address..!"];
-//        return;
-//    }
-//    else if (![Validation validateEmail:txtEmailID.text])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Email Id..!"];
-//        return;
-//    }
-//    else if ([Validation validateTextField:txtMobile])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Mobile Number..!"];
-//        return;
-//    }
-//    else if (![Validation validatePhoneNumber:txtMobile.text])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Mobile Number with Country Code..!"];
-//        return;
-//    }
-//    else if ([Validation validateTextField:txtPassword])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password..!"];
-//        return;
-//    }
-//    else if (![Validation isAlphaNumericAndContainsAtLeastSixDigit:txtPassword.text])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password between 4 to 10 Digits Alpha Numeric..!"];
-//        return;
-//    }
-//    else if ([Validation validateTextField:txtConfirmPassword])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter Your Confirm Password..!"];
-//        return;
-//    }
-//    else if (![Validation validatePassword:txtPassword ConfirmPassword:txtConfirmPassword])
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Opps Your Password Did Not Match..!"];
-//        return;
-//    }
-//    else if(!btnAgreeTerms.isSelected)
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Agree the Term's & Privacy Policy..!"];
-//        return;
-//    }
-//    if (isValidate)
-//    {
-//        if (SharedObject.isNetAvailable)
-//        {
-//            [CommonUtility showProgressWithMessage:@"Please Wait.."];
-//
-//            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-//            [dic setValue:API_DEFAULT_TOKEN forKey:@"Token"];
-//            [dic setValue:txtName.text forKey:@"UserName"];
-//            [dic setValue:txtEmailID.text forKey:@"EmailID"];
-//            [dic setValue:txtMobile.text forKey:@"MobileNo"];
-//            [dic setValue:txtPassword.text forKey:@"Password"];
-//            [dic setValue:strGender forKey:@"GenderID"];
-//            [dic setValue:TYPE_OF_ACCOUNT_ID forKey:@"TypeOfAccountID"];
-//            NSString *strID = [selectedID componentsJoinedByString:@","];
-//            [dic setValue:strID forKey:@"GroupIDs"];
+    [self.view endEditing:YES];
+ 
+    BOOL isValidate=TRUE;
+
+    if ([Validation validateTextField:txtName])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Full Name..!"];
+        return;
+    }
+    else if ([Validation validateTextField:txtEmailID])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Email Address..!"];
+        return;
+    }
+    else if (![Validation validateEmail:txtEmailID.text])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Email Id..!"];
+        return;
+    }
+    else if ([Validation validateTextField:txtMobile])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Mobile Number..!"];
+        return;
+    }
+    else if (![Validation validatePhoneNumber:txtMobile.text])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter a valid Mobile Number with Country Code..!"];
+        return;
+    }
+    else if ([Validation validateTextField:txtPassword])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password..!"];
+        return;
+    }
+    else if (![Validation isAlphaNumericAndContainsAtLeastSixDigit:txtPassword.text])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password between 4 to 10 Digits Alpha Numeric..!"];
+        return;
+    }
+    else if ([Validation validateTextField:txtConfirmPassword])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter Your Confirm Password..!"];
+        return;
+    }
+    else if (![Validation validatePassword:txtPassword ConfirmPassword:txtConfirmPassword])
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Opps Your Password Did Not Match..!"];
+        return;
+    }
+    else if(!btnAgreeTerms.isSelected)
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Agree the Term's & Privacy Policy..!"];
+        return;
+    }
+    if (isValidate)
+    {
+        if (SharedObject.isNetAvailable)
+        {
+            [CommonUtility showProgressWithMessage:@"Please Wait.."];
+
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+            [dic setValue:API_DEFAULT_TOKEN forKey:@"Token"];
+            [dic setValue:txtName.text forKey:@"UserName"];
+            [dic setValue:txtEmailID.text forKey:@"EmailID"];
+            [dic setValue:txtMobile.text forKey:@"MobileNo"];
+            [dic setValue:txtPassword.text forKey:@"Password"];
+            [dic setValue:TYPE_OF_ACCOUNT_ID forKey:@"TypeOfAccountID"];
     
             
-//            MBCall_RegisterUserWithPostData(dic, nil, ^(id response, NSString *error, BOOL status)
-//            {
-//                if (status && ![[response valueForKey:@"success"]isEqual:@0])
-//                {
-//                    NSLog(@"response == >%@",response);
-//                    [CommonUtility HideProgress];
-//                    [self getLoginServiceCalles];
-//
-//                }
-//                else
-//                {
-//                    [CommonUtility HideProgress];
-//                    [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
-//
-//                }
-//
-//            });
-//        }
-//        else
-//        {
-//            [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
-//        }
-//    }
+            MBCall_RegisterUserWithPostData(dic, ^(id response, NSString *error, BOOL status)
+            {
+                if (status && ![[response valueForKey:@"success"]isEqual:@0])
+                {
+                    NSLog(@"response == >%@",response);
+                    [CommonUtility HideProgress];
+                    [self getSupplierLoginServiceCalled];
+
+                }
+                else
+                {
+                    [CommonUtility HideProgress];
+                    [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
+
+                }
+
+            });
+        }
+        else
+        {
+            [CommonUtility HideProgress];
+            [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+        }
+    }
     
 }
-//-(void)getLoginServiceCalles
-//{
-//    if (SharedObject.isNetAvailable)
-//    {
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-//        [dic setValue:txtEmailID.text forKey:@"UserID"];
-//        [dic setValue:txtPassword.text forKey:@"Password"];
-//        [dic setValue:DEVICE_OS_MANUFACTURE forKey:@"Manufacturer"];
-//        [dic setValue:DEVICE_OS_MODEL forKey:@"Model"];
-//        [dic setValue:DEVICE_OS_VERSION forKey:@"OsVersionRelease"];
-//        [dic setValue:APP_VERSION forKey:@"AppVersion"];
-//        [dic setValue:FIREBASE_TOKEN forKey:@"FcmToken"];
-//        [dic setValue:@"IOS" forKey:@"OsType"];
-//        [dic setValue:UNIQUE_IDENTIFIER forKey:@"DeviceId"];
-//        SAVE_USER_DEFAULTS(txtEmailID.text, @"emailID"); // For Use of popup Message to Resend emails
-//
-//        MBCall_LoginUserUsing(dic, ^(id response, NSString *error, BOOL status)
-//        {
-//            if (status && [[response valueForKey:@"success"]  isEqual: @1])
-//            {
-//                NSLog(@"response == >%@",response);
-//
-//                NSMutableDictionary *dicUserDetail = [[NSMutableDictionary alloc]init];
-//                dicUserDetail = [[response valueForKey:@"detail"] mutableCopy];
-//
-//                if ([[dicUserDetail valueForKey:@"IsComplete"] isEqualToString:@"N"] && [[dicUserDetail valueForKey:@"VerificationStatus"]isEqual:@0])
-//                {
-//                    VCMessageScreen * vcpopUp = [self.storyboard instantiateViewControllerWithIdentifier:@"VCMessageScreen"];
-//                    [self.navigationController.navigationBar setNaviagtionStyleWithStatusbar:[UIColor whiteColor]];
-//                    [self.navigationController.navigationBar setHidden:NO];
-//                    [self.navigationController pushViewController:vcpopUp animated:YES];
-//
-//                }
-//                else  if ([[dicUserDetail valueForKey:@"IsComplete"] isEqualToString:@"N"] && [[dicUserDetail valueForKey:@"VerificationStatus"]isEqual:@1])
-//                {
-//                    NSError* Error;
-//                    BuyerUserDetail *detail =[[BuyerUserDetail alloc]initWithDictionary:response error:&Error];
-//                    [MBDataBaseHandler saveCommonDataDetail:detail];
-//
-//                    TVCompanyRegister *objCompanyScreen = GET_VIEW_CONTROLLER(@"TVCompanyRegister");
-//                    [self.navigationController pushViewController:objCompanyScreen animated:YES];
-//                }
-//            }
-//            else{
-//                [CommonUtility HideProgress];
-//                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
-//
-//            }
-//
-//        });
-//    }
-//    else
-//    {
-//        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
-//    }
-//
-//}
+-(void)getSupplierLoginServiceCalled
+{
+    if (SharedObject.isNetAvailable)
+    {
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+        [dic setValue:txtEmailID.text forKey:@"UserID"];
+        [dic setValue:txtPassword.text forKey:@"Password"];
+        [dic setValue:DEVICE_OS_MANUFACTURE forKey:@"Manufacturer"];
+        [dic setValue:DEVICE_OS_MODEL forKey:@"Model"];
+        [dic setValue:DEVICE_OS_VERSION forKey:@"OsVersionRelease"];
+        [dic setValue:APP_VERSION forKey:@"AppVersion"];
+        [dic setValue:FIREBASE_TOKEN forKey:@"FcmToken"];
+        [dic setValue:@"IOS" forKey:@"OsType"];
+        [dic setValue:UNIQUE_IDENTIFIER forKey:@"DeviceId"];
+
+        MBCall_LoginUserUsing(dic, ^(id response, NSString *error, BOOL status)
+        {
+            NSError* Error;
+
+            if (status && [[response valueForKey:@"success"]  isEqual: @1])
+            {
+                NSLog(@"response == >%@",response);
+
+                NSMutableDictionary *dicUserDetail = [[NSMutableDictionary alloc]init];
+                dicUserDetail = [[response valueForKey:@"detail"] mutableCopy];
+                
+                SellerUserDetail *objSellerUser = [[SellerUserDetail alloc]initWithDictionary:response error:&Error];
+                [MBDataBaseHandler saveSellerUserDetailData:objSellerUser];
+
+//                RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+//                AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+           //     [delegateClass setRootViewController:rootVC];
+                
+                if ([objSellerUser.RegistrationStatus isEqualToString:@"Complete"])
+                {
+                    RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+                    AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+                    [delegateClass setRootViewController:rootVC];
+                    
+                }
+                else
+                {
+                    [AppDelegate getManageAccountScreenWithPagination:self.storyboard withNavigation:self.navigationController];
+                }
+            }
+            else{
+                [CommonUtility HideProgress];
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
+
+            }
+
+        });
+    }
+    else
+    {
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+    }
+}
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== TEXTFIELD DELEGATE CALLED HERE ===❉===❉
 /******************************************************************************************************************/
@@ -294,97 +282,6 @@
 {
     [textField resignFirstResponder];
     return YES;
-}
-
--(void)getManageAccountScreenWithPagination
-{
-    THSegmentedPager *objManageAccountMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"THSegmentedPager"];
-    
-    NSMutableArray *arrMenuTittle = [[NSMutableArray alloc]initWithObjects:@"LOGIN CONTROL",@"INFORMATION",@"MEMBERSHIP TYPE",@"COMPANY DETAILS",@"DOCUMENTS",@"AUTHORIZED PERSON",@"LEGAL DOCUMENTS",@"BANK DETAILS",@"SELLING LOCATION",@"BULK RETAIL",nil];
-    
-    NSMutableArray *pages = [NSMutableArray new];
-    
-    for (NSInteger SceenNo = 0; SceenNo < [arrMenuTittle count]; SceenNo++)
-    {
-                switch (SceenNo)
-                {
-                    case 0:
-                    {
-                        TVLoginControlScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLoginControlScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:0]];
-                        [pages addObject:objManageScreen];
-                    }
-                        break;
-                    case 1:
-                    {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
-                    }
-                        break;
-                    case 2:
-                    {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
-                    }
-                        break;
-                    case 3:
-                    {
-                        TVCompanyDetails *objTVCompanyDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"TVCompanyDetails"];
-                        objTVCompanyDetails.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objTVCompanyDetails];
-                    }
-                        break;
-                    case 4:
-                    {
-                        TVSupplierDocument *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVSupplierDocument"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
-                    }
-                        break;
-                    case 5:
-                    {
-                        VCAuthorizedPersonal *objAuthorized = [self.storyboard instantiateViewControllerWithIdentifier:@"VCAuthorizedPersonal"];
-                        objAuthorized.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objAuthorized];
-                    }
-                        break;
-                    case 6:
-                    {
-                        TVLegalDocumentScreen *objLegalDocument = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLegalDocumentScreen"];
-                        objLegalDocument.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objLegalDocument];
-                    }
-                        break;
-                    case 7:
-                    {
-                        TVBankDetailScreen *objBankDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"TVBankDetailScreen"];
-                        objBankDetail.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objBankDetail];
-                    }
-                        break;
-                    case 8:
-                    {
-                        VCSellingLocation *objVCSelling = [self.storyboard instantiateViewControllerWithIdentifier:@"VCSellingLocation"];
-                        objVCSelling.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objVCSelling];
-                    }
-                        break;
-                    case 9:
-                    {
-                        TVManageAccountScreen *objManageScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVManageAccountScreen"];
-                        objManageScreen.strManageAcTittle = [NSString stringWithFormat:@"%@",[arrMenuTittle objectAtIndex:SceenNo]];
-                        [pages addObject:objManageScreen];
-                    }
-                        break;
-                    default:
-                        break;
-                }
-    }
-    [objManageAccountMenu setPages:pages];
-    [objManageAccountMenu setSelectIndex:1];
-    [self.navigationController pushViewController:objManageAccountMenu animated:YES];
 }
 
 @end

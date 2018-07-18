@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "Reachability.h"
 
-@interface SharedManager : NSObject
+@interface SharedManager : NSObject <UIActionSheetDelegate>
 {
     
 }
@@ -22,8 +23,10 @@
 @property(nonatomic,retain) NSMutableArray *arrCountry;
 @property(nonatomic,retain) NSMutableArray *arrBuyerInterestedIn;
 @property(nonatomic,retain) NSMutableDictionary *dicDefaultCommonData;
+@property (assign) BOOL isfromLogin;
 
 +(SharedManager *)sharedInstance;
 +(void)releaseSharedManager;
++(void)ShowCameraWithTittle:(NSString *)strValue withID:(id)showID;
 
 @end

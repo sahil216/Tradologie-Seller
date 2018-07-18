@@ -348,7 +348,16 @@
 
 -(IBAction)btnBackFromSegment:(UIButton *)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if(_isfromMenu)
+    {
+        RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
+        AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [delegateClass setRootViewController:rootVC];
+    }
+   else
+   {
+       [self.navigationController popToRootViewControllerAnimated:YES];
+   }
 }
 
 @end

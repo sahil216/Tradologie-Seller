@@ -291,7 +291,7 @@
         
         NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
         NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
-        NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.detail.APIVerificationCode];
+        NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.APIVerificationCode];
         NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
         
         VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
@@ -394,8 +394,8 @@
 {
     SellerUserDetail * objSellerdetail = [MBDataBaseHandler getSellerUserDetailData];
     NSMutableDictionary *dicParams =[[NSMutableDictionary alloc]init];
-    [dicParams setObject:objSellerdetail.detail.APIVerificationCode forKey:@"Token"];
-    [dicParams setObject:objSellerdetail.detail.VendorID forKey:@"VendorID"];
+    [dicParams setObject:objSellerdetail.APIVerificationCode forKey:@"Token"];
+    [dicParams setObject:objSellerdetail.VendorID forKey:@"VendorID"];
     [dicParams setObject:@"" forKey:@"FilterAuction"];
     
     if (SharedObject.isNetAvailable)

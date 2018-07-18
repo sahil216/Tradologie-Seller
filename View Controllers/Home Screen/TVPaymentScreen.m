@@ -287,9 +287,9 @@
     SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
     
     NSMutableDictionary *dicParams = [[NSMutableDictionary alloc]init];
-    [dicParams setValue:objseller.detail.APIVerificationCode forKey:@"Token"];
+    [dicParams setValue:objseller.APIVerificationCode forKey:@"Token"];
     [dicParams setValue:strAuctionID forKey:@"AuctionID"];
-    [dicParams setValue:objseller.detail.VendorID forKey:@"VendorID"];
+    [dicParams setValue:objseller.VendorID forKey:@"VendorID"];
 
     if (SharedObject.isNetAvailable)
     {
@@ -445,8 +445,8 @@
 -(void)setPaymentInformationDetailWithData:(UIButton *)sender
 {
     SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
-    [dicValueData setValue:objseller.detail.APIVerificationCode forKey:@"Token"];
-    [dicValueData setValue:objseller.detail.VendorID forKey:@"VendorID"];
+    [dicValueData setValue:objseller.APIVerificationCode forKey:@"Token"];
+    [dicValueData setValue:objseller.VendorID forKey:@"VendorID"];
     
     NSNumber * AuctionSupplierID  = [NSNumber numberWithInteger:[[dicDetailCharges valueForKey:@"AuctionSupplierID"]intValue]];
     [dicValueData setValue:AuctionSupplierID forKey:@"AuctionSupplierID"];
