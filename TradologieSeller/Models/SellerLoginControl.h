@@ -12,6 +12,9 @@
 @protocol SellerGetInformation <NSObject>
 @end
 
+@protocol SellerBankDetailData <NSObject>
+@end
+
 @interface SellerLoginControl : JSONModel
 
 @property (nonatomic,strong)NSNumber *VendorID;
@@ -44,4 +47,19 @@
 
 @end
 
+@interface SellerBankDetailData : JSONModel
 
+@property (nonatomic,strong)NSString *RegistrationStatus;
+@property (nonatomic,strong)NSString <Optional>*AccountName;
+@property (nonatomic,strong)NSString <Optional>*AccountNo;
+@property (nonatomic,strong)NSString <Optional>*BankDocument;
+@property (nonatomic,strong)NSString <Optional>*BankName;
+@property (nonatomic,strong)NSString <Optional>*Branch;
+@property (nonatomic,strong)NSString <Optional>*ContentType;
+@property (nonatomic,strong)NSString <Optional>*DocUrl;
+@property (nonatomic,strong)NSString <Optional>*ExtType;
+@property (nonatomic,strong)NSString <Optional>*IFSCCode;
+@property (nonatomic,strong)NSNumber *VendorID;
+@property (nonatomic,strong)NSString <Optional>*VendorName;
+
+@end

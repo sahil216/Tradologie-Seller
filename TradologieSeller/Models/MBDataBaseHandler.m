@@ -117,6 +117,53 @@
     
     return nil;
 }
++(CommonSupplierData *)getCommonSupplierData
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:Commonddl]];
+    
+    NSArray *array = [OfflineObject MR_findAllWithPredicate:predicate];
+    
+    if (array.count>0)
+    {
+        OfflineObject *object = array[0];
+        CommonSupplierData *objCommonSupplierData = [[CommonSupplierData alloc] initWithString:object.objData error:nil];
+        return objCommonSupplierData;
+    }
+    return nil;
+}
+
++(AuthorizePersonList *)getAuthorizePersonListWithData
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:authorizePerson]];
+    
+    NSArray *array = [OfflineObject MR_findAllWithPredicate:predicate];
+    
+    if (array.count>0)
+    {
+        OfflineObject *object = array[0];
+        AuthorizePersonList *objAuthorizelist = [[AuthorizePersonList alloc] initWithString:object.objData error:nil];
+        return objAuthorizelist;
+    }
+    return nil;
+
+}
++(SellerBankDetailData *)getSellerBankDetailData
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objType == %@)",[NSNumber numberWithInt:sellerBankDetail]];
+    
+    NSArray *array = [OfflineObject MR_findAllWithPredicate:predicate];
+    
+    if (array.count>0)
+    {
+        OfflineObject *object = array[0];
+        SellerBankDetailData *objBankDetail = [[SellerBankDetailData alloc] initWithString:object.objData error:nil];
+        return objBankDetail;
+    }
+    return nil;
+    
+}
+
+
 /*********************************************************************************************/
 #pragma mark ❉===❉=== SETTER METHOD TO SET VALUE IN DATABASE ❉===❉===
 /*********************************************************************************************/
@@ -245,6 +292,60 @@
          newUser.objData = objOrderHistory.toJSONString;
          newUser.objType = [NSNumber numberWithInt:auctionOrderHistory];
          newUser.objClass = NSStringFromClass([objOrderHistory class]);
+     }];
+}
++(void)saveAuthorizePersonListData:(AuthorizePersonList *)authorizePersonList
+{
+    [self deleteAllRecordsForType:authorizePerson];
+    
+    if (!authorizePersonList)
+    {
+        return;
+    }
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext)
+     {
+         OfflineObject *newUser = [OfflineObject MR_createEntityInContext:localContext];
+         newUser.objData = authorizePersonList.toJSONString;
+         newUser.objId = authorizePersonList.AuthorizedPersonID;
+         newUser.objType = [NSNumber numberWithInt:authorizePerson];
+         newUser.objClass = NSStringFromClass([authorizePersonList class]);
+     }];
+}
++(void)saveSellerBankDetailWithData:(SellerBankDetailData *)bankDetail
+{
+    [self deleteAllRecordsForType:sellerBankDetail];
+    
+    if (!bankDetail)
+    {
+        return;
+    }
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext)
+     {
+         OfflineObject *newUser = [OfflineObject MR_createEntityInContext:localContext];
+         newUser.objData = bankDetail.toJSONString;
+         newUser.objId = bankDetail.VendorID;
+         newUser.objType = [NSNumber numberWithInt:sellerBankDetail];
+         newUser.objClass = NSStringFromClass([bankDetail class]);
+     }];
+    
+}
++(void)saveSellerCommonSupplierData:(CommonSupplierData *)commonSupplier
+{
+    [self deleteAllRecordsForType:Commonddl];
+    
+    if (!commonSupplier)
+    {
+        return;
+    }
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext)
+     {
+         OfflineObject *newUser = [OfflineObject MR_createEntityInContext:localContext];
+         newUser.objData = commonSupplier.toJSONString;
+         newUser.objType = [NSNumber numberWithInt:Commonddl];
+         newUser.objClass = NSStringFromClass([commonSupplier class]);
      }];
 }
 

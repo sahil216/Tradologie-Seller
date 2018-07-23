@@ -26,6 +26,9 @@
 
 #define SAVE_USER_DEFAULTS(VALUE,KEY) [[NSUserDefaults standardUserDefaults] setObject:VALUE forKey:KEY]; [[NSUserDefaults standardUserDefaults] synchronize]
 
+#define GET_USER_DEFAULTS(KEY) [[NSUserDefaults standardUserDefaults] objectForKey:KEY]
+
+
 static NSString *API_DEFAULT_TOKEN = @"2018APR031848";
 static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 
@@ -38,6 +41,8 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "SellerAuctionList.h"
 #import "SellerAuctionDetail.h"
 #import "SellerAuctionOrderHistory.h"
+#import "CommonSupplierData.h"
+#import "AuthorizePersonList.h"
 
 /*********************************************************************************************************/
 #pragma Mark- CUSTOM CELL IMPORT
@@ -47,13 +52,17 @@ static NSString *TYPE_OF_ACCOUNT_ID = @"1";
 #import "SAuctionDetailCell.h"
 #import "EnquirySellerAcceptCell.h"
 #import "TVCellOrderHistory.h"
-#import "TVCellAuthorizedPerson.h"
+#import "TVCellAuthorizePerson.h"
+#import "TVCellPersonAuthorize.h"
+#import "TVSaveAuthorizePerson.h"
 #import "TVCellSellingLocation.h"
 #import "TVSellerBulkRetailCell.h"
 #import "TVCustomBulkRetailCell.h"
 #import "TVCellBulkRetailList.h"
 #import "TVCellMembershipType.h"
 #import "TVCellMemberShipPlan.h"
+#import "TVStaticMemberCell.h"
+#import "TVStaticBankDetailCell.h"
 
 /*********************************************************************************************************/
 #pragma Mark- BASE URL IMPORT
@@ -87,9 +96,18 @@ static NSString *SELLER_UPLOAD_IMAGE_API =@"UploadVendorImage";
 static NSString *SELLER_GET_INFORMATION_API = @"GetInformation";
 static NSString *SELLER_SAVE_INFORMATION_API = @"SaveInformation";
 static NSString *SELLER_MEMBERSHIP_API = @"MemberShipPlanList";
-
-
-
+static NSString *SELLER_MEMBERSHIP_UPDATE_API = @"UpdateMembershipDetail";
+static NSString *SELLER_VENDOR_MEMEBERSHIP_API = @"VendorMemberShipPlan";
+static NSString *SELLER_COMMON_DATA_API = @"Commonddl";
+static NSString *SELLER_STATE_LIST_API = @"StateList";
+static NSString *SELLER_CITY_LIST_API =@"CityList";
+static NSString *SELLER_AREA_LIST_API = @"AreaList";
+static NSString *SELLER_COMPANY_DETAIL_API = @"CompanyDetails";
+static NSString *SELLER_UPDATE_COMPANY_DETAILS_API = @"UpdateCompanyDetails";
+static NSString *SELLER_SAVE_AUTHORIZE_PERSON_API = @"SaveAuthorizePersonDetail";
+static NSString *SELLER_GET_AGREEMENT_API = @"GetAgreementFileDetail";
+static NSString *SELLER_UPDATE_AGREEMENT_API = @"UpdateAgreementDetail";
+static NSString *SELLER_GET_BANK_API = @"GetBankDetail";
 
 
 static NSString *DASHBOARD_NOTIFICATION_API =@"DashboardNotification";

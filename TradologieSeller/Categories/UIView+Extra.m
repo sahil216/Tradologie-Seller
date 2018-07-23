@@ -25,33 +25,50 @@
 -(void)SetDefaultBackGroundView
 {
     [self.layer setCornerRadius:5.0f];
-    [self.layer setBorderColor:[UIColor colorWithRed:156.0f/255.0f green:156.0f/255.0f blue:156.0f/255.0f alpha:1.0f].CGColor];
-    self.layer.shadowColor =[UIColor grayColor].CGColor;
-    self.layer.shadowOpacity = .60;
-    self.layer.shadowRadius = 1.0;
-    self.layer.shadowOffset = CGSizeMake(2.50f, 2.50f);
+    [self.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    self.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+    self.layer.shadowOpacity = 2.00;
+    self.layer.shadowRadius = 1.50;
+    self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     [self.layer setBorderWidth:1.0f];
 }
 -(void)SetDefaultShadowBackGround
 {
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.bounds];
     self.layer.masksToBounds = NO;
+    self.clipsToBounds = NO;
+
     [self.layer setCornerRadius:5.0f];
+    [self.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     self.layer.shadowColor = DefaultThemeColor.CGColor;
-    self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    self.layer.shadowOpacity = 1.5f;
-    self.layer.shadowPath = shadowPath.CGPath;
+    self.layer.shadowOffset = CGSizeZero;
+    self.layer.shadowOpacity = 1.0f;
+    self.layer.shadowRadius = 6.0f;
+    [self.layer setBorderWidth:2.0f];
+
 }
--(void)setShadowBackGroundwitColor:(UIColor *)color
+-(void)setShadowBackGroundWithColor:(UIColor *)color
 {
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.bounds];
     self.layer.masksToBounds = NO;
+    self.clipsToBounds = NO;
+    
     [self.layer setCornerRadius:5.0f];
-    self.layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    self.layer.shadowOpacity = 1.5f;
-    self.layer.shadowPath = shadowPath.CGPath;
+    [self.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    self.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    self.layer.shadowOffset = CGSizeZero;
+    self.layer.shadowOpacity = 1.0f;
+    self.layer.shadowRadius = 6.0f;
+    [self.layer setBorderWidth:2.0f];
     [self setBackgroundColor:color];
+
+//    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.frame];
+//    self.layer.masksToBounds = YES;
+//    self.layer.opaque = NO;
+//
+//    [self.layer setCornerRadius:5.0f];
+//    self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+//    self.layer.shadowOpacity = 1.50f;
+//    self.layer.shadowRadius = 5.0f;
+//    self.layer.shadowPath = shadowPath.CGPath;
 }
 
 @end

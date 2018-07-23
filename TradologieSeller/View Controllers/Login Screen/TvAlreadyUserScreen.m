@@ -29,18 +29,18 @@
     [super viewDidLoad];
     [txtUserID setDefaultPreferenceTextfieldStyle:[UIImage imageNamed:@"IconUser"] WithPlaceHolder:@"Email Address" withTag:0];
     [txtPassword setTextfieldStyleWithButton:[UIImage imageNamed:@"IconPassword"] WithPlaceHolder:@"Password" withID:self withbuttonImage:[UIImage imageNamed:@"IconHidePassword"] withSelectorAction:@selector(btnViewpasswordClick:)];
-
+    
     [_btnLogin addTarget:self action:@selector(btnloginClicked:) forControlEvents:UIControlEventTouchUpInside];
     [btnback addTarget:self action:@selector(btnBackClicked:) forControlEvents:UIControlEventTouchUpInside];
     [btnForgotPwd addTarget:self action:@selector(btnForgotPwdClicked:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     [self.navigationController.navigationBar setNaviagtionStyleWithStatusbar:[UIColor whiteColor]];
     [self.tableView setScrollEnabled:NO];
     [_btnLogin setDefaultButtonStyleWithHighLightEffect];
     [_btnLogin.titleLabel setFont:IS_IPHONE5?UI_DEFAULT_FONT_MEDIUM(18): UI_DEFAULT_FONT_MEDIUM(20)];
-
+    
     [lbl_logoname setFont:([SDVersion deviceSize] > Screen4Dot7inch)?UI_DEFAULT_LOGO_FONT_MEDIUM(28):([SDVersion deviceSize] < Screen4Dot7inch)?UI_DEFAULT_LOGO_FONT_MEDIUM(22):UI_DEFAULT_LOGO_FONT_MEDIUM(25)];
-  
+    
     NSString *string = @"Please visit us at supplier.tradologie.com for more Information.";
     [lblVisitUs setNumberOfLines:0];
     NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor blackColor],NSFontAttributeName:UI_DEFAULT_FONT(16)};
@@ -65,13 +65,13 @@
     
     [lblVisitUs setLinksForSubstrings:@[@"supplier.tradologie.com",@"supplier.tradologie.com"] withLinkHandler:handler];
     [self SetAttributedStringWithUnderlineTittle];
-   
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -133,24 +133,24 @@
     {
         [txtPassword setSecureTextEntry:NO];
         [sender setImage:[UIImage imageNamed:@"IconShowPassword"] forState:UIControlStateNormal];
-      
+        
     }
     else
     {
         [txtPassword setSecureTextEntry:YES];
         [sender setImage:[UIImage imageNamed:@"IconHidePassword"] forState:UIControlStateNormal];
-       
+        
     }
 }
 -(IBAction)btnloginClicked:(UIButton *)sender
 {
     [self.view endEditing:YES];
-
+    
     BOOL isValidate=TRUE;
     
-//    [txtUserID setText:@"rswsteelmzn@gmail.com"];
-//    [txtPassword setText:@"reset"];
-
+    //    [txtUserID setText:@"rswsteelmzn@gmail.com"];
+    //    [txtPassword setText:@"reset"];
+    
     [txtUserID setText:@"demo326@gmail.com"];
     [txtPassword setText:@"qwe123"];
     
@@ -170,7 +170,7 @@
         [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Please Enter your Password..!"];
         return;
     }
-
+    
     if (isValidate)
     {
         if (SharedObject.isNetAvailable)
@@ -187,21 +187,20 @@
             [dic setValue:FIREBASE_TOKEN forKey:@"FcmToken"];
             [dic setValue:@"IOS" forKey:@"OsType"];
             [dic setValue:UNIQUE_IDENTIFIER forKey:@"DeviceId"];
-
+            
             MBCall_LoginUserUsing(dic, ^(id response, NSString *error, BOOL status)
             {
                 NSError* Error;
-
+                
                 if (status && [[response valueForKey:@"success"]isEqual:@1])
                 {
                     [CommonUtility HideProgress];
                     
                     SellerUserDetail *objSellerdetail = [[SellerUserDetail alloc]initWithDictionary:[response valueForKey:@"detail"] error:&Error];
                     [MBDataBaseHandler saveSellerUserDetailData:objSellerdetail];
-
-//                    RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
-//                    AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//                    [delegateClass setRootViewController:rootVC];
+                
+                    [self getCommonSupplierDataWithVendorID];
+                    
                     if ([objSellerdetail.RegistrationStatus isEqualToString:@"Complete"])
                     {
                         RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
@@ -214,24 +213,25 @@
                         [AppDelegate getManageAccountScreenWithPagination:self.storyboard withNavigation:self.navigationController];
                     }
                 }
-                else{
+                else
+                {
                     [CommonUtility HideProgress];
                     [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
-
                 }
             });
         }
         else
         {
+            [CommonUtility HideProgress];
             [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
         }
-       
+        
     }
 }
 -(IBAction)btnForgotPwdClicked:(UIButton *)sender
 {
-//    TVForgotPassword *forgotScreen =[self.storyboard instantiateViewControllerWithIdentifier:@"TVForgotPassword"];
-//    [self.navigationController pushViewController:forgotScreen animated:YES];
+    //    TVForgotPassword *forgotScreen =[self.storyboard instantiateViewControllerWithIdentifier:@"TVForgotPassword"];
+    //    [self.navigationController pushViewController:forgotScreen animated:YES];
 }
 
 -(void)SetAttributedStringWithUnderlineTittle
@@ -259,4 +259,47 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+-(void)getCommonSupplierDataWithVendorID
+{
+    SellerUserDetail *objSeller = [MBDataBaseHandler getSellerUserDetailData];
+    
+    NSMutableDictionary *dicParams = [[NSMutableDictionary alloc]init];
+    [dicParams setValue:objSeller.APIVerificationCode forKey:@"Token"];
+    [dicParams setValue:objSeller.VendorID forKey:@"VendorID"];
+    
+    if (SharedObject.isNetAvailable)
+    {
+        [CommonUtility showProgressWithMessage:@"Please Wait.."];
+        
+        MBCall_GetCommonSupplierDataWithVendorIDAPI(dicParams, ^(id response, NSString *error, BOOL status)
+        {
+            NSError* Error;
+            
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                [CommonUtility HideProgress];
+                CommonSupplierData *objCommonSupplierData = [[CommonSupplierData alloc]initWithDictionary:[response valueForKey:@"detail"] error:&Error];
+                objCommonSupplierData.RegistrationStatus = [response valueForKey:@"RegistrationStatus"];
+                objCommonSupplierData.message = [response valueForKey:@"message"];
+
+                [MBDataBaseHandler saveSellerCommonSupplierData:objCommonSupplierData];
+            }
+            else
+            {
+                [CommonUtility HideProgress];
+                [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
+                
+            }
+        });
+    }
+    else
+    {
+        [CommonUtility HideProgress];
+        [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
+    }
+}
+
+
+
 @end

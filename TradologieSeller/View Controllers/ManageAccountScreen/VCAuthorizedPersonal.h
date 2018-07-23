@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VCAuthorizedPersonal : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface VCAuthorizedPersonal : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
     
 }
-@property (nonatomic,strong) IBOutlet UITableView *tblPersonInfo;
+@property (nonatomic, strong) UITableView *tblPersonInfo;
 @property (nonatomic, strong) NSString *strManageAcTittle;
 
 

@@ -44,4 +44,5 @@ typedef void (^FTPopOverMenuDismissBlock)(void);
 
 +(NSString*)saveImageTODocumentAndGetPath:(UIImage *)image;
 +(BOOL)fileExistsInProject:(NSString *)fileName;
++ (void)showProgress:(CGFloat)progress;
 @end

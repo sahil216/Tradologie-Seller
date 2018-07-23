@@ -2,7 +2,7 @@
 //  TVBankDetailScreen.h
 //  TradologieSeller
 //
-//  Created by Chandresh Maurya on 13/07/18.
+//  Created by Chandresh Maurya on 21/07/18.
 //  Copyright © 2018 Tradologie.com. All rights reserved.
 //
 
@@ -22,5 +22,4 @@
     
 }
 @property (nonatomic, strong) NSString *strManageAcTittle;
-
 @end

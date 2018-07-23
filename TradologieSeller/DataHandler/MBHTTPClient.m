@@ -178,4 +178,58 @@ sharedObject;\
      } retryCount:RETRYCOUNTER retryInterval:RETRYINTERVAL progressive:false fatalStatusCodes:FATALSTATUSCODE];
 }
 
+- (void)downloadDocumentFileFromURL:(NSString *) URL withProgress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(NSURL *filePath))completionBlock onError:(void (^)(NSError *error))errorBlock
+{
+    //Configuring the session manager
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *formattedURL = [NSURL URLWithString:URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:formattedURL];
+    
+    [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite)
+     {
+         CGFloat written = totalBytesWritten;
+         CGFloat total = totalBytesExpectedToWrite;
+         CGFloat percentageCompleted = written/total;
+         
+         progressBlock(percentageCompleted);
+     }];
+    
+    //Start the download
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response)
+      {
+          //Getting the path of the document directory
+          NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+          NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+          
+          //If we already have a video file saved, remove it from the phone
+          [self removeVideoAtPath:fullURL];
+          return fullURL;
+          
+      } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error)
+      {
+          if (!error) {
+              //If there's no error, return the completion block
+              completionBlock(filePath);
+          } else {
+              //Otherwise return the error block
+              errorBlock(error);
+          }
+          
+      }];
+    
+    [downloadTask resume];
+}
+
+
+- (void)removeVideoAtPath:(NSURL *)filePath
+{
+    NSString *stringPath = filePath.path;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:stringPath]) {
+        [fileManager removeItemAtPath:stringPath error:NULL];
+    }
+}
+
 @end

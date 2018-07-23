@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell_Upload_Identifier" rowHeight="170" id="6bL-K8-FVm" customClass="TVCellPersonAuthorize">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6bL-K8-FVm" id="93F-2K-Ac5">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-pB-zUS">
+                        <rect key="frame" x="10" y="5" width="115" height="45"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.25490196079999999" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="115" id="KhJ-Lb-8Df"/>
+                            <constraint firstAttribute="height" constant="45" id="dYb-93-Ubp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                        <state key="normal" title="Upload File">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QH-dU-goF">
+                        <rect key="frame" x="135" y="4.5" width="230" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="XTR-Zo-sin"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="e4C-JC-xRb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gST-J2-UNQ">
+                        <rect key="frame" x="15" y="58.5" width="115" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="115" id="I3G-9o-QO2"/>
+                            <constraint firstAttribute="height" constant="25" id="ycb-hX-Jdf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Olx-Vl-P6X">
+                        <rect key="frame" x="247" y="55" width="51" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="JR3-tI-n8b"/>
+                            <constraint firstAttribute="height" constant="32" id="dpk-0G-Qgu"/>
+                        </constraints>
+                    </switch>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVD-Zm-wV6">
+                        <rect key="frame" x="15" y="109.5" width="345" height="50"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.25490196079999999" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="345" id="pVs-fV-kd2"/>
+                            <constraint firstAttribute="height" constant="50" id="t66-l5-22u"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                        <state key="normal" title="SUBMIT">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qtb-pB-zUS" firstAttribute="leading" secondItem="93F-2K-Ac5" secondAttribute="leading" constant="10" id="3xb-KJ-40c"/>
+                    <constraint firstItem="Olx-Vl-P6X" firstAttribute="leading" secondItem="gST-J2-UNQ" secondAttribute="trailing" constant="117" id="7zm-fO-KHk"/>
+                    <constraint firstItem="Olx-Vl-P6X" firstAttribute="top" secondItem="9QH-dU-goF" secondAttribute="bottom" constant="5.5" id="Cix-Pp-4um"/>
+                    <constraint firstItem="9QH-dU-goF" firstAttribute="leading" secondItem="qtb-pB-zUS" secondAttribute="trailing" constant="10" id="MBw-Tk-0yW"/>
+                    <constraint firstItem="XVD-Zm-wV6" firstAttribute="leading" secondItem="93F-2K-Ac5" secondAttribute="leading" constant="15" id="O7j-Wv-KAA"/>
+                    <constraint firstItem="gST-J2-UNQ" firstAttribute="leading" secondItem="XVD-Zm-wV6" secondAttribute="leading" id="Oz3-KH-0O1"/>
+                    <constraint firstItem="gST-J2-UNQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="93F-2K-Ac5" secondAttribute="leading" id="SMV-ng-XDF"/>
+                    <constraint firstItem="qtb-pB-zUS" firstAttribute="top" secondItem="93F-2K-Ac5" secondAttribute="top" constant="5" id="TGu-w2-1z7"/>
+                    <constraint firstItem="9QH-dU-goF" firstAttribute="top" secondItem="93F-2K-Ac5" secondAttribute="top" constant="5" id="XSJ-D1-0YY"/>
+                    <constraint firstItem="Olx-Vl-P6X" firstAttribute="centerY" secondItem="gST-J2-UNQ" secondAttribute="centerY" id="cs0-yE-ctp"/>
+                    <constraint firstAttribute="bottom" secondItem="XVD-Zm-wV6" secondAttribute="bottom" constant="10" id="ts1-b6-E9v"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnSubmitAuthorized" destination="XVD-Zm-wV6" id="rVY-Pz-pTI"/>
+                <outlet property="btnUploadFile" destination="qtb-pB-zUS" id="D7S-pd-TK7"/>
+                <outlet property="btnWidth" destination="pVs-fV-kd2" id="jZz-qt-W25"/>
+                <outlet property="switchEnable" destination="Olx-Vl-P6X" id="efC-ti-xpC"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </tableViewCell>
+    </objects>
+</document>

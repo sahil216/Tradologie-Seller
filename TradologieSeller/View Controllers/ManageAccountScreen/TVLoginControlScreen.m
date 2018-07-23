@@ -162,41 +162,68 @@
 
 //NSString    *strUploadImage = [CommonUtility saveImageTODocumentAndGetPath:img];
 
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-//
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//
-//    NSString* path = [documentsDirectory stringByAppendingPathComponent:@"Tradology.png"];
-//
-//    NSURL *imgURL = [NSURL fileURLWithPath:path];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:@"Tradology.png"];
+
+    //NSURL *imgURL = [NSURL fileURLWithPath:path];
     
     
     imageDatatoUpload = UIImageJPEGRepresentation(img, 0);
- 
+    NSString *strUploadImage = [self contentTypeForImageData:imageDatatoUpload];
+   
     if(img != nil)
     {
         [imgProfilePic setImage:img];
+        
         SellerUserDetail *objSeller = [MBDataBaseHandler getSellerUserDetailData];
         
         NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-        [dic setValue:objSeller.APIVerificationCode forKey:@"Token"];
         [dic setValue:objSeller.VendorID forKey:@"VendorID"];
-        
-//        MBCall_AddPackingImageUploadAPI(dicImage, self->imageDatatoUpload, ^(id response, NSString *error, BOOL status)
-//        {
-//            if (status && [[response valueForKey:@"success"]isEqual:@1])
-//            {
-//                if (response != (NSDictionary *)[NSNull null])
-//                {
-//
-//                }
-//            }
-//        });
+        [dic setValue:strUploadImage forKey:@"ContentType"];
+        [dic setObject:path forKey:@"File"];
+        [dic setObject:@".png" forKey: @"Extension"];
+       
+        MBCall_AddUploadVendorImageAPI(dic, ^(id response, NSString *error, BOOL status)
+        {
+            if (status && [[response valueForKey:@"success"]isEqual:@1])
+            {
+                if (response != (NSDictionary *)[NSNull null])
+                {
+
+                }
+                else
+                {
+                    
+                }
+            }
+        });
     }
     else
     {
 
     }
+}
+- (NSString *)contentTypeForImageData:(NSData *)data
+{
+    uint8_t c;
+
+    [data getBytes:&c length:1];
+    
+    switch (c) {
+        case 0xFF:
+            return @"image/jpeg";
+        case 0x89:
+            return @"image/png";
+        case 0x47:
+            return @"image/gif";
+        case 0x49:
+        case 0x4D:
+            return @"image/tiff";
+    }
+    return nil;
 }
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== SUPPLIER LOGIN CONTROL SERVICE CALLED ===❉===❉

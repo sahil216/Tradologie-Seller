@@ -1,10 +1,11 @@
 //
-//  EDServices.h
-//  Florists
+//  MBAPIManager.h
+//  TradologieSeller
 //
-//  Created by Anil Khanna on 14/02/15.
-//  Copyright (c) 2015 Anil Khanna. All rights reserved.
+//  Created by Chandresh Maurya on 11/07/18.
+//  Copyright © 2018 Tradologie.com. All rights reserved.
 //
+
 
 #import <Foundation/Foundation.h>
 
@@ -20,8 +21,20 @@ void MBCall_SupplierLoginControlAPI(NSDictionary *params, TSApiManagerCompletion
 void MBCall_SupplierSaveLoginControlAPI(NSDictionary *params, TSApiManagerCompletion completion);
 void MBCall_GetSupplierInformationAPI(NSDictionary *params, TSApiManagerCompletion completion);
 void MBCall_SaveSupplierInformationAPI(NSDictionary *params, TSApiManagerCompletion completion);
-void MBCall_GetVendorMemberShipPlanAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_GetVendorMemberShipPlanListAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_GetUpdateMembershipDetailAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_GetParticularVendorMemberShipPlanAPI(NSDictionary *params, TSApiManagerCompletion completion);
+void MBCall_GetCommonSupplierDataWithVendorIDAPI(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_GetStateCityAreaListAccordingtoCountryNameAPI(NSDictionary *params,
+                                                          NSInteger index,TSApiManagerCompletion completion);
+void MBCall_GetSupplierAgreementFileDetail(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_UpdateAgreementDetailSupplier(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_GetSupplierBankDetailData(NSDictionary* params,TSApiManagerCompletion completion);
 
+void MBCall_GetSellerUpdateCompanyDetailsWithAPI(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_GetSellerCompanyDetailsWithAPI(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_AddUploadVendorImageAPI(NSDictionary *params ,TSApiManagerCompletion completion);
+void MBCall_SaveAuthorizePersonDetailAPI(NSDictionary* params,TSApiManagerCompletion completion);
 
 void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_GetAuctionListUsingDashboardApi(NSDictionary* params,TSApiManagerCompletion completion);

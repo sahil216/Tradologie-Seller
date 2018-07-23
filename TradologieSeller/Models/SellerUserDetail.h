@@ -16,8 +16,9 @@
 @property (nonatomic,strong)NSString *RegistrationStatus;
 @property (nonatomic,strong)NSString <Optional>*SellerTimeZone;
 @property (nonatomic,strong)NSString *UserID;
-@property (nonatomic,strong)NSNumber *VendorID;
 @property (nonatomic,strong)NSString *VendorName;
+@property (nonatomic,strong)NSNumber *VendorID;
 
 @end
+
 

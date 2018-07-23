@@ -11,6 +11,7 @@
 @protocol TVCellMemberShipPlanDelegate <NSObject>
 
 - (void)selectMemberShipPlan:(UIButton *)sender withIndex:(NSIndexPath *)index;
+- (void)btnSubmitPlanTapped:(UIButton *)sender;
 
 @end
 
@@ -20,5 +21,7 @@
 @property (nonatomic,strong) IBOutlet UILabel *lblMemberAmount;
 @property (nonatomic,strong) IBOutlet UIView *viewBG;
 @property (nonatomic,assign) id<TVCellMemberShipPlanDelegate> delegate;
+@property (nonatomic,strong) IBOutlet UIButton *btnSubmitPlan;
+@property (nonatomic,strong) IBOutlet NSLayoutConstraint *viewWidth;
 
 @end

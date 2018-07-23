@@ -77,6 +77,14 @@
     [SVProgressHUD showWithStatus:message];
 
 }
++ (void)showProgress:(CGFloat)progress
+{
+    [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setRingThickness:4.0f];
+    [SVProgressHUD setFont:UI_DEFAULT_FONT_BOLD(16)];
+    [SVProgressHUD setForegroundColor:[UIColor redColor]];
+    [SVProgressHUD showProgress:progress];
+}
 
 /******************************************************************************************************************/
 #pragma mark ❉===❉===  SHOW ALERT  ===❉===❉
@@ -241,8 +249,8 @@
 +(void)showPopUpWithData:(UIView *)viewtoShow withArray:(NSMutableArray *)arrData withCompletion:(showPopupWithCompletionHandler)completion withDismissBlock:(FTPopOverMenuDismissBlock)dismiss
 {
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
-    configuration.menuRowHeight = 50;
-    configuration.menuWidth = SCREEN_WIDTH-20;
+    configuration.menuRowHeight = 45;
+    configuration.menuWidth = SCREEN_WIDTH - 10;
     configuration.textColor = [UIColor whiteColor];
     configuration.textFont = UI_DEFAULT_FONT_MEDIUM(16);
     configuration.tintColor = [UIColor whiteColor];
@@ -251,7 +259,9 @@
     configuration.menuIconMargin = 6;
     configuration.ignoreImageOriginalColor = YES;
     configuration.allowRoundedArrow = YES;
-    
+
+    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+
     [FTPopOverMenu showForSender:viewtoShow
                    withMenuArray:arrData
                       imageArray:nil
@@ -259,7 +269,10 @@
      {
          completion(selectedIndex);
          
+         [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+         
      } dismissBlock:^{
+         [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
          dismiss();
      }];
 }

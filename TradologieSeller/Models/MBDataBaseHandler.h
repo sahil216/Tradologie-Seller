@@ -21,6 +21,9 @@ typedef enum
     auctionOrderHistory,
     sellerLC,
     sellerInfo,
+    Commonddl,
+    authorizePerson,
+    sellerBankDetail,
 } OFFLINEMODE;
 
 
@@ -39,7 +42,9 @@ typedef enum
 +(SellerAuctionDetail *)getSellerAuctionDetailData;
 +(SellerAuctionOrderHistory *)getSellerAuctionOrderHistoryData;
 +(SellerGetInformation *)getSellerGetInformationData;
-
++(CommonSupplierData *)getCommonSupplierData;
++(AuthorizePersonList *)getAuthorizePersonListWithData;
++(SellerBankDetailData *)getSellerBankDetailData;
 
 #pragma Mark - SETTERS
 
@@ -47,6 +52,9 @@ typedef enum
 +(void)saveSellerUserDetailData:(SellerUserDetail *)sellerData;
 +(void)saveSellerLoginControlData:(SellerLoginControl *)sellerLoginControl;
 +(void)saveSellerGetInformationData:(SellerGetInformation *)sellerGetInfo;
++(void)saveSellerCommonSupplierData:(CommonSupplierData *)commonSupplier;
++(void)saveAuthorizePersonListData:(AuthorizePersonList *)authorizePersonList;
++(void)saveSellerBankDetailWithData:(SellerBankDetailData *)bankDetail;
 
 +(void)saveSellerAuctionListData:(SellerAuctionList *)AuctionListData;
 +(void)saveSellerAuctionDetailData:(SellerAuctionDetail *)objSellerAuctionDetail;

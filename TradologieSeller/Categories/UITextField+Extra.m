@@ -88,7 +88,7 @@
     [self setTintColor:DEFAULT_COLOR];
     [self.layer setBorderWidth:1.0f];
     [self.layer setCornerRadius:5.0f];
-    [self setTag:tag];
+   // [self setTag:tag];
     [self.layer setBorderColor:DEFAULT_COLOR.CGColor];
     [self setKeyboardAppearance:UIKeyboardAppearanceDark];
     [self setBackgroundColor:[UIColor whiteColor]];

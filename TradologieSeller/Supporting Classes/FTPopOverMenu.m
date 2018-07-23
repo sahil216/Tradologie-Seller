@@ -746,9 +746,11 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     CGPoint point = [touch locationInView:_popMenuView];
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"])
+    {
         return NO;
-    }else if (CGRectContainsPoint(CGRectMake(0, 0, [FTPopOverMenuConfiguration defaultConfiguration].menuWidth, [FTPopOverMenuConfiguration defaultConfiguration].menuRowHeight), point)) {
+    }
+    else if (CGRectContainsPoint(CGRectMake(0, 0, [FTPopOverMenuConfiguration defaultConfiguration].menuWidth, [FTPopOverMenuConfiguration defaultConfiguration].menuRowHeight), point)) {
         [self doneActionWithSelectedIndex:0];
         return NO;
     }
@@ -790,16 +792,21 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                      animations:^{
                          self->_popMenuView.alpha = 0;
                          self->_popMenuView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-                     }completion:^(BOOL finished) {
-                         if (finished) {
+                     }completion:^(BOOL finished)
+                    {
+                         if (finished)
+                         {
                              [self.popMenuView removeFromSuperview];
                              [self.backgroundView removeFromSuperview];
-                             if (selectedIndex < 0) {
-                                 if (self.dismissBlock) {
+                             if (selectedIndex < 0)
+                             {
+                                 if (self.dismissBlock)
+                                 {
                                      self.dismissBlock();
                                  }
                              }else{
-                                 if (self.doneBlock) {
+                                 if (self.doneBlock)
+                                 {
                                      self.doneBlock(selectedIndex);
                                  }
                              }

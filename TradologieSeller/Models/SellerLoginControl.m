@@ -28,3 +28,15 @@
 }
 
 @end
+
+/************************ SellerBankDetailData *********************************************/
+
+@implementation SellerBankDetailData
+
++(BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    return YES;
+}
+
+@end
+

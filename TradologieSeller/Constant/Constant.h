@@ -106,7 +106,6 @@
 /****** API URL & APIDOMAIN CALLED HERE ******/
 
 
-#define GET_USER_DEFAULTS(KEY) [[NSUserDefaults standardUserDefaults] objectForKey:KEY]
 
 #define RUN_AFTER(time,block) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), block)
 

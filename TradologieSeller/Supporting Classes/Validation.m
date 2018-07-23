@@ -30,7 +30,8 @@
 {
     NSString *phoneRegex = @"^((\\+)|(91))[0-9]{6,14}$";
 
-    if (mobile.length > 13) {
+    if (mobile.length > 13)
+    {
         return false;
     }
     else if ([mobile rangeOfString:@" "].location != NSNotFound) {

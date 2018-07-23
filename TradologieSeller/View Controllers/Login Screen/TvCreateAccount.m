@@ -245,10 +245,6 @@
                 
                 SellerUserDetail *objSellerUser = [[SellerUserDetail alloc]initWithDictionary:response error:&Error];
                 [MBDataBaseHandler saveSellerUserDetailData:objSellerUser];
-
-//                RootViewController * rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RootViewController"];
-//                AppDelegate *delegateClass = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-           //     [delegateClass setRootViewController:rootVC];
                 
                 if ([objSellerUser.RegistrationStatus isEqualToString:@"Complete"])
                 {

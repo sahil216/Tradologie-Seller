@@ -1,9 +1,9 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //
-//  EDServices.m
-//  Florists
 //
-//  Created by Anil Khanna on 14/02/15.
-//  Copyright (c) 2015 Anil Khanna. All rights reserved.
+//  MBAPIManager.h
+//  TradologieSeller
+//
+//  Created by Chandresh Maurya on 11/07/18.
+//  Copyright © 2018 Tradologie.com. All rights reserved.
 //
 
 #import "MBAPIManager.h"
@@ -168,20 +168,32 @@ void MBCall_SupplierSaveLoginControlAPI(NSDictionary *params, TSApiManagerComple
      }];
 }
 
-void MBCall_AddUploadVendorImageAPI(NSDictionary *params , NSData *image_data ,TSApiManagerCompletion completion)
+void MBCall_AddUploadVendorImageAPI(NSDictionary *params ,TSApiManagerCompletion completion)
 {
-    [[MBHTTPClient sharedInstance] requestPOSTMultipartServiceOnURL:getUrlForMethod(SELLER_UPLOAD_IMAGE_API) withData:image_data withParametes:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_UPLOAD_IMAGE_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
      {
-         if (error)
-         {
-             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
-             return;
-         }
-         else if(response)
+         if(!error && response)
          {
              completion(response,checkIfResponseHasErrorMessage(response),YES);
          }
+         else
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
      }];
+//    [[MBHTTPClient sharedInstance] requestPOSTMultipartServiceOnURL:getUrlForMethod(SELLER_UPLOAD_IMAGE_API) withData:image_data withParametes:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+//     {
+//         if (error)
+//         {
+//             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+//             return;
+//         }
+//         else if(response)
+//         {
+//             completion(response,checkIfResponseHasErrorMessage(response),YES);
+//         }
+//     }];
 }
 void MBCall_GetSupplierInformationAPI(NSDictionary *params, TSApiManagerCompletion completion)
 {
@@ -213,7 +225,7 @@ void MBCall_SaveSupplierInformationAPI(NSDictionary *params, TSApiManagerComplet
          }
      }];
 }
-void MBCall_GetVendorMemberShipPlanAPI(NSDictionary *params, TSApiManagerCompletion completion)
+void MBCall_GetVendorMemberShipPlanListAPI(NSDictionary *params, TSApiManagerCompletion completion)
 {
     [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_MEMBERSHIP_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
      {
@@ -228,8 +240,181 @@ void MBCall_GetVendorMemberShipPlanAPI(NSDictionary *params, TSApiManagerComplet
          }
      }];
 }
-//
+void MBCall_GetUpdateMembershipDetailAPI(NSDictionary *params, TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_MEMBERSHIP_UPDATE_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if(!error && response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+         else
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+     }];
+}
+void MBCall_GetParticularVendorMemberShipPlanAPI(NSDictionary *params, TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_VENDOR_MEMEBERSHIP_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if(!error && response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+         else
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+     }];
+}
 
+void MBCall_GetCommonSupplierDataWithVendorIDAPI(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_COMMON_DATA_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+void MBCall_GetStateCityAreaListAccordingtoCountryNameAPI(NSDictionary *params, NSInteger index,TSApiManagerCompletion completion)
+{
+    NSString *strValue = @"";
+    if (index == 0)
+    {
+        strValue = SELLER_STATE_LIST_API;
+    }
+    else if (index == 1)
+    {
+         strValue = SELLER_CITY_LIST_API;
+    }
+    else if (index == 2)
+    {
+         strValue = SELLER_AREA_LIST_API;
+    }
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(strValue) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+void MBCall_GetSellerUpdateCompanyDetailsWithAPI(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_UPDATE_COMPANY_DETAILS_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+void MBCall_GetSellerCompanyDetailsWithAPI(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_COMPANY_DETAIL_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+void MBCall_SaveAuthorizePersonDetailAPI(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_SAVE_AUTHORIZE_PERSON_API)
+            WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return ;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+
+void MBCall_GetSupplierAgreementFileDetail(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_GET_AGREEMENT_API)
+                WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+void MBCall_UpdateAgreementDetailSupplier(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_UPDATE_AGREEMENT_API)
+        WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+void MBCall_GetSupplierBankDetailData(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_GET_BANK_API)
+                    WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
 
 
 void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,TSApiManagerCompletion completion)
@@ -345,6 +530,7 @@ void MBCall_SupplierAuctionOrderHistoryWithVendorID(NSDictionary* params,TSApiMa
          }
      }];
 }
+
 
 
 //void MBCall_RegisterUserWithSocailMedia(NSDictionary *params,NSData *image_data,RMApiManagerCompletion completion)
