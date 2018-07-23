@@ -54,7 +54,7 @@
     for(int i = 0 ; i < [keyArray count] ; i++)
     {
         bgView = [[UIView alloc] initWithFrame:CGRectMake(xx, 0, width, itemSize.height)];
-        [bgView setBackgroundColor:[UIColor grayColor]];
+        [bgView setBackgroundColor:[UIColor clearColor]];
         [self addSubview:bgView];
        
         if (i == 2)

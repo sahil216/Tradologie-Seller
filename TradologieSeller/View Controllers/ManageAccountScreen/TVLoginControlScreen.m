@@ -13,6 +13,8 @@
 #import "MBAPIManager.h"
 #import "MBDataBaseHandler.h"
 #import "SharedManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface TVLoginControlScreen ()<THSegmentedPageViewControllerDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -60,25 +62,19 @@
 #pragma mark ❉===❉=== TABLEVIEW DELEGATE & DATA SOURCE CALLED HERE ===❉===❉
 /*****************************************************************************************************************/
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 8;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
-    SellerLoginControl *objloginControl = [MBDataBaseHandler getSellerLoginControl];
-    [txtEmailID setUserInteractionEnabled:NO];
-    [txtName setText:objloginControl.VendorName];
-    [txtEmailID setText:objloginControl.UserID];
-    [txtMobile setText:objloginControl.MobileNo];
-    [txtPassword setText:objloginControl.Password];
-    [txtConfirmPassword setText:objloginControl.Password];
 }
 
 /******************************************************************************************************************/
@@ -111,7 +107,6 @@
 /******************************************************************************************************************/
 -(IBAction)btnSubmitLoginControl:(UIButton *)sender
 {
-    
     SellerUserDetail *objSeller = [MBDataBaseHandler getSellerUserDetailData];
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
@@ -129,10 +124,10 @@
         MBCall_SupplierSaveLoginControlAPI(dic, ^(id response, NSString *error, BOOL status)
         {
             [CommonUtility HideProgress];
-            
+
             if (status && [[response valueForKey:@"success"]  isEqual: @1])
             {
-                
+               
             }
             else
             {
@@ -148,7 +143,7 @@
 }
 -(IBAction)btnProfileUploadClicked:(UIButton *)sender
 {
-    [SharedManager ShowCameraWithTittle:@"Choose Image to UPLOAD" withID:self];
+    [SharedManager ShowCameraWithTittle:@"Choose Image from" withID:self];
 }
 
 /******************************************************************************************************************/
@@ -159,21 +154,14 @@
     [self dismissViewControllerAnimated:true completion:nil];
     
     UIImage * img = [info valueForKey:UIImagePickerControllerEditedImage];
-
-//NSString    *strUploadImage = [CommonUtility saveImageTODocumentAndGetPath:img];
-
+    NSString *strImageName = [[info valueForKey:@"UIImagePickerControllerImageURL"] lastPathComponent];
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-
     NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:strImageName];
 
-    NSString* path = [documentsDirectory stringByAppendingPathComponent:@"Tradology.png"];
-
-    //NSURL *imgURL = [NSURL fileURLWithPath:path];
-    
-    
     imageDatatoUpload = UIImageJPEGRepresentation(img, 0);
-    NSString *strUploadImage = [self contentTypeForImageData:imageDatatoUpload];
-   
+    
     if(img != nil)
     {
         [imgProfilePic setImage:img];
@@ -182,21 +170,25 @@
         
         NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
         [dic setValue:objSeller.VendorID forKey:@"VendorID"];
-        [dic setValue:strUploadImage forKey:@"ContentType"];
+        [dic setValue:@"imageMimeTypes" forKey:@"ContentType"];
         [dic setObject:path forKey:@"File"];
-        [dic setObject:@".png" forKey: @"Extension"];
+        [dic setObject:@".jpeg" forKey: @"Extension"];
        
-        MBCall_AddUploadVendorImageAPI(dic, ^(id response, NSString *error, BOOL status)
+        MBCall_AddUploadVendorImageAPI(dic, imageDatatoUpload, ^(id response, NSString *error, BOOL status)
         {
+            [self getSupplierLoginControlServiceCalled];
+            
             if (status && [[response valueForKey:@"success"]isEqual:@1])
             {
+                
                 if (response != (NSDictionary *)[NSNull null])
                 {
-
+                    [self getSupplierLoginControlServiceCalled];
                 }
                 else
                 {
-                    
+                    [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:[response valueForKey:@"message"]];
+
                 }
             }
         });
@@ -206,25 +198,7 @@
 
     }
 }
-- (NSString *)contentTypeForImageData:(NSData *)data
-{
-    uint8_t c;
 
-    [data getBytes:&c length:1];
-    
-    switch (c) {
-        case 0xFF:
-            return @"image/jpeg";
-        case 0x89:
-            return @"image/png";
-        case 0x47:
-            return @"image/gif";
-        case 0x49:
-        case 0x4D:
-            return @"image/tiff";
-    }
-    return nil;
-}
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== SUPPLIER LOGIN CONTROL SERVICE CALLED ===❉===❉
 /******************************************************************************************************************/
@@ -241,16 +215,16 @@
         
         MBCall_SupplierLoginControlAPI(dic, ^(id response, NSString *error, BOOL status)
         {
-            [CommonUtility HideProgress];
             NSError* Error;
-            
+            [CommonUtility HideProgress];
+
             if (status && [[response valueForKey:@"success"]  isEqual: @1])
             {                
                 SellerLoginControl *objloginControl = [[SellerLoginControl alloc]initWithDictionary:[response valueForKey:@"detail"] error:&Error];
                 objloginControl.RegistrationStatus = [response valueForKey:@"RegistrationStatus"];
                 [MBDataBaseHandler saveSellerLoginControlData:objloginControl];
                 
-                [self.tableView reloadData];
+                [self GetSellerLoginControlData];
             }
             else
             {
@@ -264,4 +238,40 @@
         [[CommonUtility new] show_ErrorAlertWithTitle:@"" withMessage:@"Internet Not Available Please Try Again..!"];
     }
 }
+
+-(void)GetSellerLoginControlData
+{
+    
+
+    SellerLoginControl *objloginControl = [MBDataBaseHandler getSellerLoginControl];
+    [txtEmailID setUserInteractionEnabled:NO];
+    [txtName setText:objloginControl.VendorName];
+    [txtEmailID setText:objloginControl.UserID];
+    [txtMobile setText:objloginControl.MobileNo];
+    [txtPassword setText:objloginControl.Password];
+    [txtConfirmPassword setText:objloginControl.Password];
+    [CommonUtility HideProgress];
+
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:[NSURL URLWithString:objloginControl.VendorImage] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize)
+    {
+        
+    }
+    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
+     {
+        if (error)
+        {
+            [self->imgProfilePic setImage:[UIImage imageNamed:@"IconNoImageAvailable"]];
+        }
+        else
+        {
+
+
+            self->imgProfilePic.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];;
+        }
+    }];
+    
+    [self.tableView reloadData];
+}
+
 @end

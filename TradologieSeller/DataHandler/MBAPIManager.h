@@ -30,10 +30,13 @@ void MBCall_GetStateCityAreaListAccordingtoCountryNameAPI(NSDictionary *params,
 void MBCall_GetSupplierAgreementFileDetail(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_UpdateAgreementDetailSupplier(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_GetSupplierBankDetailData(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_GetSupplierUpdateBankDetailData(NSDictionary* params,TSApiManagerCompletion completion);
+void MBCall_UploadBankCheque(NSDictionary* params, NSData *image_data ,TSApiManagerCompletion completion);
 
 void MBCall_GetSellerUpdateCompanyDetailsWithAPI(NSDictionary* params,TSApiManagerCompletion completion);
 void MBCall_GetSellerCompanyDetailsWithAPI(NSDictionary* params,TSApiManagerCompletion completion);
-void MBCall_AddUploadVendorImageAPI(NSDictionary *params ,TSApiManagerCompletion completion);
+void MBCall_AddUploadVendorImageAPI(NSDictionary *params, NSData * image_data,TSApiManagerCompletion completion);
+//void MBCall_AddUploadVendorImageAPI(NSDictionary *params ,TSApiManagerCompletion completion);
 void MBCall_SaveAuthorizePersonDetailAPI(NSDictionary* params,TSApiManagerCompletion completion);
 
 void MBCall_GetDashBoardNotificationDetails(NSDictionary* params,TSApiManagerCompletion completion);

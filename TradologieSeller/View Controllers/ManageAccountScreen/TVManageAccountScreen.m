@@ -159,50 +159,14 @@
 -(IBAction)btnCameraVendorUpload:(UIButton *)sender
 {
     isfromVendor = YES;
-    [self showAlertShowCameraAndLibrabryToSelectImage];
+    [SharedManager ShowCameraWithTittle:@"Choose Image From" withID:self];
 }
 -(IBAction)btnCameraEBrochure:(UIButton *)sender
 {
     isfromVendor = NO;
-    [self showAlertShowCameraAndLibrabryToSelectImage];
+   [SharedManager ShowCameraWithTittle:@"Choose Image From" withID:self];
 }
 
-- (void)showAlertShowCameraAndLibrabryToSelectImage
-{
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Select Image" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
-    {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        {
-            UIImagePickerController *pickerView =[[UIImagePickerController alloc]init];
-            pickerView.allowsEditing = YES;
-            pickerView.delegate = self;
-            pickerView.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentViewController:pickerView animated:YES completion:nil];
-        }
-        else
-        {
-            
-        }
-    }]];
-    
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        UIImagePickerController *pickerView = [[UIImagePickerController alloc] init];
-        pickerView.allowsEditing = YES;
-        pickerView.delegate = self;
-        [pickerView setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        [self presentViewController:pickerView animated:YES completion:nil];
-    }]];
-    
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
-    
-    dispatch_async(dispatch_get_main_queue(), ^ {
-        [self presentViewController:actionSheet animated:YES completion:nil];
-    });
-}
 /******************************************************************************************************************/
 #pragma mark ❉===❉=== UI-IMAGE PICKER DELEGATE CALLED ===❉===❉
 /******************************************************************************************************************/

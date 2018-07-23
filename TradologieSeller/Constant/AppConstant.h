@@ -108,7 +108,8 @@ static NSString *SELLER_SAVE_AUTHORIZE_PERSON_API = @"SaveAuthorizePersonDetail"
 static NSString *SELLER_GET_AGREEMENT_API = @"GetAgreementFileDetail";
 static NSString *SELLER_UPDATE_AGREEMENT_API = @"UpdateAgreementDetail";
 static NSString *SELLER_GET_BANK_API = @"GetBankDetail";
-
+static NSString *SELLER_UPDATE_BANKDETAIL_API = @"UpdateBankDetail";
+static NSString *SELLER_UPLOAD_BANKCHEQUE_API = @"UpdateBankDocument";
 
 static NSString *DASHBOARD_NOTIFICATION_API =@"DashboardNotification";
 static NSString *AUCTION_LIST_API = @"AuctionList";

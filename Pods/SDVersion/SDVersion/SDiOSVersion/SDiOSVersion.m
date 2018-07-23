@@ -217,10 +217,14 @@
 
 + (BOOL)isZoomed
 {
-    if ([self resolutionSize] == Screen4inch && [UIScreen mainScreen].nativeScale > 2) {
-        return YES;
-    }else if ([self resolutionSize] == Screen4Dot7inch && [UIScreen mainScreen].scale == 3){
-        return YES;
+    if (@available(iOS 8.0, *)) {
+        if ([self resolutionSize] == Screen4inch && [UIScreen mainScreen].nativeScale > 2) {
+            return YES;
+        }else if ([self resolutionSize] == Screen4Dot7inch && [UIScreen mainScreen].scale == 3){
+            return YES;
+        }
+    } else {
+        // Fallback on earlier versions
     }
     
     return NO;

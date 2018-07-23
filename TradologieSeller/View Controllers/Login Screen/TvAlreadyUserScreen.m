@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [txtUserID setDefaultPreferenceTextfieldStyle:[UIImage imageNamed:@"IconUser"] WithPlaceHolder:@"Email Address" withTag:0];
     [txtPassword setTextfieldStyleWithButton:[UIImage imageNamed:@"IconPassword"] WithPlaceHolder:@"Password" withID:self withbuttonImage:[UIImage imageNamed:@"IconHidePassword"] withSelectorAction:@selector(btnViewpasswordClick:)];
     

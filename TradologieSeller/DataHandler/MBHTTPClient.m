@@ -171,8 +171,6 @@ sharedObject;\
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
          completion(task, error, nil);
-         
-         
          NSLog(@"Error: %@", error);
          
      } retryCount:RETRYCOUNTER retryInterval:RETRYINTERVAL progressive:false fatalStatusCodes:FATALSTATUSCODE];
@@ -230,6 +228,41 @@ sharedObject;\
     if ([fileManager fileExistsAtPath:stringPath]) {
         [fileManager removeItemAtPath:stringPath error:NULL];
     }
+}
+-(void)requestPOSTMultipartServiceForImageOnURL:(NSString *) urlString withData:(NSData *)photoData withParametes:(id)requestDictionary  withCompletion:(void (^)(NSURLSessionDataTask *task, NSError *error, id response))completion
+{
+    
+    NSMutableURLRequest *upload_request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:requestDictionary constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+        {
+
+        [formData appendPartWithFileData:photoData name:@"Image" fileName:[[requestDictionary valueForKey:@"File"] lastPathComponent] mimeType:@"imageMimeTypes"];
+
+    } error:nil];
+
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionUploadTask *uploadFileTask = [manager uploadTaskWithStreamedRequest:upload_request
+                                                        progress:^(NSProgress * uploadProgress)
+                      {
+                          dispatch_async(dispatch_get_main_queue(),
+                          ^{
+                              NSLog(@"%f",uploadProgress.fractionCompleted);
+                          });
+                      }
+                      completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error)
+                      {
+                          if (error)
+                          {
+                              NSLog(@"OOPS!!!! %@", error);
+                          }
+                          else
+                          {
+                              NSLog(@"%@ %@", response, responseObject);
+                            //  completion(uploadFileTask,nil,responseObject);
+                          }
+                      }];
+    [uploadFileTask resume];
+
 }
 
 @end

@@ -168,32 +168,20 @@ void MBCall_SupplierSaveLoginControlAPI(NSDictionary *params, TSApiManagerComple
      }];
 }
 
-void MBCall_AddUploadVendorImageAPI(NSDictionary *params ,TSApiManagerCompletion completion)
+void MBCall_AddUploadVendorImageAPI(NSDictionary *params, NSData * image_data,TSApiManagerCompletion completion)
 {
-    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_UPLOAD_IMAGE_API) WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+    [[MBHTTPClient sharedInstance] requestPOSTMultipartServiceForImageOnURL:getUrlForMethod(SELLER_UPLOAD_IMAGE_API) withData:image_data withParametes:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
      {
-         if(!error && response)
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
          {
              completion(response,checkIfResponseHasErrorMessage(response),YES);
          }
-         else
-         {
-             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
-             return ;
-         }
      }];
-//    [[MBHTTPClient sharedInstance] requestPOSTMultipartServiceOnURL:getUrlForMethod(SELLER_UPLOAD_IMAGE_API) withData:image_data withParametes:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
-//     {
-//         if (error)
-//         {
-//             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
-//             return;
-//         }
-//         else if(response)
-//         {
-//             completion(response,checkIfResponseHasErrorMessage(response),YES);
-//         }
-//     }];
 }
 void MBCall_GetSupplierInformationAPI(NSDictionary *params, TSApiManagerCompletion completion)
 {
@@ -403,6 +391,51 @@ void MBCall_GetSupplierBankDetailData(NSDictionary* params,TSApiManagerCompletio
 {
     [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_GET_BANK_API)
                     WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+void MBCall_GetSupplierUpdateBankDetailData(NSDictionary* params,TSApiManagerCompletion completion)
+{
+    [[MBHTTPClient sharedInstance] requestPOSTServiceOnURL:getUrlForMethod(SELLER_UPDATE_BANKDETAIL_API)
+                        WithDictionary:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+     {
+         if (error)
+         {
+             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+             return;
+         }
+         else if(response)
+         {
+             completion(response,checkIfResponseHasErrorMessage(response),YES);
+         }
+     }];
+}
+
+void MBCall_UploadBankCheque(NSDictionary* params, NSData *image_data ,TSApiManagerCompletion completion)
+{
+//    [[MBHTTPClient sharedInstance] requestPOSTMultipartServiceOnURL:getUrlForMethod(SELLER_UPLOAD_BANKCHEQUE_API) withData:image_data withParametes:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
+//     {
+//         if (error)
+//         {
+//             completion(nil,filterErrorMessageUsingResponseRequestOperation(task, error),NO);
+//             return;
+//         }
+//         else if(response)
+//         {
+//             completion(response,checkIfResponseHasErrorMessage(response),YES);
+//         }
+//     }];
+    [[MBHTTPClient sharedInstance] requestPOSTMultipartServiceForImageOnURL:getUrlForMethod(SELLER_UPLOAD_BANKCHEQUE_API) withData:image_data withParametes:params withCompletion:^(NSURLSessionDataTask *task, NSError *error, id response)
      {
          if (error)
          {
