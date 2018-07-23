@@ -232,7 +232,7 @@
                         NSMutableDictionary *dataDict = [NSMutableDictionary new];
                         self->count ++;
 
-                        [dataDict setObject:[NSString stringWithFormat:@"%lu",self->count] forKey:[self->arrTittle objectAtIndex:0]];
+                        [dataDict setObject:[NSString stringWithFormat:@"%ld",(long)self->count] forKey:[self->arrTittle objectAtIndex:0]];
                         [dataDict setObject:data.AuctionCode forKey:[self->arrTittle objectAtIndex:1]];
                         [dataDict setObject:data.PONo forKey:[self->arrTittle objectAtIndex:2]];
                         [dataDict setObject:data.OrderStatus forKey:[self->arrTittle objectAtIndex:3]];

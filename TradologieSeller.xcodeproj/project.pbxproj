@@ -823,6 +823,11 @@
 					4A2395C620C90C9800DF33E6 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					4A2395E120C90C9800DF33E6 = {
 						CreatedOnToolsVersion = 9.2;

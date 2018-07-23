@@ -436,7 +436,7 @@
         NSMutableDictionary *dataDict = [NSMutableDictionary new];
         count ++;
         
-        [dataDict setObject:[NSString stringWithFormat:@"%lu",count] forKey:[arrSellerAucList objectAtIndex:0]];
+        [dataDict setObject:[NSString stringWithFormat:@"%ld",(long)count] forKey:[arrSellerAucList objectAtIndex:0]];
         [dataDict setObject:[data.CustomCategory stringByAppendingString:[@"\n " stringByAppendingString:[data.AttributeValue1 stringByAppendingString:[@"\n " stringByAppendingString:data.AttributeValue2]]]] forKey:[arrSellerAucList objectAtIndex:1]];
         [dataDict setObject:data.Quantity forKey:[arrSellerAucList objectAtIndex:2]];
         [dataDict setObject:data.PackingType forKey:[arrSellerAucList objectAtIndex:3]];

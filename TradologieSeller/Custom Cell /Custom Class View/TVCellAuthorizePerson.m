@@ -48,21 +48,21 @@
 - (void) receiveAuthorizedPersonDetailNotification:(NSNotification *) notification
 {
     AuthorizePersonData *data = [notification.object copy];
-    NSLog(@"%@",notification.object);
-    if (_txtInfoField.tag == 10)
+    
+    if (_txtInfoField.tag == 10 && [_txtInfoField.placeholder isEqualToString:@"Authorize Person Name"])
     {
         [_txtInfoField setText: data.AuthorizePersonName];
     }
-    else if (_txtInfoField.tag == 11)
+    else if (_txtInfoField.tag == 11 && [_txtInfoField.placeholder isEqualToString:@"Your Email-ID"])
     {
         [_txtInfoField setText: data.EmailID];
 
     }
-    else if (_txtInfoField.tag == 12)
+    else if (_txtInfoField.tag == 12 && [_txtInfoField.placeholder isEqualToString:@"Your Mobile Number"])
     {
         [_txtInfoField setText:[NSString stringWithFormat:@"%@",data.MobileNo]];
     }
-    else if (_txtInfoField.tag == 13)
+    else if (_txtInfoField.tag == 13 && [_txtInfoField.placeholder isEqualToString:@"Your Designation"])
     {
         [_txtInfoField setText:[NSString stringWithFormat:@"%@",data.Designation]];
     }

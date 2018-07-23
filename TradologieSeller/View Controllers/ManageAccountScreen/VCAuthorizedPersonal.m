@@ -499,7 +499,7 @@ UITextFieldDelegate ,TVCellSavePersonDelegate>
         NSMutableDictionary *dataDict = [NSMutableDictionary new];
         self->count ++;
         
-        [dataDict setObject:[NSString stringWithFormat:@"%lu",self->count] forKey:[self->arrHeaderTittle objectAtIndex:0]];
+        [dataDict setObject:[NSString stringWithFormat:@"%ld",(long)self->count] forKey:[self->arrHeaderTittle objectAtIndex:0]];
         [dataDict setObject:objAuthdata.AuthorizePersonName forKey:[self->arrHeaderTittle objectAtIndex:1]];
         [dataDict setObject:objAuthdata.Designation forKey:[self->arrHeaderTittle objectAtIndex:2]];
         [dataDict setObject:objAuthdata.MobileNo forKey:[self->arrHeaderTittle objectAtIndex:3]];
