@@ -314,7 +314,7 @@
     UIButton *btnView = [[UIButton alloc]initWithFrame:frame];
     [btnView setDefaultButtonShadowStyle:DefaultThemeColor];
     [btnView setTitle:strBtnTittle forState:UIControlStateNormal];
-    [btnView.titleLabel setFont:UI_DEFAULT_FONT_MEDIUM(18)];
+    [btnView.titleLabel setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(15):UI_DEFAULT_FONT_MEDIUM(18)];
     [btnView addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [viewBG addSubview:btnView];
 }

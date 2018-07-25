@@ -91,7 +91,7 @@
         [bgView setBackgroundColor:[UIColor whiteColor]];
         
         [headLabel setBackgroundColor:[UIColor clearColor]];
-        [headLabel setFont:UI_DEFAULT_FONT(18)];
+        [headLabel setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(15):UI_DEFAULT_FONT(18)];
         [headLabel setNumberOfLines:5];
         [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
         

@@ -74,7 +74,7 @@
             headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, width , itemSize.height)];
         }
         
-        [headLabel setFont:UI_DEFAULT_FONT(16)];
+        [headLabel setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(14):UI_DEFAULT_FONT(16)];
         [headLabel setNumberOfLines:5];
         [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [headLabel setText:[NSString stringWithFormat:@"%d",i]];
@@ -108,7 +108,7 @@
 {
     UILabel *lblTittle = [[UILabel alloc]initWithFrame:frame];
     [lblTittle setBackgroundColor:[UIColor clearColor]];
-    [lblTittle setFont:UI_DEFAULT_FONT(16)];
+    [lblTittle setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(14):UI_DEFAULT_FONT(16)];
     [lblTittle setNumberOfLines:5];
     [lblTittle setTextAlignment:NSTextAlignmentCenter];
     [lblTittle setLineBreakMode:NSLineBreakByWordWrapping];

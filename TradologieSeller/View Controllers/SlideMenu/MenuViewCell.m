@@ -16,7 +16,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [lblTitile setFont:UI_DEFAULT_FONT_MEDIUM(17)];
+    [lblTitile setFont:(IS_IPHONE5)?UI_DEFAULT_FONT_MEDIUM(15):UI_DEFAULT_FONT_MEDIUM(17)];
     [self layoutIfNeeded];
 }
 

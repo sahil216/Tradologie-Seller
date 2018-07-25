@@ -136,12 +136,12 @@
         [cell ConfigureNotificationListbyCellwithData:[arrPendingNotify objectAtIndex:indexPath.row] withSectionIndex:2];
         return cell;
     }
-      NotificationList *cell =(NotificationList *) [tableView dequeueReusableCellWithIdentifier:@"Cell_ID"];
-      if (!cell)
-      {
+    NotificationList *cell =(NotificationList *) [tableView dequeueReusableCellWithIdentifier:@"Cell_ID"];
+    if (!cell)
+    {
         cell = [[NotificationList alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:COMMON_CELL_ID];
-      }
+    }
     if (indexPath.section == 0)
     {
         [cell.lblMessage setText:@"No Negotiation Complete Or Going to Start..!"];
@@ -154,73 +154,78 @@
     {
         [cell.lblMessage setText:@"No Negotiation Order is Pending..!"];
     }
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
+    if (arrUpCommingNotify.count > 0 || arrLiveNotify.count > 0 || arrPendingNotify.count > 0)
+    {
+        SellerUserDetail *objseller = [MBDataBaseHandler getSellerUserDetailData];
+        
+        if (indexPath.section == 0)
+        {
+            SellerAuctionDetailData *data  = [arrUpCommingNotify objectAtIndex:indexPath.row];
+            if([data.SupplierStatus isEqualToString:@"Accepted"] && data.IsGoingStart == YES)
+            {
+                [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+                
+                NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
+                NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
+                NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.APIVerificationCode];
+                NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
+                
+                VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
+                objVCLoadLive.strUrlForLiveAuction = loadURL;
+                [self.navigationController pushViewController:objVCLoadLive animated:YES];
+            }
+            else if ([data.SupplierStatus isEqualToString:@"PaymentProcess"])
+            {
+                
+            }
+            else if ([data.SupplierStatus isEqualToString:@"PaymentPending"])
+            {
+                
+            }
+            else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
+            {
+                [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:0];
+            }
+        }
+        else if (indexPath.section == 1)
+        {
+            SellerAuctionDetailData *data  = [arrLiveNotify objectAtIndex:indexPath.row];
+            if (data.IsStarted == 1 && [data.SupplierStatus isEqualToString:@"Accepted"])
+            {
+                [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+                
+                NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
+                NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
+                NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.APIVerificationCode];
+                NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
+                
+                VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
+                objVCLoadLive.strUrlForLiveAuction = loadURL;
+                [self.navigationController pushViewController:objVCLoadLive animated:YES];
+            }
+            else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
+            {
+                [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:0];
+            }
+            else if([data.SupplierStatus isEqualToString:@"PaymentPending"] && data.IsComplete == NO)
+            {
+                [[UIDevice currentDevice] setValue:
+                 [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+                
+                TVPaymentScreen *objScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVPaymentScreen"];
+                objScreen.strAuctionID = [data.AuctionID stringValue];
+                [self.navigationController pushViewController:objScreen animated:YES];
+                
+            }
+        }
+    }
     
-    if (indexPath.section == 0)
-    {
-        SellerAuctionDetailData *data  = [arrUpCommingNotify objectAtIndex:indexPath.row];
-        if([data.SupplierStatus isEqualToString:@"Accepted"] && data.IsGoingStart == YES)
-        {
-            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-            
-            NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
-            NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
-            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.APIVerificationCode];
-            NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
-            
-            VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
-            objVCLoadLive.strUrlForLiveAuction = loadURL;
-            [self.navigationController pushViewController:objVCLoadLive animated:YES];
-        }
-        else if ([data.SupplierStatus isEqualToString:@"PaymentProcess"])
-        {
-            
-        }
-        else if ([data.SupplierStatus isEqualToString:@"PaymentPending"])
-        {
-            
-        }
-        else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
-        {
-            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:0];
-        }
-    }
-    else if (indexPath.section == 1)
-    {
-        SellerAuctionDetailData *data  = [arrLiveNotify objectAtIndex:indexPath.row];
-        if (data.IsStarted == 1 && [data.SupplierStatus isEqualToString:@"Accepted"])
-        {
-            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
-            
-            NSString *strUrl = @"http://supplier.tradologie.com/supplier/LiveAuctionSupplierForAPI.aspx?";
-            NSString *strAuctionCode = [NSString stringWithFormat:@"AuctionCode=%@",data.AuctionCode];
-            NSString *strToken = [NSString stringWithFormat:@"&Token=%@",objseller.APIVerificationCode];
-            NSString *loadURL= [[strUrl stringByAppendingString:strAuctionCode] stringByAppendingString:strToken];
-            
-            VCLoadLiveAuction * objVCLoadLive = [self.storyboard instantiateViewControllerWithIdentifier:@"VCLoadLiveAuction"];
-            objVCLoadLive.strUrlForLiveAuction = loadURL;
-            [self.navigationController pushViewController:objVCLoadLive animated:YES];
-        }
-        else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
-        {
-            [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:0];
-        }
-        else if([data.SupplierStatus isEqualToString:@"PaymentPending"] && data.IsComplete == NO)
-        {
-            [[UIDevice currentDevice] setValue:
-             [NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
-            
-            TVPaymentScreen *objScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"TVPaymentScreen"];
-            objScreen.strAuctionID = [data.AuctionID stringValue];
-            [self.navigationController pushViewController:objScreen animated:YES];
-
-        }
-    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
@@ -241,15 +246,24 @@
     lblHeaaderTittle = [[UILabel alloc]initWithFrame:CGRectMake(40, 0, SCREEN_WIDTH-50, 40)];
     [lblHeaaderTittle setText:[arrTittle objectAtIndex:section]];
     [lblHeaaderTittle setTextColor:[UIColor whiteColor]];
-    [lblHeaaderTittle setFont:UI_DEFAULT_FONT_MEDIUM(18)];
+    [lblHeaaderTittle setFont:(IS_IPHONE5) ? UI_DEFAULT_FONT_MEDIUM(16):UI_DEFAULT_FONT_MEDIUM(18)];
     
     UIImageView * imgView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 7.5, 25, 25)];
     [imgView setBackgroundColor:[UIColor clearColor]];
     [imgView setImage:IMAGE(@"IconStar")];
     
-    [self getLableAccordingtoView:viewBG2 withTittle:@"Order No" withFrame:CGRectMake(30, 0, 120, 40) withImageFrame:CGRectMake(5, 10, 20, 20)];
-    [self getLableAccordingtoView:viewBG2 withTittle:@"Status" withFrame:CGRectMake(180, 0, 80, 40) withImageFrame:CGRectMake(155, 10, 20, 20)];
-    [self getLableAccordingtoView:viewBG2 withTittle:@"Time Left" withFrame:CGRectMake(290, 0, 80, 40) withImageFrame:CGRectMake(265, 10, 20, 20)];
+    if(IS_IPHONE5)
+    {
+        [self getLableAccordingtoView:viewBG2 withTittle:@"Order No" withFrame:CGRectMake(30, 0, 80, 40) withImageFrame:CGRectMake(5, 10, 20, 20) withAlignMent:NSTextAlignmentLeft];
+        [self getLableAccordingtoView:viewBG2 withTittle:@"Status" withFrame:CGRectMake(140, 0, 75, 40) withImageFrame:CGRectMake(115, 10, 20, 20) withAlignMent:NSTextAlignmentCenter];
+        [self getLableAccordingtoView:viewBG2 withTittle:@"Time Left" withFrame:CGRectMake(245, 0, 80, 40) withImageFrame:CGRectMake(220, 10, 20, 20) withAlignMent:NSTextAlignmentLeft];
+    }
+    else
+    {
+        [self getLableAccordingtoView:viewBG2 withTittle:@"Order No" withFrame:CGRectMake(30, 0, 120, 40) withImageFrame:CGRectMake(5, 10, 20, 20) withAlignMent:NSTextAlignmentLeft];
+        [self getLableAccordingtoView:viewBG2 withTittle:@"Status" withFrame:CGRectMake(180, 0, 80, 40) withImageFrame:CGRectMake(155, 10, 20, 20) withAlignMent:NSTextAlignmentCenter];
+        [self getLableAccordingtoView:viewBG2 withTittle:@"Time Left" withFrame:CGRectMake(290, 0, 80, 40) withImageFrame:CGRectMake(265, 10, 20, 20) withAlignMent:NSTextAlignmentLeft];
+    }
     
     [viewBG addSubview:imgView];
     [viewHeader addSubview:viewBG];
@@ -267,7 +281,7 @@
 #pragma mark ❉===❉=== GET LABLE FOR HEADER HERE ===❉===❉
 /*****************************************************************************************************************/
 
--(void)getLableAccordingtoView:(UIView *)viewBG withTittle:(NSString *)strTittle withFrame:(CGRect)frame withImageFrame:(CGRect)Imgframe
+-(void)getLableAccordingtoView:(UIView *)viewBG withTittle:(NSString *)strTittle withFrame:(CGRect)frame withImageFrame:(CGRect)Imgframe withAlignMent:(NSTextAlignment)textAlignment
 {
     UIImageView * imgView = [[UIImageView alloc]initWithFrame:Imgframe];
     [imgView setBackgroundColor:[UIColor clearColor]];
@@ -276,12 +290,11 @@
     
     UILabel *lblTittle= [[UILabel alloc]initWithFrame:frame];
     [lblTittle setText:strTittle];
-    [lblTittle setFont:UI_DEFAULT_FONT_MEDIUM(15)];
+    [lblTittle setFont:(IS_IPHONE5)?UI_DEFAULT_FONT_MEDIUM(13):UI_DEFAULT_FONT_MEDIUM(15)];
     [lblTittle setTextColor:DefaultThemeColor];
-    [lblTittle setTextAlignment:NSTextAlignmentLeft];
+    [lblTittle setTextAlignment:textAlignment];
     [lblTittle setBackgroundColor:[UIColor clearColor]];
-    [lblTittle setNumberOfLines:0];
-    [lblTittle setLineBreakMode:NSLineBreakByWordWrapping];
+    
     [viewBG addSubview:lblTittle];
 }
 
@@ -339,7 +352,7 @@
                             }
                             else  if (data.IsGoingStart == YES)
                             {
-                               // [self->arrPendingNotify addObject:data];
+                                // [self->arrPendingNotify addObject:data];
                             }
                         }
                     }
@@ -403,7 +416,7 @@
     if([timer isValid])
     {
         strTimer = @"";
-       [[NSNotificationCenter defaultCenter]postNotificationName:@"CounterTimer" object:strTimer];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"CounterTimer" object:strTimer];
         [timer invalidate];
         timer = nil;
     }
@@ -417,7 +430,7 @@ NSInteger getTime()
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm:ss"];
     [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
-
+    
     DashBoardNotification *objData = [MBDataBaseHandler getDashBoardNotificationData];
     for (DashBoardNotificationDetail *objdetail in objData.detail)
     {
@@ -501,11 +514,11 @@ NSDate *date(NSString *dateStr)
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm:ss"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-
+    
     NSDate *date = [dateFormatter dateFromString:dateString];
     [date descriptionWithLocale: [NSLocale currentLocale]];
     [dateFormatter setTimeZone:[NSTimeZone defaultTimeZone]];
-
+    
     return date;
 }
 
@@ -521,17 +534,28 @@ NSDate *date(NSString *dateStr)
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveCounterNotification:)
                                                  name:@"CounterTimer"
                                                object:nil];
-    
+
 }
 - (void)ConfigureNotificationListbyCellwithData:(SellerAuctionDetailData *)objSellerAuction withSectionIndex:(NSInteger)section
 {
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [_lblOrderTimeLeft setBackgroundColor:[UIColor clearColor]];
+    [_lblOrderStatus setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(13):UI_DEFAULT_FONT_MEDIUM(16)];
+    [_lblOrderCode setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(13):UI_DEFAULT_FONT_MEDIUM(16)];
+
+    if (objSellerAuction != Nil)
+    {
+        [_lblOrderTimeLeft setBackgroundColor:[UIColor orangeColor]];
+
+    }
+    else
+    {
+        [_lblOrderTimeLeft setBackgroundColor:[UIColor clearColor]];
+    }
 
     if (section == 0)
     {
@@ -543,19 +567,19 @@ NSDate *date(NSString *dateStr)
         else
         {
             [_lblOrderStatus setText:@""];
-
+            
         }
         [_lblOrderStatus setTextColor:GET_COLOR_WITH_RGB(64, 130, 137, 1)];
+        
     }
     else if (section == 1)
     {
         [_lblOrderCode setText:objSellerAuction.AuctionCode];
-       
+        
         if (objSellerAuction.IsStarted == 1 && ![objSellerAuction.SupplierStatus isEqualToString:@"Pending"]
             && ![objSellerAuction.SupplierStatus isEqualToString:@"PaymentPending"] && ![objSellerAuction.SupplierStatus isEqualToString:@"PaymentProcess"])
         {
             [_lblOrderStatus setText:@"Activated"];
-            [_lblOrderStatus setFont:UI_DEFAULT_FONT_MEDIUM(16)];
             [_lblOrderStatus setTextColor:GET_COLOR_WITH_RGB(0, 144, 80, 1)];
         }
         else if ([objSellerAuction.SupplierStatus isEqualToString:@"PaymentPending"])
@@ -591,9 +615,11 @@ NSDate *date(NSString *dateStr)
     _lblOrderTimeLeft.layer.shadowColor = DefaultThemeColor.CGColor;
     _lblOrderTimeLeft.layer.shadowOpacity = 1.0;
     _lblOrderTimeLeft.layer.shadowRadius = 1.0;
-    _lblOrderTimeLeft.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
-    [_lblOrderTimeLeft setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(12):UI_DEFAULT_FONT_MEDIUM(16)];
-    [_lblOrderTimeLeft setBackgroundColor:[UIColor orangeColor]];
+    _lblOrderTimeLeft.layer.masksToBounds = false;
 
+    _lblOrderTimeLeft.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+    [_lblOrderTimeLeft setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(13):UI_DEFAULT_FONT_MEDIUM(16)];
+    [_lblOrderTimeLeft setBackgroundColor:[UIColor orangeColor]];
+    
 }
 @end

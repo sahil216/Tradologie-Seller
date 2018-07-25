@@ -174,7 +174,7 @@
             [headLabel setTextColor:[UIColor whiteColor]];
             [headLabel setBackgroundColor:[UIColor clearColor]];
             [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
-            [headLabel setFont:UI_DEFAULT_FONT_MEDIUM(20)];
+            [headLabel setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(18):UI_DEFAULT_FONT_MEDIUM(20)];
             [tableViewHeadView addSubview:headLabel];
             
             xx = xx + width + 10;
@@ -345,7 +345,7 @@
     [txtfield setAdditionalInformationTextfieldStyle:placeholder Withimage:[UIImage imageNamed:@"IconDropDownWhite"] withID:self withSelectorAction:@selector(btnDropDownTapped:) withTag:tag];
     [txtfield setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [txtfield setBackgroundColor:DefaultThemeColor];
-    [txtfield setFont:UI_DEFAULT_FONT_MEDIUM(18)];
+    [txtfield setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(15):UI_DEFAULT_FONT_MEDIUM(18)];
     [txtfield setTextColor:[UIColor whiteColor]];
     [txtfield setTag:tag];
     [txtfield.layer setBorderColor:[UIColor clearColor].CGColor];

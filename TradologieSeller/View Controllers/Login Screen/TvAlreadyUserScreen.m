@@ -149,12 +149,12 @@
     
     BOOL isValidate=TRUE;
     
-    //    [txtUserID setText:@"rswsteelmzn@gmail.com"];
-    //    [txtPassword setText:@"reset"];
+//        [txtUserID setText:@"rswsteelmzn@gmail.com"];
+//        [txtPassword setText:@"reset"];
     
 //    [txtUserID setText:@"demo326@gmail.com"];
 //    [txtPassword setText:@"qwe123"];
-    
+//    
     
     if ([Validation validateTextField:txtUserID])
     {

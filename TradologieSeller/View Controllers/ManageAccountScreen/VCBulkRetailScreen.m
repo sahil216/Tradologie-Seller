@@ -239,14 +239,14 @@
         [headLabel setNumberOfLines:0];
         [headLabel setTextColor:DefaultThemeColor];
         [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        [headLabel setFont:UI_DEFAULT_FONT_MEDIUM(18)];
+        [headLabel setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(15):UI_DEFAULT_FONT_MEDIUM(18)];
         [ViewBG addSubview:headLabel];
         
-        CGFloat hue = ( arc4random() % 256 / 256.0 );
-        CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
-        CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
-        UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-        [headLabel setBackgroundColor:color];
+//        CGFloat hue = ( arc4random() % 256 / 256.0 );
+//        CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
+//        CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
+//        UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+//        [headLabel setBackgroundColor:color];
         
         xx = xx + width + 20;
         if (i == 0)

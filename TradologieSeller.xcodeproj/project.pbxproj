@@ -410,8 +410,8 @@
 				4A21BF6020FF499300F4430A /* VCTradePolicyScreen.h */,
 				4A21BF6820FF499300F4430A /* VCTradePolicyScreen.m */,
 				4A21BF4320FF499300F4430A /* MenuRootViewController */,
-				4A21BF4720FF499300F4430A /* MenuViewCell.m */,
 				4A21BF4820FF499300F4430A /* MenuViewCell.h */,
+				4A21BF4720FF499300F4430A /* MenuViewCell.m */,
 				4A21BF4620FF499300F4430A /* MenuViewController.h */,
 				4A21BF4920FF499300F4430A /* MenuViewController.m */,
 			);

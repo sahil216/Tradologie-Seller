@@ -134,7 +134,7 @@
         [headLabel setNumberOfLines:0];
         [headLabel setTextColor:[UIColor whiteColor]];
         [headLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        [headLabel setFont:UI_DEFAULT_FONT_MEDIUM(20)];
+        [headLabel setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(18):UI_DEFAULT_FONT_MEDIUM(20)];
         [ViewBG addSubview:headLabel];
     
         xx = xx + width;
