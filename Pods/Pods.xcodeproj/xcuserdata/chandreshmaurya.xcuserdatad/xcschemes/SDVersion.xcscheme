@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7FA2AD1A4AC0F1F733BE54E6EA7095B2"
+               BlueprintIdentifier = "BCE416328C7FB9ACFD324CB4B1AB0EBC"
                BuildableName = "libSDVersion.a"
                BlueprintName = "SDVersion"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7FA2AD1A4AC0F1F733BE54E6EA7095B2"
+            BlueprintIdentifier = "BCE416328C7FB9ACFD324CB4B1AB0EBC"
             BuildableName = "libSDVersion.a"
             BlueprintName = "SDVersion"
             ReferencedContainer = "container:Pods.xcodeproj">

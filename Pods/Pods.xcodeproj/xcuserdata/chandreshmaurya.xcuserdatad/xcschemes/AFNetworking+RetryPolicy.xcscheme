@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "800A30D95661264462336A9FC05CB349"
+               BlueprintIdentifier = "E6A71E0949D1CDFD460571467C0B2763"
                BuildableName = "libAFNetworking+RetryPolicy.a"
                BlueprintName = "AFNetworking+RetryPolicy"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "800A30D95661264462336A9FC05CB349"
+            BlueprintIdentifier = "E6A71E0949D1CDFD460571467C0B2763"
             BuildableName = "libAFNetworking+RetryPolicy.a"
             BlueprintName = "AFNetworking+RetryPolicy"
             ReferencedContainer = "container:Pods.xcodeproj">

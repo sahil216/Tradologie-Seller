@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "37A3E110157AED05938C5A3C99D8D56F"
+               BlueprintIdentifier = "AA09BD43EB57BE303BC4E4F98125D7F8"
                BuildableName = "libObjcAssociatedObjectHelpers.a"
                BlueprintName = "ObjcAssociatedObjectHelpers"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37A3E110157AED05938C5A3C99D8D56F"
+            BlueprintIdentifier = "AA09BD43EB57BE303BC4E4F98125D7F8"
             BuildableName = "libObjcAssociatedObjectHelpers.a"
             BlueprintName = "ObjcAssociatedObjectHelpers"
             ReferencedContainer = "container:Pods.xcodeproj">

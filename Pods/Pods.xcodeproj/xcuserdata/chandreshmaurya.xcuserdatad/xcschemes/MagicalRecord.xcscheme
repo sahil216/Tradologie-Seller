@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "417EA9844EC286C5B1B8FCB029C00130"
+               BlueprintIdentifier = "EA41E2CDB2FA9F3BFAC3AAB187A6B514"
                BuildableName = "libMagicalRecord.a"
                BlueprintName = "MagicalRecord"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "417EA9844EC286C5B1B8FCB029C00130"
+            BlueprintIdentifier = "EA41E2CDB2FA9F3BFAC3AAB187A6B514"
             BuildableName = "libMagicalRecord.a"
             BlueprintName = "MagicalRecord"
             ReferencedContainer = "container:Pods.xcodeproj">
