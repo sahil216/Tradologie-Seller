@@ -36,9 +36,8 @@
 #import "FIRMessagingUtilities.h"
 #import "FIRMessagingVersionUtilities.h"
 
-#import <FirebaseCore/FIRAppInternal.h>
+#import <FirebaseCore/FIRReachabilityChecker.h>
 #import <FirebaseInstanceID/FirebaseInstanceID.h>
-#import <GoogleUtilities/GULReachabilityChecker.h>
 
 #import "NSError+FIRMessaging.h"
 
@@ -125,9 +124,10 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
 @end
 
 @interface FIRMessaging ()<FIRMessagingClientDelegate, FIRMessagingReceiverDelegate,
-                           GULReachabilityDelegate>
+                           FIRReachabilityDelegate>
 
 // FIRApp properties
+@property(nonatomic, readwrite, copy) NSString *fcmSenderID;
 @property(nonatomic, readwrite, strong) NSData *apnsTokenData;
 @property(nonatomic, readwrite, strong) NSString *defaultFcmToken;
 
@@ -136,7 +136,7 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
 @property(nonatomic, readwrite, assign) BOOL isClientSetup;
 
 @property(nonatomic, readwrite, strong) FIRMessagingClient *client;
-@property(nonatomic, readwrite, strong) GULReachabilityChecker *reachability;
+@property(nonatomic, readwrite, strong) FIRReachabilityChecker *reachability;
 @property(nonatomic, readwrite, strong) FIRMessagingDataMessageManager *dataMessageManager;
 @property(nonatomic, readwrite, strong) FIRMessagingPubSub *pubsub;
 @property(nonatomic, readwrite, strong) FIRMessagingRmqManager *rmq2Manager;
@@ -173,6 +173,10 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
     _loggedMessageIDs = [NSMutableSet set];
     _instanceID = instanceID;
     _messagingUserDefaults = defaults;
+
+    // TODO: Remove this once the race condition with FIRApp configuring and InstanceID
+    //       is fixed. This must be fixed before Core's flag becomes public.
+    _globalAutomaticDataCollectionEnabled = YES;
   }
   return self;
 }
@@ -200,7 +204,8 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
   [self setupReceiver];
 
   NSString *hostname = kFIRMessagingReachabilityHostname;
-  self.reachability = [[GULReachabilityChecker alloc] initWithReachabilityDelegate:self
+  self.reachability = [[FIRReachabilityChecker alloc] initWithReachabilityDelegate:self
+                                                                    loggerDelegate:nil
                                                                           withHost:hostname];
   [self.reachability start];
 
@@ -378,10 +383,7 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
     });
     return;
   }
-  UIApplication *application = FIRMessagingUIApplication();
-  if (!application) {
-    return;
-  }
+  UIApplication *application = [UIApplication sharedApplication];
   id<UIApplicationDelegate> appDelegate = application.delegate;
   SEL continueUserActivitySelector =
       @selector(application:continueUserActivity:restorationHandler:);
@@ -477,7 +479,7 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
   }
 
   // If none of above exists, we default to the global switch that comes from FIRApp.
-  return [[FIRApp defaultApp] isDataCollectionDefaultEnabled];
+  return self.isGlobalAutomaticDataCollectionEnabled;
 }
 
 - (void)setAutoInitEnabled:(BOOL)autoInitEnabled {
@@ -614,11 +616,7 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
   // We require a token from Instance ID
   NSString *token = self.defaultFcmToken;
   // Only on foreground connections
-  UIApplication *application = FIRMessagingUIApplication();
-  if (!application) {
-    return NO;
-  }
-  UIApplicationState applicationState = application.applicationState;
+  UIApplicationState applicationState = [UIApplication sharedApplication].applicationState;
   BOOL shouldBeConnected = _shouldEstablishDirectChannel &&
                            (token.length > 0) &&
                            applicationState == UIApplicationStateActive;
@@ -806,10 +804,10 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
   }
 }
 
-#pragma mark - GULReachabilityDelegate
+#pragma mark - FIRReachabilityDelegate
 
-- (void)reachability:(GULReachabilityChecker *)reachability
-       statusChanged:(GULReachabilityStatus)status {
+- (void)reachability:(FIRReachabilityChecker *)reachability
+       statusChanged:(FIRReachabilityStatus)status {
   [self onNetworkStatusChanged];
 }
 
@@ -827,15 +825,15 @@ NSString *const kFIRMessagingPlistAutoInitEnabled =
 }
 
 - (BOOL)isNetworkAvailable {
-  GULReachabilityStatus status = self.reachability.reachabilityStatus;
-  return (status == kGULReachabilityViaCellular || status == kGULReachabilityViaWifi);
+  FIRReachabilityStatus status = self.reachability.reachabilityStatus;
+  return (status == kFIRReachabilityViaCellular || status == kFIRReachabilityViaWifi);
 }
 
 - (FIRMessagingNetworkStatus)networkType {
-  GULReachabilityStatus status = self.reachability.reachabilityStatus;
+  FIRReachabilityStatus status = self.reachability.reachabilityStatus;
   if (![self isNetworkAvailable]) {
     return kFIRMessagingReachabilityNotReachable;
-  } else if (status == kGULReachabilityViaCellular) {
+  } else if (status == kFIRReachabilityViaCellular) {
     return kFIRMessagingReachabilityReachableViaWWAN;
   } else {
     return kFIRMessagingReachabilityReachableViaWiFi;

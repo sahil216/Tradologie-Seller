@@ -17,14 +17,14 @@
     UIColor *color = [UIColor whiteColor];
     self.backgroundColor = [color colorWithAlphaComponent:1.0f];
     
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    
-    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
-    {
-        statusBar.backgroundColor =colorbar;
-    }
-    [self setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                    NSFontAttributeName:UI_DEFAULT_FONT_BOLD(20)}];
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//    
+//    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
+//    {
+//        statusBar.backgroundColor =colorbar;
+//    }
+//    [self setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor],
+//                                    NSFontAttributeName:UI_DEFAULT_FONT_BOLD(20)}];
     
 
 }

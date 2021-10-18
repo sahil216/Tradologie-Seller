@@ -12,7 +12,7 @@
 -(void)setDefaultPreferenceTextfieldStyle:(UIImage *)image WithPlaceHolder:(NSString *)placeholder withTag:(NSInteger)tag
 {
     [self setPlaceholder:placeholder];
-    [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
+   // [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self setFont:UI_DEFAULT_FONT(16)];
     [self setTag:tag];
     [self setTintColor:DEFAULT_COLOR];
@@ -34,7 +34,7 @@
 -(void)setTextfieldStyleWithButton:(UIImage *)image WithPlaceHolder:(NSString *)placeholder withID:(id)targetID withbuttonImage:(UIImage *)btnImage withSelectorAction:(SEL)sector
 {
     [self setPlaceholder:placeholder];
-    [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
+   // [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self setFont:UI_DEFAULT_FONT(16)];
     [self setSecureTextEntry:YES];
 
@@ -66,7 +66,7 @@
 -(void)setDefaultTextfieldStyleWithPlaceHolder:(NSString *)placeholder withTag:(NSInteger)tag
 {
     [self setPlaceholder:placeholder];
-    [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
+  //  [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self setFont:UI_DEFAULT_FONT(16)];
     [self setTag:tag];
     [self setTintColor:DEFAULT_COLOR];
@@ -83,7 +83,7 @@
 -(void)setAdditionalInformationTextfieldStyle:(NSString *)placeholder Withimage:(UIImage *)image withID:(id)targetID withSelectorAction:(SEL)sector withTag:(NSInteger)tag
 {
     [self setPlaceholder:placeholder];
-    [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
+   // [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self setFont:UI_DEFAULT_FONT(16)];
     [self setTintColor:DEFAULT_COLOR];
     [self.layer setBorderWidth:1.0f];
@@ -112,7 +112,7 @@
 -(void)setRightViewTextfieldStyle:(NSString *)placeholder Withimage:(NSString *)imageName withTag:(NSInteger)tag
 {
     [self setPlaceholder:placeholder];
-    [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
+  //  [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self setFont:UI_DEFAULT_FONT(16)];
     [self setTintColor:DEFAULT_COLOR];
     [self.layer setBorderWidth:1.0f];
@@ -137,7 +137,7 @@
 -(void)setRightViewTextfieldStyleWithCalender:(NSString *)placeholder Withimage:(NSString *)imageName withTag:(NSInteger)tag
 {
     [self setPlaceholder:placeholder];
-    [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self setFont:UI_DEFAULT_FONT(16)];
     [self setTintColor:DEFAULT_COLOR];
     [self.layer setBorderWidth:1.0f];

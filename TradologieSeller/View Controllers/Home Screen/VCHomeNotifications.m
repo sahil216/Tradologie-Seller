@@ -166,6 +166,8 @@
         
         if (indexPath.section == 0)
         {
+            if(arrUpCommingNotify.count > 0)
+            {
             SellerAuctionDetailData *data  = [arrUpCommingNotify objectAtIndex:indexPath.row];
             if([data.SupplierStatus isEqualToString:@"Accepted"] && data.IsGoingStart == YES)
             {
@@ -191,6 +193,7 @@
             else if([data.SupplierStatus isEqualToString:@"Pending"] && data.IsComplete == NO)
             {
                 [self GetSupplierAuctionDetailAPI:data.AuctionCode WithBoolValue:1 withIsScreenFrom:0];
+            }
             }
         }
         else if (indexPath.section == 1)

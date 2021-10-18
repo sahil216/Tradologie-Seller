@@ -38,6 +38,9 @@ FOUNDATION_EXPORT NSString *const kFIRMessagingUserDefaultsKeyAutoInitEnabled;
 
 #pragma mark - Private API
 
+// The data collection flag from Core.
+@property(nonatomic, readwrite, getter=isGlobalAutomaticDataCollectionEnabled) BOOL globalAutomaticDataCollectionEnabled;
+
 - (NSString *)defaultFcmToken;
 - (FIRMessagingClient *)client;
 - (FIRMessagingPubSub *)pubsub;

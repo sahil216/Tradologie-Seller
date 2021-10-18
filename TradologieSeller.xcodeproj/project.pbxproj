@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		11FF9EE541D2A024CACC5A3A /* libPods-TradologieSellerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FD802CC950E21847047C07 /* libPods-TradologieSellerUITests.a */; };
+		186FC6AA2711413900D7C9E6 /* TVManageAccountScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC6962711413900D7C9E6 /* TVManageAccountScreen.m */; };
+		186FC6AB2711413900D7C9E6 /* TVLegalDocumentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC6992711413900D7C9E6 /* TVLegalDocumentScreen.m */; };
+		186FC6AC2711413900D7C9E6 /* TVSupplierDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC69A2711413900D7C9E6 /* TVSupplierDocument.m */; };
+		186FC6AD2711413900D7C9E6 /* TVLoginControlScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC69C2711413900D7C9E6 /* TVLoginControlScreen.m */; };
+		186FC6AE2711413900D7C9E6 /* VCMemberShipTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC69E2711413900D7C9E6 /* VCMemberShipTypeScreen.m */; };
+		186FC6AF2711413900D7C9E6 /* TVBankDetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC69F2711413900D7C9E6 /* TVBankDetailScreen.m */; };
+		186FC6B02711413900D7C9E6 /* TVCompanyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC6A02711413900D7C9E6 /* TVCompanyDetails.m */; };
+		186FC6B12711413900D7C9E6 /* VCBulkRetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC6A42711413900D7C9E6 /* VCBulkRetailScreen.m */; };
+		186FC6B22711413900D7C9E6 /* VCAuthorizedPersonal.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC6A62711413900D7C9E6 /* VCAuthorizedPersonal.m */; };
+		186FC6B32711413900D7C9E6 /* VCSellingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC6A82711413900D7C9E6 /* VCSellingLocation.m */; };
+		186FC6B6271141A000D7C9E6 /* VCNegotiationOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FC6B4271141A000D7C9E6 /* VCNegotiationOrderHistory.m */; };
 		4A04DF0620CA9BA900054187 /* SellerUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A04DF0520CA9BA900054187 /* SellerUserDetail.m */; };
 		4A1C3F3020ECDFC80030E865 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1C3F2F20ECDFC80030E865 /* SafariServices.framework */; };
 		4A1C3F3320ECEE0B0030E865 /* SellerAuctionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C3F3220ECEE0B0030E865 /* SellerAuctionDetail.m */; };
@@ -95,18 +106,6 @@
 		4A913EB020C9376000AEC718 /* NeuropolRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A913EAD20C9376000AEC718 /* NeuropolRegular.ttf */; };
 		4A913EB120C9376000AEC718 /* Neuropol-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A913EAE20C9376000AEC718 /* Neuropol-Bold.ttf */; };
 		4A913EF620C9398200AEC718 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A913EF520C9398100AEC718 /* linkedin-sdk.framework */; };
-		4AC7E883212C3985003A9597 /* TVManageAccountScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E86F212C3985003A9597 /* TVManageAccountScreen.m */; };
-		4AC7E884212C3985003A9597 /* TVLegalDocumentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E872212C3985003A9597 /* TVLegalDocumentScreen.m */; };
-		4AC7E885212C3985003A9597 /* TVSupplierDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E873212C3985003A9597 /* TVSupplierDocument.m */; };
-		4AC7E886212C3985003A9597 /* TVLoginControlScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E875212C3985003A9597 /* TVLoginControlScreen.m */; };
-		4AC7E887212C3985003A9597 /* VCMemberShipTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E877212C3985003A9597 /* VCMemberShipTypeScreen.m */; };
-		4AC7E888212C3985003A9597 /* TVBankDetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E878212C3985003A9597 /* TVBankDetailScreen.m */; };
-		4AC7E889212C3985003A9597 /* TVCompanyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E879212C3985003A9597 /* TVCompanyDetails.m */; };
-		4AC7E88A212C3985003A9597 /* VCBulkRetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E87D212C3985003A9597 /* VCBulkRetailScreen.m */; };
-		4AC7E88B212C3985003A9597 /* VCAuthorizedPersonal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E87F212C3985003A9597 /* VCAuthorizedPersonal.m */; };
-		4AC7E88C212C3985003A9597 /* VCSellingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E881212C3985003A9597 /* VCSellingLocation.m */; };
-		4AC7E890212C3996003A9597 /* VCNegotiationOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E88E212C3996003A9597 /* VCNegotiationOrderHistory.m */; };
-		4AC7E893212C3A34003A9597 /* VCNegotiationSellerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7E892212C3A34003A9597 /* VCNegotiationSellerDetail.m */; };
 		609A8B4B582409AC8589B241 /* libPods-TradologieSellerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF62158AD637D6F85C9EA3B /* libPods-TradologieSellerTests.a */; };
 		73780F2BE947DD15C0A5DF21 /* libPods-TradologieSeller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C303D42924A166DA851D0F1 /* libPods-TradologieSeller.a */; };
 /* End PBXBuildFile section */
@@ -131,6 +130,28 @@
 /* Begin PBXFileReference section */
 		02FD802CC950E21847047C07 /* libPods-TradologieSellerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TradologieSellerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		094F61A0170CF08849BBC384 /* Pods-TradologieSeller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradologieSeller.release.xcconfig"; path = "Pods/Target Support Files/Pods-TradologieSeller/Pods-TradologieSeller.release.xcconfig"; sourceTree = "<group>"; };
+		186FC6962711413900D7C9E6 /* TVManageAccountScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVManageAccountScreen.m; sourceTree = "<group>"; };
+		186FC6972711413900D7C9E6 /* TVCompanyDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCompanyDetails.h; sourceTree = "<group>"; };
+		186FC6982711413900D7C9E6 /* VCBulkRetailScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCBulkRetailScreen.h; sourceTree = "<group>"; };
+		186FC6992711413900D7C9E6 /* TVLegalDocumentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLegalDocumentScreen.m; sourceTree = "<group>"; };
+		186FC69A2711413900D7C9E6 /* TVSupplierDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVSupplierDocument.m; sourceTree = "<group>"; };
+		186FC69B2711413900D7C9E6 /* VCSellingLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCSellingLocation.h; sourceTree = "<group>"; };
+		186FC69C2711413900D7C9E6 /* TVLoginControlScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLoginControlScreen.m; sourceTree = "<group>"; };
+		186FC69D2711413900D7C9E6 /* VCAuthorizedPersonal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCAuthorizedPersonal.h; sourceTree = "<group>"; };
+		186FC69E2711413900D7C9E6 /* VCMemberShipTypeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCMemberShipTypeScreen.m; sourceTree = "<group>"; };
+		186FC69F2711413900D7C9E6 /* TVBankDetailScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVBankDetailScreen.m; sourceTree = "<group>"; };
+		186FC6A02711413900D7C9E6 /* TVCompanyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCompanyDetails.m; sourceTree = "<group>"; };
+		186FC6A12711413900D7C9E6 /* TVManageAccountScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVManageAccountScreen.h; sourceTree = "<group>"; };
+		186FC6A22711413900D7C9E6 /* TVSupplierDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVSupplierDocument.h; sourceTree = "<group>"; };
+		186FC6A32711413900D7C9E6 /* TVLegalDocumentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLegalDocumentScreen.h; sourceTree = "<group>"; };
+		186FC6A42711413900D7C9E6 /* VCBulkRetailScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCBulkRetailScreen.m; sourceTree = "<group>"; };
+		186FC6A52711413900D7C9E6 /* VCMemberShipTypeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCMemberShipTypeScreen.h; sourceTree = "<group>"; };
+		186FC6A62711413900D7C9E6 /* VCAuthorizedPersonal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCAuthorizedPersonal.m; sourceTree = "<group>"; };
+		186FC6A72711413900D7C9E6 /* TVLoginControlScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLoginControlScreen.h; sourceTree = "<group>"; };
+		186FC6A82711413900D7C9E6 /* VCSellingLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCSellingLocation.m; sourceTree = "<group>"; };
+		186FC6A92711413900D7C9E6 /* TVBankDetailScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVBankDetailScreen.h; sourceTree = "<group>"; };
+		186FC6B4271141A000D7C9E6 /* VCNegotiationOrderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationOrderHistory.m; sourceTree = "<group>"; };
+		186FC6B5271141A000D7C9E6 /* VCNegotiationOrderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCNegotiationOrderHistory.h; sourceTree = "<group>"; };
 		4A04DF0420CA9BA900054187 /* SellerUserDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerUserDetail.h; sourceTree = "<group>"; };
 		4A04DF0520CA9BA900054187 /* SellerUserDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerUserDetail.m; sourceTree = "<group>"; };
 		4A1C3F2F20ECDFC80030E865 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
@@ -289,30 +310,6 @@
 		4A913EAD20C9376000AEC718 /* NeuropolRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NeuropolRegular.ttf; sourceTree = "<group>"; };
 		4A913EAE20C9376000AEC718 /* Neuropol-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neuropol-Bold.ttf"; sourceTree = "<group>"; };
 		4A913EF520C9398100AEC718 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
-		4AC7E86F212C3985003A9597 /* TVManageAccountScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVManageAccountScreen.m; sourceTree = "<group>"; };
-		4AC7E870212C3985003A9597 /* TVCompanyDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCompanyDetails.h; sourceTree = "<group>"; };
-		4AC7E871212C3985003A9597 /* VCBulkRetailScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCBulkRetailScreen.h; sourceTree = "<group>"; };
-		4AC7E872212C3985003A9597 /* TVLegalDocumentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLegalDocumentScreen.m; sourceTree = "<group>"; };
-		4AC7E873212C3985003A9597 /* TVSupplierDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVSupplierDocument.m; sourceTree = "<group>"; };
-		4AC7E874212C3985003A9597 /* VCSellingLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCSellingLocation.h; sourceTree = "<group>"; };
-		4AC7E875212C3985003A9597 /* TVLoginControlScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVLoginControlScreen.m; sourceTree = "<group>"; };
-		4AC7E876212C3985003A9597 /* VCAuthorizedPersonal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCAuthorizedPersonal.h; sourceTree = "<group>"; };
-		4AC7E877212C3985003A9597 /* VCMemberShipTypeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCMemberShipTypeScreen.m; sourceTree = "<group>"; };
-		4AC7E878212C3985003A9597 /* TVBankDetailScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVBankDetailScreen.m; sourceTree = "<group>"; };
-		4AC7E879212C3985003A9597 /* TVCompanyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCompanyDetails.m; sourceTree = "<group>"; };
-		4AC7E87A212C3985003A9597 /* TVManageAccountScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVManageAccountScreen.h; sourceTree = "<group>"; };
-		4AC7E87B212C3985003A9597 /* TVSupplierDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVSupplierDocument.h; sourceTree = "<group>"; };
-		4AC7E87C212C3985003A9597 /* TVLegalDocumentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLegalDocumentScreen.h; sourceTree = "<group>"; };
-		4AC7E87D212C3985003A9597 /* VCBulkRetailScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCBulkRetailScreen.m; sourceTree = "<group>"; };
-		4AC7E87E212C3985003A9597 /* VCMemberShipTypeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCMemberShipTypeScreen.h; sourceTree = "<group>"; };
-		4AC7E87F212C3985003A9597 /* VCAuthorizedPersonal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCAuthorizedPersonal.m; sourceTree = "<group>"; };
-		4AC7E880212C3985003A9597 /* TVLoginControlScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVLoginControlScreen.h; sourceTree = "<group>"; };
-		4AC7E881212C3985003A9597 /* VCSellingLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCSellingLocation.m; sourceTree = "<group>"; };
-		4AC7E882212C3985003A9597 /* TVBankDetailScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVBankDetailScreen.h; sourceTree = "<group>"; };
-		4AC7E88E212C3996003A9597 /* VCNegotiationOrderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationOrderHistory.m; sourceTree = "<group>"; };
-		4AC7E88F212C3996003A9597 /* VCNegotiationOrderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCNegotiationOrderHistory.h; sourceTree = "<group>"; };
-		4AC7E891212C3A34003A9597 /* VCNegotiationSellerDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCNegotiationSellerDetail.h; sourceTree = "<group>"; };
-		4AC7E892212C3A34003A9597 /* VCNegotiationSellerDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCNegotiationSellerDetail.m; sourceTree = "<group>"; };
 		4C303D42924A166DA851D0F1 /* libPods-TradologieSeller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TradologieSeller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74CFC34C0D0287FBBEEAA070 /* Pods-TradologieSellerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradologieSellerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TradologieSellerTests/Pods-TradologieSellerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A481BD00B89290434D1D9437 /* Pods-TradologieSeller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradologieSeller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TradologieSeller/Pods-TradologieSeller.debug.xcconfig"; sourceTree = "<group>"; };
@@ -354,6 +351,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		186FC6952711413900D7C9E6 /* ManageAccountScreen */ = {
+			isa = PBXGroup;
+			children = (
+				186FC6962711413900D7C9E6 /* TVManageAccountScreen.m */,
+				186FC6972711413900D7C9E6 /* TVCompanyDetails.h */,
+				186FC6982711413900D7C9E6 /* VCBulkRetailScreen.h */,
+				186FC6992711413900D7C9E6 /* TVLegalDocumentScreen.m */,
+				186FC69A2711413900D7C9E6 /* TVSupplierDocument.m */,
+				186FC69B2711413900D7C9E6 /* VCSellingLocation.h */,
+				186FC69C2711413900D7C9E6 /* TVLoginControlScreen.m */,
+				186FC69D2711413900D7C9E6 /* VCAuthorizedPersonal.h */,
+				186FC69E2711413900D7C9E6 /* VCMemberShipTypeScreen.m */,
+				186FC69F2711413900D7C9E6 /* TVBankDetailScreen.m */,
+				186FC6A02711413900D7C9E6 /* TVCompanyDetails.m */,
+				186FC6A12711413900D7C9E6 /* TVManageAccountScreen.h */,
+				186FC6A22711413900D7C9E6 /* TVSupplierDocument.h */,
+				186FC6A32711413900D7C9E6 /* TVLegalDocumentScreen.h */,
+				186FC6A42711413900D7C9E6 /* VCBulkRetailScreen.m */,
+				186FC6A52711413900D7C9E6 /* VCMemberShipTypeScreen.h */,
+				186FC6A62711413900D7C9E6 /* VCAuthorizedPersonal.m */,
+				186FC6A72711413900D7C9E6 /* TVLoginControlScreen.h */,
+				186FC6A82711413900D7C9E6 /* VCSellingLocation.m */,
+				186FC6A92711413900D7C9E6 /* TVBankDetailScreen.h */,
+			);
+			path = ManageAccountScreen;
+			sourceTree = "<group>";
+		};
 		2D282A1EE290F71037D9EE95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,8 +421,7 @@
 		4A21BF4120FF499300F4430A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4AC7E88D212C3996003A9597 /* Order History */,
-				4AC7E86E212C3985003A9597 /* Manage AccountScreen */,
+				186FC6952711413900D7C9E6 /* ManageAccountScreen */,
 				4A21BF4220FF499300F4430A /* SlideMenu */,
 				4A21BF6120FF499300F4430A /* Login Screen */,
 				4A21BF6920FF499300F4430A /* Home Screen */,
@@ -447,6 +470,8 @@
 		4A21BF6920FF499300F4430A /* Home Screen */ = {
 			isa = PBXGroup;
 			children = (
+				186FC6B5271141A000D7C9E6 /* VCNegotiationOrderHistory.h */,
+				186FC6B4271141A000D7C9E6 /* VCNegotiationOrderHistory.m */,
 				4A21BF6D20FF499300F4430A /* VCHomeNotifications.h */,
 				4A21BF7320FF499300F4430A /* VCHomeNotifications.m */,
 				4A21BF7220FF499300F4430A /* VCNegotiationScreen.h */,
@@ -707,44 +732,6 @@
 			path = LinkedInFrameWork;
 			sourceTree = "<group>";
 		};
-		4AC7E86E212C3985003A9597 /* Manage AccountScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4AC7E880212C3985003A9597 /* TVLoginControlScreen.h */,
-				4AC7E875212C3985003A9597 /* TVLoginControlScreen.m */,
-				4AC7E87A212C3985003A9597 /* TVManageAccountScreen.h */,
-				4AC7E86F212C3985003A9597 /* TVManageAccountScreen.m */,
-				4AC7E870212C3985003A9597 /* TVCompanyDetails.h */,
-				4AC7E879212C3985003A9597 /* TVCompanyDetails.m */,
-				4AC7E871212C3985003A9597 /* VCBulkRetailScreen.h */,
-				4AC7E87D212C3985003A9597 /* VCBulkRetailScreen.m */,
-				4AC7E87C212C3985003A9597 /* TVLegalDocumentScreen.h */,
-				4AC7E872212C3985003A9597 /* TVLegalDocumentScreen.m */,
-				4AC7E87B212C3985003A9597 /* TVSupplierDocument.h */,
-				4AC7E873212C3985003A9597 /* TVSupplierDocument.m */,
-				4AC7E874212C3985003A9597 /* VCSellingLocation.h */,
-				4AC7E881212C3985003A9597 /* VCSellingLocation.m */,
-				4AC7E876212C3985003A9597 /* VCAuthorizedPersonal.h */,
-				4AC7E87F212C3985003A9597 /* VCAuthorizedPersonal.m */,
-				4AC7E87E212C3985003A9597 /* VCMemberShipTypeScreen.h */,
-				4AC7E877212C3985003A9597 /* VCMemberShipTypeScreen.m */,
-				4AC7E882212C3985003A9597 /* TVBankDetailScreen.h */,
-				4AC7E878212C3985003A9597 /* TVBankDetailScreen.m */,
-			);
-			path = "Manage AccountScreen";
-			sourceTree = "<group>";
-		};
-		4AC7E88D212C3996003A9597 /* Order History */ = {
-			isa = PBXGroup;
-			children = (
-				4AC7E88F212C3996003A9597 /* VCNegotiationOrderHistory.h */,
-				4AC7E88E212C3996003A9597 /* VCNegotiationOrderHistory.m */,
-				4AC7E891212C3A34003A9597 /* VCNegotiationSellerDetail.h */,
-				4AC7E892212C3A34003A9597 /* VCNegotiationSellerDetail.m */,
-			);
-			path = "Order History";
-			sourceTree = "<group>";
-		};
 		5310C97C1048AECD81F736F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -996,13 +983,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AC7E884212C3985003A9597 /* TVLegalDocumentScreen.m in Sources */,
 				4A21BF8B20FF499300F4430A /* VCEnquirySellerAccept.m in Sources */,
 				4A30852F20F38E01002E3026 /* SellerAuctionOrderHistory.m in Sources */,
-				4AC7E886212C3985003A9597 /* TVLoginControlScreen.m in Sources */,
 				4A913E9820C92D2D00AEC718 /* Validation.m in Sources */,
 				4A21BFAF20FF6E8E00F4430A /* TVCellMemberShipPlan.m in Sources */,
-				4AC7E889212C3985003A9597 /* TVCompanyDetails.m in Sources */,
+				186FC6AE2711413900D7C9E6 /* VCMemberShipTypeScreen.m in Sources */,
 				4A21BF8E20FF499300F4430A /* VCHomeNotifications.m in Sources */,
 				4A21BFBF2100638500F4430A /* CommonSupplierData.m in Sources */,
 				4A21BF0F20F8A2AC00F4430A /* TVCellSellingLocation.m in Sources */,
@@ -1010,7 +995,6 @@
 				4A913EA620C92D2D00AEC718 /* UINavigationBar+Extra.m in Sources */,
 				4A21BFB420FF6E8E00F4430A /* TVCustomBulkRetailCell.m in Sources */,
 				4A265F6720CBF569007B44B8 /* SellerAuctionList.m in Sources */,
-				4AC7E88B212C3985003A9597 /* VCAuthorizedPersonal.m in Sources */,
 				4A21BEDE20F4B5C900F4430A /* THSegmentedPager.m in Sources */,
 				4A21BFAC20FF6E8E00F4430A /* EnquirySellerAcceptCell.m in Sources */,
 				4A30852C20F345CF002E3026 /* TVCellOrderHistory.m in Sources */,
@@ -1020,34 +1004,34 @@
 				4A21BF8D20FF499300F4430A /* TVPaymentScreen.m in Sources */,
 				4A878E8F210208BA0040B760 /* TVSaveAuthorizePerson.m in Sources */,
 				4A878E9321020D3D0040B760 /* TVCellAuthorizePerson.m in Sources */,
-				4AC7E888212C3985003A9597 /* TVBankDetailScreen.m in Sources */,
+				186FC6AF2711413900D7C9E6 /* TVBankDetailScreen.m in Sources */,
+				186FC6B22711413900D7C9E6 /* VCAuthorizedPersonal.m in Sources */,
 				4A913E9F20C92D2D00AEC718 /* MBErrorUtility.m in Sources */,
+				186FC6AA2711413900D7C9E6 /* TVManageAccountScreen.m in Sources */,
 				4A878E972103332B0040B760 /* AuthorizePersonList.m in Sources */,
-				4AC7E88A212C3985003A9597 /* VCBulkRetailScreen.m in Sources */,
 				4A913EA120C92D2D00AEC718 /* UINavigationItem+Extra.m in Sources */,
 				4A30851320EE1334002E3026 /* SAuctionDetailCell.m in Sources */,
 				4A04DF0620CA9BA900054187 /* SellerUserDetail.m in Sources */,
-				4AC7E885212C3985003A9597 /* TVSupplierDocument.m in Sources */,
-				4AC7E883212C3985003A9597 /* TVManageAccountScreen.m in Sources */,
 				4A913EA820C92D2D00AEC718 /* UITextField+Extra.m in Sources */,
 				4A21BFAE20FF6E8E00F4430A /* TVSellerBulkRetailCell.m in Sources */,
 				4A265F6020CBE36C007B44B8 /* TvCellEnquiry.m in Sources */,
+				186FC6AD2711413900D7C9E6 /* TVLoginControlScreen.m in Sources */,
+				186FC6B6271141A000D7C9E6 /* VCNegotiationOrderHistory.m in Sources */,
 				4A21BF8C20FF499300F4430A /* VCLoadLiveAuction.m in Sources */,
 				4A21BFB220FF6E8E00F4430A /* TVStaticMemberCell.m in Sources */,
-				4AC7E893212C3A34003A9597 /* VCNegotiationSellerDetail.m in Sources */,
+				186FC6B32711413900D7C9E6 /* VCSellingLocation.m in Sources */,
 				4A2395CC20C90C9800DF33E6 /* AppDelegate.m in Sources */,
 				4A21BF7A20FF499300F4430A /* VCContactTradologie.m in Sources */,
-				4AC7E890212C3996003A9597 /* VCNegotiationOrderHistory.m in Sources */,
 				4A913EA420C92D2D00AEC718 /* NSDate+Extra.m in Sources */,
 				4A21BF2F20FE1B4300F4430A /* TVCellBulkRetailList.m in Sources */,
 				4A21BF3820FF200900F4430A /* TVCellMembershipType.m in Sources */,
 				4A2BADDE20CE81A200AF3F8A /* INSSearchBar.m in Sources */,
 				4A2395DD20C90C9800DF33E6 /* main.m in Sources */,
 				4A878E80210204360040B760 /* TVCellPersonAuthorize.m in Sources */,
-				4AC7E88C212C3985003A9597 /* VCSellingLocation.m in Sources */,
-				4AC7E887212C3985003A9597 /* VCMemberShipTypeScreen.m in Sources */,
 				4A913E8D20C92D2D00AEC718 /* OfflineObject.m in Sources */,
+				186FC6AC2711413900D7C9E6 /* TVSupplierDocument.m in Sources */,
 				4A913E9A20C92D2D00AEC718 /* CommonUtility.m in Sources */,
+				186FC6B02711413900D7C9E6 /* TVCompanyDetails.m in Sources */,
 				4A21BFBB20FF6F2200F4430A /* TVStaticBankDetailCell.m in Sources */,
 				4A913EA520C92D2D00AEC718 /* NSString+MB.m in Sources */,
 				4A21BFB320FF6E8E00F4430A /* ViewEnquiryState.m in Sources */,
@@ -1055,6 +1039,7 @@
 				4A913E9920C92D2D00AEC718 /* FRHyperLabel.m in Sources */,
 				4A913EAA20C92D2D00AEC718 /* EveryPage.m in Sources */,
 				4A913E9D20C92D2D00AEC718 /* MBAPIManager.m in Sources */,
+				186FC6AB2711413900D7C9E6 /* TVLegalDocumentScreen.m in Sources */,
 				4A30851020EDFC9F002E3026 /* SBaseLabel.m in Sources */,
 				4A265F2520CB97DA007B44B8 /* DashBoardNotification.m in Sources */,
 				4A913EA020C92D2D00AEC718 /* SharedManager.m in Sources */,
@@ -1064,6 +1049,7 @@
 				4A21BF8620FF499300F4430A /* TvCreateAccount.m in Sources */,
 				4A2395D520C90C9800DF33E6 /* TradologieSeller.xcdatamodeld in Sources */,
 				4A21BF8520FF499300F4430A /* TvAlreadyUserScreen.m in Sources */,
+				186FC6B12711413900D7C9E6 /* VCBulkRetailScreen.m in Sources */,
 				4A21BF8720FF499300F4430A /* TVLoginScreen.m in Sources */,
 				4A913EA720C92D2D00AEC718 /* UIView+Extra.m in Sources */,
 				4A913E9B20C92D2D00AEC718 /* ISMessages.m in Sources */,
@@ -1160,6 +1146,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2V9L6U5ACK;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1217,6 +1204,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2V9L6U5ACK;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1242,6 +1230,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Super E Factory Depot Private limited (3SHU27LL97)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 3SHU27LL97;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1251,10 +1240,11 @@
 				INFOPLIST_FILE = TradologieSeller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tradologie.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75d0632c-92b8-4228-8e68-af4831d3d71c";
-				PROVISIONING_PROFILE_SPECIFIER = TradologieSellerDistribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Seller Dist";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1267,6 +1257,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Super E Factory Depot Private limited (3SHU27LL97)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 3SHU27LL97;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1276,10 +1267,11 @@
 				INFOPLIST_FILE = TradologieSeller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tradologie.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75d0632c-92b8-4228-8e68-af4831d3d71c";
-				PROVISIONING_PROFILE_SPECIFIER = TradologieSellerDistribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Seller Dist";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1290,7 +1282,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3SHU27LL97;
+				DEVELOPMENT_TEAM = 2V9L6U5ACK;
 				INFOPLIST_FILE = TradologieSellerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerTests;
@@ -1306,7 +1298,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3SHU27LL97;
+				DEVELOPMENT_TEAM = 2V9L6U5ACK;
 				INFOPLIST_FILE = TradologieSellerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerTests;
@@ -1321,7 +1313,7 @@
 			baseConfigurationReference = E5BFCAEB6D4B90FEC46A9AC2 /* Pods-TradologieSellerUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3SHU27LL97;
+				DEVELOPMENT_TEAM = 2V9L6U5ACK;
 				INFOPLIST_FILE = TradologieSellerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerUITests;
@@ -1336,7 +1328,7 @@
 			baseConfigurationReference = F3EDCF393254658C8B743E05 /* Pods-TradologieSellerUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3SHU27LL97;
+				DEVELOPMENT_TEAM = 2V9L6U5ACK;
 				INFOPLIST_FILE = TradologieSellerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chandresh.TradologieSellerUITests;

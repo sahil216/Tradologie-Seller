@@ -5,7 +5,7 @@ PODS:
     - AFNetworking/Security (= 3.2.1)
     - AFNetworking/Serialization (= 3.2.1)
     - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking+RetryPolicy (1.0.4):
+  - "AFNetworking+RetryPolicy (1.0.4)":
     - AFNetworking (~> 3.0)
     - ObjcAssociatedObjectHelpers (= 2.0.1)
   - AFNetworking/NSURLSession (3.2.1):
@@ -38,10 +38,10 @@ PODS:
   - FirebaseAnalytics (5.0.1):
     - FirebaseCore (~> 5.0)
     - FirebaseInstanceID (~> 3.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseCore (5.0.6):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (3.1.1):
     - FirebaseCore (~> 5.0)
   - FirebaseMessaging (3.0.3):
@@ -50,8 +50,8 @@ PODS:
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
   - GoogleSignIn (4.1.2):
-    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
-    - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMOAuth2 (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GoogleToolboxForMac/DebugUtils (2.1.4):
@@ -59,13 +59,13 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.4)
   - GoogleToolboxForMac/Logger (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/NSData+zlib (2.1.4):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4):
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4)":
     - GoogleToolboxForMac/DebugUtils (= 2.1.4)
     - GoogleToolboxForMac/Defines (= 2.1.4)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.4)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.15):
@@ -85,9 +85,9 @@ PODS:
   - nanopb/encode (0.3.8)
   - ObjcAssociatedObjectHelpers (2.0.1):
     - ObjcAssociatedObjectHelpers/Core (= 2.0.1)
-    - ObjcAssociatedObjectHelpers/NSObject+Dictionary (= 2.0.1)
+    - "ObjcAssociatedObjectHelpers/NSObject+Dictionary (= 2.0.1)"
   - ObjcAssociatedObjectHelpers/Core (2.0.1)
-  - ObjcAssociatedObjectHelpers/NSObject+Dictionary (2.0.1):
+  - "ObjcAssociatedObjectHelpers/NSObject+Dictionary (2.0.1)":
     - ObjcAssociatedObjectHelpers/Core
   - Protobuf (3.6.0)
   - Reachability (3.2)
@@ -101,7 +101,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - AFNetworking+RetryPolicy
+  - "AFNetworking+RetryPolicy"
   - FBSDKLoginKit
   - Firebase/Core
   - Firebase/Messaging
@@ -116,9 +116,38 @@ DEPENDENCIES:
   - SDWebImage-ProgressView
   - SVProgressHUD
 
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - "AFNetworking+RetryPolicy"
+    - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMOAuth2
+    - GTMSessionFetcher
+    - HMSegmentedControl
+    - JSONModel
+    - MagicalRecord
+    - nanopb
+    - ObjcAssociatedObjectHelpers
+    - Protobuf
+    - Reachability
+    - RESideMenu
+    - SDVersion
+    - SDWebImage
+    - SDWebImage-ProgressView
+    - SVProgressHUD
+
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AFNetworking+RetryPolicy: 3c0e09e525b8bc74ec788e337b12ea97d952ef10
+  "AFNetworking+RetryPolicy": 3c0e09e525b8bc74ec788e337b12ea97d952ef10
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
   FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
@@ -129,7 +158,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: f43eb0c0e1da096e659de6f713038e74862a62cd
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
+  GTMOAuth2: e8b6512c896235149df975c41d9a36c868ab7fba
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
@@ -146,4 +175,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: aec3e312a82703de2bfbd90738a20324609ca760
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.11.0

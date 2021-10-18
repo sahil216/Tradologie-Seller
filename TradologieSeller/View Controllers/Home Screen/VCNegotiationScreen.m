@@ -343,7 +343,7 @@
 -(void)SetdefaultTextfieldwithView:(UIView *)addView withTextfield:(UITextField *)txtfield withTag:(NSInteger)tag withPlaceHolder:(NSString *)placeholder
 {
     [txtfield setAdditionalInformationTextfieldStyle:placeholder Withimage:[UIImage imageNamed:@"IconDropDownWhite"] withID:self withSelectorAction:@selector(btnDropDownTapped:) withTag:tag];
-    [txtfield setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+  //  [txtfield setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [txtfield setBackgroundColor:DefaultThemeColor];
     [txtfield setFont:IS_IPHONE5? UI_DEFAULT_FONT_MEDIUM(15):UI_DEFAULT_FONT_MEDIUM(18)];
     [txtfield setTextColor:[UIColor whiteColor]];

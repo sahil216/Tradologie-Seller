@@ -567,7 +567,7 @@
     if (indexPath.row == 1)
     {
         [_txtBankName setAdditionalInformationTextfieldStyle:@"Select Payment Mode" Withimage:IMAGE(@"IconDropDrown")  withID:self withSelectorAction:@selector(btnDropDownTapped:) withTag:1001];
-        [_txtBankName setValue:DefaultThemeColor forKeyPath:@"_placeholderLabel.textColor"];
+       // [_txtBankName setValue:DefaultThemeColor forKeyPath:@"_placeholderLabel.textColor"];
         
     }
     else if (indexPath.row == 2)
